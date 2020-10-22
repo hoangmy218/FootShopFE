@@ -1,0 +1,229 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+@import '../../scss/helpers/shared';
+
+.register{
+    padding:4rem 2rem;
+    text-align: center;
+    .container{
+        padding-left: 30rem;
+        padding-right: 30rem;
+    }
+    
+    &__item{
+        margin-top: 2rem;
+        text-align: left;
+        line-height: 3rem;
+        word-spacing: 3px;
+        color:$greyx4;
+        font-size:1.2rem;
+        border-color: $grey0 !important;
+        border: 1px solid;
+        padding: 1rem 1rem 1rem 1rem;
+        
+        @include setMaxwidth($md){
+            padding:0 4rem;
+        }
+        @include setMaxwidth($sm){
+            padding:0;
+        }
+        &-link{
+            a{
+                color: $greyx3;
+                font-weight: 200;
+                &:hover{
+                    color: $bglink;
+                    font-weight: 100;
+                }
+            }
+            
+        }
+        &-title {
+            @extend %title-list;
+           border-bottom: 1px solid $grey0;
+           font-weight: 400;
+           
+        }
+        &-form{
+            text-align: left;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            &-group{
+               margin-bottom: 1rem;
+            }
+            &-label{
+                color: $greyx2;
+                font-family: $title-font;
+                text-align: left;
+            }
+        }
+        &-link{
+            color: $greyx3;
+            font-family: $title-font;
+            text-align: left;
+            a{
+                color: $greyx2;
+                font-family: $title-font;
+                text-align: left;
+                
+            }
+            
+        }
+
+        &-text{
+            color: $bggrey1;
+            font-family: $title-font;
+            text-align: left;
+            @include setMaxwidth($lg){
+                padding:0 2rem;
+            }
+            @include setMaxwidth($sm){
+                padding:0;
+            }
+        }
+        &-btn{           
+            color:white;
+            // background:$bluesky;
+            font-family: $boldfont;
+            font-weight: 200;
+            // chuyen mau tu trai sang phai
+            background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+            border: snow 2px;
+            border-radius: 2px;
+            border: none !important;
+            padding:1rem 2rem;
+            font-size: 1rem;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: left;
+            }   
+            &:disabled,
+            button[disabled]{
+                background: $grey;
+            }
+        }
+    }
+}
+
+
+.input-group{
+    font-family: $title-font;
+}
+input{
+    
+}
+.form-control{
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 1rem;
+    
+    border: 1px solid $grey0;
+    border-radius: 0.2rem 0 0 0.2rem;
+    
+    &:focus{
+        outline: 0 !important;
+        border: 1px solid $grey0;
+        border-radius: 0.2rem 0 0 0.2rem!important;
+    }
+    &:hover{
+        border: 1px solid $greyx2;
+    }
+}
+  
+
+.input-group-btn{
+    border: 1px solid;
+    border-radius: 0 0.2rem 0.2rem 0 ;
+    max-width: 500px;
+    padding-bottom: 1rem;
+    margin:auto;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    &:focus{
+        outline: 0 !important;
+        border: 2px solid;
+        border-radius: 0 0.2rem 0.2rem 0 !important;
+    }
+}
+.title_page{
+    background-color: $bgsimple;
+    color: white;
+    width: 100%;
+    @extend %title-list;
+    font-size: 1.5rem;
+    a{
+        color: $grey0;
+        &:hover{
+            color: white;
+        }
+    }
+
+}
+.radio-container {
+    display: inline;
+    position: relative;
+    font-size: 1.2rem;
+    color: $greyx3;
+    font-family: $title-font;
+    padding-left: 35px;
+    margin-left: 1rem;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .radio-container input {
+    font-size: 1.2rem;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .radio-container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .radio-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .radio-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .radio-container .checkmark:after {
+      top: 7px;
+      left: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: white;
+  }

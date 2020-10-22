@@ -1,0 +1,274 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+@import '../../scss/helpers/shared';
+
+.products{
+    padding:8rem 2rem;
+    @include setMaxwidth($sm){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &__top{
+        margin-bottom: 6rem;
+        text-align: center;
+        &-title{
+            @extend %title-list;
+            margin-bottom: 2rem;
+            text-align: center;
+            margin: 0 auto 80px;
+            position: relative;
+            line-height: 60px;
+            color: #555;
+            &::after{
+                content: '';
+                background: $bluesky;
+                width: 80px;
+                height: 5px;
+                border-radius: 5px;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        &-text{
+            @extend %text;
+            padding:0 20rem;
+            @include setMaxwidth($xl){
+                padding:0 14rem;
+            }
+            @include setMaxwidth($md){
+                padding:0 1rem;
+            }
+        }
+    }
+    &__menu{
+        
+    }
+    .item{
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        @include setMaxwidth($sm540){
+            padding:1rem 3rem;
+        }
+        transition: transform 0.5s;
+        &:hover{
+            transform: translateY(-10px);
+        }
+        &__img{
+            .discount-badge {
+                font-size: 12px;
+                line-height: 34px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                font-weight: 700;
+                color: $discount;
+                background: $bgdiscount;
+                border-radius: 7px;
+                padding: 0 14px;
+                height: 34px;
+
+            }
+            
+        }
+        &__name{
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            color:$grey;
+            margin-bottom: 1rem;
+            font-family: $primaryfont;
+            display: flex;
+            justify-content: space-between;
+            a{
+                color: $grey;
+                &:hover{
+                    color: $greyx4;
+                }
+            }
+            .favorite{
+                margin-right: 1rem;
+                transition: transform .2s;
+                &:hover{
+                    transform: scale(1.2);
+                }
+            }
+        }
+        &__colors{
+            display: inline-block;
+            img{
+                padding: 0.1rem 0.1rem ;
+                margin-right: 0.5rem;
+                margin-bottom: 1rem;
+                border-radius: 50%;
+                height: 25px !important;
+                width: 25px !important;
+            }
+            &-img{
+               
+            }
+        }
+        &__price{
+            font-family: $primaryfont;
+            font-size: 1.3rem;
+            color:$greyx4;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .old-price{
+            color: $grey;
+            font-size: 1.1rem;
+            font-weight: 50;
+            text-decoration-line: line-through;
+        }
+        .line{
+            color:$grey;
+            margin: 0 0.2rem;
+        }
+        .btn{
+            @extend %btn-ltr;
+            font-size: 1rem;
+            
+        }
+        &__btn{
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-add-to-cart{
+            color:white;
+            // background:$bluesky;
+            font-family: $boldfont;
+            font-weight: 200;
+            // chuyen mau tu trai sang phai
+            background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+            border: snow 2px;
+            border-radius: 2px;
+            border: none !important;
+            padding:1rem 2rem;
+            font-size: 1rem;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: left;
+            }
+            
+        }
+        .btn-detail{
+            color:white;
+            // background:$bluesky;
+            font-family: $boldfont;
+            font-weight: 200;
+            // chuyen mau tu trai sang phai
+            background: linear-gradient(to right, $grey 50%, #4f5c6d 50%)left;
+            border: snow 2px;
+            border-radius: 2px;
+            border: none !important;
+            padding:1rem 2rem;
+            font-size: 1rem;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: right;
+            }
+            
+        }
+    }
+}
+
+.products {
+    font-family: $titlefont;
+    color: white;
+    position: relative;
+    &:hover {
+        .nav-btn {
+            opacity: 1;
+        }
+    }
+    .item {
+        height: 43vh;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        
+        @include setMaxwidth($xl){
+            height: 30vh;
+        }
+        @include setMaxwidth($lg){
+            height: 27vh;
+        }
+        @include setMaxwidth($md1){
+            height: 33vh;
+        }
+        @include setMaxwidth($md){
+            height: 25vh;
+        }
+        
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+       
+    }
+    .slide{
+        background-size: 100%;
+        height: 50%;
+    }
+    &__flex {
+        height: 100%;
+        @include flex();
+    }
+    .flex2{
+        @include flex($justify: flex-end);
+    }
+    &__content {
+        width: 100%;
+        padding-left: 4rem;
+        align-content: center;
+        text-align: center;
+    }
+    .content2 {
+        text-align: center;
+    }
+    &__title{
+        color: white;
+        font-family: $yesevafont;
+        font-size: 3rem;
+        line-height: 4rem;
+        margin-bottom: 2rem;
+    }
+    
+    p{
+        font-family: $yesevafont !important;
+    }
+    &__text {
+        font-family: $yesevafont !important;
+        color: white;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        margin-bottom: 2rem;
+        padding: 0.3rem 1rem;
+        background: rgba($color: $blue, $alpha: 0.6);
+        display: inline-block;
+        
+    }
+    
+    button{
+        &:focus{
+            border: none !important;
+            outline: 0 !important;
+        }
+        .owl-dot{
+            border: none !important;
+            outline: 0 !important;
+        }
+    }
+}

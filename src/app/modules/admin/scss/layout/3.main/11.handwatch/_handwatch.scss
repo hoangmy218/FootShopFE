@@ -1,0 +1,37 @@
+.handwatch{
+    padding:4rem 2rem;
+    background-image: url('/img/bg_feat_section_three.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    .container{
+        @include flex($direction:column,$align:left);
+        @include setMaxwidth($md){
+            padding: 0 1rem;
+            max-width: none;
+        }
+    }
+    .item{
+        padding:3rem;
+        width: 60%;
+        @include flexitem($basis:200px);
+        @include setMaxwidth($md){
+            @include flexitem($basis:100px);
+        }
+        @include setMaxwidth($sm){
+            width: 100%;
+            @include flexitem($basis:70px);
+            padding:3rem 1rem;
+        }
+    }
+    &__title{
+        margin-bottom:2rem;
+        @extend %title;
+        color:white;
+    }
+    &__text{
+        @extend %text;
+        color:white;
+
+    }
+}

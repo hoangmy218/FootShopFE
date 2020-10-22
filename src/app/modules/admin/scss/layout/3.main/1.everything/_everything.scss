@@ -1,0 +1,50 @@
+.everything{
+    padding:6rem 2rem;
+    @include setMaxwidth($md){
+        padding:2rem;
+    }
+    .container{
+        @include grid($columns:repeat(2,1fr));
+        @include setMaxwidth($xl){
+            padding:0;
+            max-width: none;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr));
+            text-align: center;
+        }
+    }
+    &__left{
+        padding:4rem;
+        color:$grey;
+        @include setMaxwidth($lg){
+            padding:2rem 0.5rem;
+        }
+        &-title{
+            margin-bottom: 2rem;
+            @extend %title;
+            line-height: 5rem;
+            @include setMaxwidth($xsm){
+                font-size: 3rem;
+            }
+        }
+        &-amazing{
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color:$greyx1;
+        }
+        &-text{
+            @extend %text;
+        }
+    }
+    &__img{
+        @include setMaxwidth($md){
+            text-align: center;
+        }
+    }
+    img{
+        @include setMaxwidth($md){
+            width: 50%;
+        }
+    }
+}

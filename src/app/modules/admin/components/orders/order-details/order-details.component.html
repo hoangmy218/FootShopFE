@@ -1,0 +1,82 @@
+
+
+<!-- <div class="row mt-5 mb-5">
+    <div class="col">
+      <div  class="site-section"> -->
+        <div class="container">
+            <div class="row mt-5 mb-5">
+              <div class="col-lg-8 col-12">
+               
+                  <h3 class="text-center table-title"><a routerLink="/admin/order">MY ORDER </a>/ MY DETAILS ORDER #{{order._id}}</h3>
+                  <table  class="table table-striped" >
+                    <thead >
+                      <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">SubTotal</th>         
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let orderItem of orderItems; let i = index">
+                          <th scope="row">{{i+1}}</th>
+                          <td> 
+                            <div *ngFor="let dl of imageList | keyvalue">   
+                                <div *ngIf="dl.key == orderItem.ctsp_id._id" >
+                                    <img src="{{dl.value}}" alt="Image" class="img-cart">
+                                </div>
+                            </div></td>
+                          <td>{{orderItem.ctsp_id._id}}</td>
+                          <td>{{orderItem.dongia }}</td>
+                          <td> 
+                              {{orderItem.soluongdat}}
+                          </td>
+                          <td>{{orderItem.soluongdat * orderItem.dongia }}</td>
+                        </tr>
+                      </tbody>
+                  </table>
+                 
+               
+              </div>
+              <div class="col-md-4 col-12">
+                  <div class="card bg-light" >
+                      <div class="card-header text-center">
+                        <h5 class="card-title h4 font-weight-bold">Order Info</h5>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><b>Date</b> <p class="price">{{order.ngaydat | date}}</p></li>
+                          <li class="list-group-item row-color"><b>Name</b> <p class="price">{{address.ten}}</p></li>
+                          <li class="list-group-item"><b>Phone</b> <p class="price">{{address.dienthoai}}</p></li>
+                          <li class="list-group-item row-color"><b>Address</b> <p class="price">{{address.diachi}}</p></li>
+                          <li class="list-group-item">
+                             <b>Payment</b> <p class="price" >{{order.thanhtoan_id['ten'] }}</p>
+                            
+                          </li>
+                          <!-- <div *ngFor = "let pm of paymentList">
+                              <li class="list-group-item" *ngIf="pm.pm_id == order.pm_id">Payment <p class="price" >{{pm.pm_name}}</p></li>
+                          </div>  -->
+                          <!-- <div *ngFor = "let st of stateList | keyvalue">
+                              <li class="list-group-item"  *ngIf="st.key == order.st_id" ><b>State order <p class="price" >{{st.value}}</p></b></li>
+                          </div>                       -->
+                          <li class="list-group-item row-color">
+                            <div *ngFor="let dl of stageList | keyvalue">   
+                                <div *ngIf="dl.key == order.trangthai" >
+                              <b >State order <p class="price" >{{dl.value}}</p></b></div>
+                            </div>   
+                          </li>
+  
+                          <li class="list-group-item"><b>Note</b><p class="price">{{order.ghichu}}</p></li>
+                      </ul>
+                      <div class="card-body">
+                          <span class="total"><b> Total <p class="price ">{{order.tongtien |currency}}</p></b></span>                                                             
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <!-- </div>
+      </div>
+    </div>
+     -->

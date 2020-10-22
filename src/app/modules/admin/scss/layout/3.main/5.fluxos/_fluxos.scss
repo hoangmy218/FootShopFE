@@ -1,0 +1,95 @@
+.fluxos{
+    color:$greyx1;
+    padding:8rem 2rem;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &__top{
+        @include grid($columns:repeat(2,1fr));
+        margin-bottom: 1rem;
+        @include setMaxwidth($xl){
+            margin-bottom:5rem;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+        }
+        &-content{
+            padding-top:3rem;
+            @include setMaxwidth($md){
+                padding-top:0;
+            }
+        }
+        &-img{
+            @include setMaxwidth($md){
+                text-align: center;
+            }
+        }
+        .title{
+            @extend %title;
+            @include setMaxwidth($xsm){
+                font-size: 2.5rem;
+            }
+        }
+        .innovation{
+            margin:2rem 0;
+            font-size: 1.8rem;
+        }
+        .text{
+            @extend %text;
+        }
+    }
+    &__menu{
+        @include grid($columns:repeat(3,1fr));
+        @include setMaxwidth($lg){
+            @include grid($columns:repeat(2,1fr));
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr));
+        }
+        &-item{
+            @include grid($columns:repeat(2,1fr),$columnGap:2rem);
+            grid-template-columns: auto auto;
+            &:hover{
+                i{
+                    transform: translateX(12px);
+                    visibility: hidden;
+                }
+                .icon{
+                    background:$bluesky;
+                }
+                .menu-content__title{
+                    color:$bluesky;
+                }
+            }
+        }
+        .menu-content{
+            &__title{
+                font-size: 2.3rem;
+                margin-bottom: 0.8rem;
+                color:$greyx2;
+            }
+            &__text{
+                @extend %text;
+            }
+        }
+        .icon{
+            font-size: 2.2rem;
+            padding:1rem;
+            color:$bluesky;
+            border-radius: 50%;
+            border:1px solid $bluesky;
+            width: 60px;
+            height: 60px;
+            transition: .2s ease-in-out;
+        }
+        i{
+            transition: .2s ease-in-out;
+        }
+    }
+}

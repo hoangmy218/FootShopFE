@@ -1,0 +1,43 @@
+.guide{
+    @include flex($wrap:wrap);
+    &__item{
+        @include flexitem($basis:33.33%);
+        padding:5rem;
+        background-size: cover;
+        background-position: center;
+        @include flex($direction:column,$align:left);
+        @include setMaxwidth($lg){
+            @include flexitem($basis:100%);
+        }
+        @include setMaxwidth($xsm){
+            padding:3rem 2rem;
+        }
+    }
+    .it-temp{
+        @include flexitem($basis:200px);
+    }
+    .title{
+        @extend %title;
+        font-size: 2.7rem;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+        color:white;
+    }
+    .text{
+        @extend %text;
+        margin-bottom: 2rem;
+        color:white;
+    }
+    .btn{
+        @extend %btn;
+    }
+    .tours{
+        background-image: url('/img/guide_tours_bg.jpg');
+    }
+    .commer{
+        background-image: url('/img/commercials_ads_bg.jpg');
+    }
+    .tutorial{
+        background-image: url('/img/tutorials_bg.jpg');
+    }
+}

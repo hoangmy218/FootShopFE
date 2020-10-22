@@ -1,0 +1,71 @@
+.accessories{
+    padding:8rem 2rem;
+    @include setMaxwidth($sm){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &__top{
+        margin-bottom: 6rem;
+        text-align: center;
+        &-title{
+            @extend %title;
+            margin-bottom: 2rem;
+            @include setMaxwidth($lg){
+                font-size: 3rem;
+            }
+        }
+        &-text{
+            @extend %text;
+            padding:0 20rem;
+            @include setMaxwidth($xl){
+                padding:0 14rem;
+            }
+            @include setMaxwidth($md){
+                padding:0 1rem;
+            }
+        }
+    }
+    &__menu{
+        @include grid($columns:repeat(3,1fr));
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(2,1fr));
+        }
+        @include setMaxwidth($sm540){
+            @include grid($columns:repeat(1,1fr));
+        }
+    }
+    .item{
+        text-align: center;
+        @include setMaxwidth($sm540){
+            padding:1rem 3rem;
+        }
+        &__name{
+            margin-top: 2rem;
+            font-size: 2rem;
+            color:$grey;
+            margin-bottom: 2rem;
+        }
+        &__price{
+            font-size: 1.6rem;
+            color:$bluesky;
+            margin-bottom: 2rem;
+        }
+        .old-price{
+            color: $grey;
+            text-decoration-line: line-through;
+        }
+        .line{
+            color:$grey;
+            margin: 0 0.2rem;
+        }
+        .btn{
+            @extend %btn;
+            font-size: 1rem;
+        }
+    }
+}

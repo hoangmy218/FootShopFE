@@ -1,0 +1,84 @@
+    <span class="top-page" id="top-page"><i class="fas fa-chevron-up"></i></span>
+    <!--TOP BAR-->
+    <section class="top-bar">
+        <nav class="top-bar__nav">
+            <div class="top-bar__nav-img">
+                <a href=""><img src="../../../../../assets/img/logo.png" alt=""></a>
+            </div>
+            <span class="icon-res">
+                <button class="icon-cart"><i class="fas fa-shopping-cart"></i></button>
+                <button class="icon-menu" id="icon-menu"><i class="fas fa-bars"></i></button>
+            </span>
+            <div class="top-bar__nav-menu">
+                <ul class="menu" id="menu">
+                    <li class="menu-item has-menu">
+                        <a href="#overview" class="link-item">DANH MỤC</a>
+                        <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
+                        <ul class="sub-menu" id="sub-menu">
+                            <div *ngFor="let cate of categoryList">
+                                <li class="sub-menu-item" >
+                                    <a href="#" class="sub-link">{{cate.ten}}</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-menu">
+                        <a href="#features" class="link-item">THƯƠNG HIỆU</a>
+                        <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
+                        <ul class="sub-menu" id="sub-menu">
+                            <div *ngFor="let brand of brandList">
+                                <li class="sub-menu-item" >
+                                    <a href="#" class="sub-link">{{brand.ten}}</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="menu-item technology">
+                        <a href="#technology" class="link-item">LIÊN HỆ</a>
+                    </li>
+                    <li class="menu-item" *ngIf="!service.loggedIn()">
+                        <a routerLink="/login" class="link-item">ĐĂNG NHẬP</a>
+                    </li>
+                    <li class="menu-item order" *ngIf="!service.loggedIn()">
+                        <a routerLink="/getstarted">
+                            <span class="order-now" class="link-item">ĐĂNG KÝ</span>
+                        </a>
+                    </li>
+                    <li class="menu-item has-menu" *ngIf="service.loggedIn()">
+                        <a href="" class="link-item">{{username}}</a>
+                        <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
+                        <ul class="sub-menu" id="sub-menu">
+                            <li class="sub-menu-item">
+                                <a href="#" class="sub-link">Tài khoản</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a routerLink="/address" 
+                                *ngIf="service.isUser()"
+                                class="sub-link">Địa chỉ</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a routerLink="/admin/dashboard" 
+                                *ngIf="service.isAdmin()"
+                                class="sub-link">Dashboard</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a (click)="onLogout()" class="sub-link">Đăng xuất</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li class="menu-item it-cart"><a href="#">
+                        <span class="cart">
+                            <i class="far fa-heart">
+                                <!-- <span class="badge">8</span> -->
+                            </i>  
+                        </span></a>
+                    </li>
+                    <li class="menu-item it-cart"><a routerLink="/cart"><span class="cart">
+                        <i class="fas fa-shopping-cart"></i></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <!--End TOP BAR-->

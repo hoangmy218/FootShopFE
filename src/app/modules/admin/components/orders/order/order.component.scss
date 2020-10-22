@@ -1,0 +1,20 @@
+.grid-container {
+    margin: 20px;
+  }
+  
+  
+  .btn-add{
+      float: right;
+  }
+  mat-header-cell{
+      text-align: center!important;
+  }
+  .break { 
+    word-break: break-all;
+    white-space: pre-wrap!important;      /* CSS3 */   
+    white-space: -moz-pre-wrap!important; /* Firefox */    
+    white-space: -pre-wrap!important;     /* Opera <7 */   
+    white-space: -o-pre-wrap!important;   /* Opera 7 */    
+    word-wrap: break-word!important;      /* IE */
+ }
+  

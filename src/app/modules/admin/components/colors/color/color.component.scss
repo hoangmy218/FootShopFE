@@ -1,0 +1,28 @@
+
+.grid-container {
+    margin: 20px;
+}
+
+
+.btn-add{
+    float: right;
+}
+
+img {
+    width: 50px; /* width of container */
+    height: 50px; /* height of container */
+    object-fit: cover;
+    border: 5px solid white;
+    border-radius: 10%;
+}
+  
+mat-cell { 
+    word-break: break-all;
+    white-space: pre-wrap!important;      /* CSS3 */   
+    white-space: -moz-pre-wrap!important; /* Firefox */    
+    white-space: -pre-wrap!important;     /* Opera <7 */   
+    white-space: -o-pre-wrap!important;   /* Opera 7 */    
+    word-wrap: break-word!important;      /* IE */
+ }
+  
+  

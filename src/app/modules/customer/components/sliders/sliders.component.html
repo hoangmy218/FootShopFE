@@ -1,0 +1,63 @@
+<header>
+    <section class="header">
+        <div class="header__slider" id="head-slider">
+            <!-- <div class="owl-carousel owl-theme" id="owl-main">
+
+                <div class="item head1">
+                    <div class="item-content">
+                        <h1 class="title">
+                            Avada Fashion
+                        </h1>
+
+                        <div class="text-bg">
+                            <h4 class="text">DISCOVER | TREND | ELEGANCE</h4>
+                        </div>
+
+                        <div class="item-btn">
+                            <button class="btn">DISCOVER</button>
+                            <button class="btn">BUY AVADA</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item head2">
+                    <div class="item-content">
+                        <h1 class="title">
+                            Glamor & Beauty
+                        </h1>
+
+                        <div class="text-bg">
+                            <h4 class="text">AUTUMN COLLECTIONS 2015</h4>
+                        </div>
+
+                        <div class="item-btn">
+                            <button class="btn">DISCOVER</button>
+                            <button class="btn">BUY AVADA</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+        
+            <!-- OWL CAROUSEL -->
+            <owl-carousel [options]="customOptions"  
+                [carouselClasses]="['owl-theme', 'sliding']">
+                <div class="item" *ngFor="let image of images; let i = index" >
+                    <div class="slide" [ngStyle]="{'background-image': 'url(' + image.image + ')'}">
+                        <div class="header__flex">
+                            <div class="header__content">
+                                <div class="header__title">
+                                    {{image.text}}    
+                                </div>
+                                <p class="header__text">{{image.text}}</p>
+                                <div class="header__btn">
+                                    <a routerLink="/shopping" class="btn">SHOP NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </owl-carousel>
+        </div>
+    </section>
+</header>

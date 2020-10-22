@@ -1,0 +1,111 @@
+<div class="grid-container">
+    <section class="productattr">
+        <div class="container">
+            <div class="productattr__item">
+                <h1 class="mat-h1">Thông tin sản phẩm</h1>
+                <mat-card>
+                    <h2>Tên : {{product['ten']}}</h2>
+                    <h5>Mã: {{product['_id']}}</h5>
+                    <h5>Đơn giá: {{product['dongia'] | currency: 'VND'}}</h5>
+                    <h5>Thương hiệu: {{product['thuonghieu_id']['ten']}}</h5>
+                    <h5>Danh mục: {{product['danhmuc_id']['ten']}}</h5>
+                    <h5>Mô tả: {{product['mota']}}</h5>
+                </mat-card>
+            </div>
+            <div class="productattr__item">
+                <div class="dashboard-card">
+                    <h1 class="mat-h1">Thêm phân loại hàng</h1>
+                   </div>
+                   <mat-card>
+                   <div >
+                       <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                           <mat-form-field appearance="fill"  class="example-full-width">
+                               <mat-label>Màu sắc</mat-label>
+                               <mat-select name="mausac_id"
+                               #mausac_id="ngModel" required
+                               [(ngModel)]="service.formProductDetail.mausac_id" >
+                               <mat-option *ngFor="let dl of colorList " [value]="dl._id">
+                                   {{dl.ten}}
+                               </mat-option>
+                               </mat-select>
+                           </mat-form-field>
+                           <div class="text-left text-danger"
+                               *ngIf="mausac_id.invalid && mausac_id.touched">
+                               Chọn danh mục
+                           </div>
+                           <div class="image">
+                               <!-- <button class="mt-4 btn-add" mat-raised-button color="primary" 
+                                   (click)="onAddRow()" *ngIf="addForm.get('rows')" 
+                                   >Thêm hình ảnh</button>
+                                   <table>
+                                       <thead>      
+                                       </thead>
+                                       <tbody>
+                                           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                                               <td> 
+                                                   <label>Hình ảnh</label>
+                                                       <input type="file" name="photo"  class="choosefile"  
+                                                           [formControl]="row.get('photo')"
+                                                           accept="image/*" #photo (change)="processFile(photo)"> 
+                                                   
+                                                       <img src="{{imageList[index]['hinh']}}" alt="">                          
+                                               </td>    
+                                               <td>
+                                                   <button mat-raised-button color="warn"
+                                                       (click)="onRemoveRow(index)" class="btn-delete"
+                                                       >Xóa</button>
+                                               </td>
+                                           </tr>
+                                       </tbody>
+                                   </table> -->
+                               <!-- <pre>{{rows.value | json}}</pre> -->
+                               <div>Danh sách hình ảnh</div>
+                               <div *ngIf="uploadError">
+                                   <div [innerHTML]="uploadError" class="error"></div>
+                               </div>
+                               <div class="form-group">
+                                   <div class="upload-image">
+                                       <div #image class="image-wrapper"></div>
+                                       <div class="browse-btn">
+                                       <input type="file" name="cameraImg" id="cameraImg" (change)="onSelectedFile($event)" />
+                                       <div class="browse-image">
+                                           <img src="../../../../../../assets/img/plus_PNG115.png" width="60px" />
+                                           <p>Thêm ảnh</p>
+                                       </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="clearfix"></div>
+                               <div class="text-danger" *ngIf="imageList?.length == 0">Thêm hình ảnh</div>
+                           </div>
+                           
+               
+                           <mat-form-field appearance="fill"  class="example-full-width">
+                               <mat-label>Kích cỡ</mat-label>
+                               <mat-select name="kichco_id"
+                               #kichco_id="ngModel" required
+                               [(ngModel)]="service.formProductDetail.kichco_id" multiple>
+                               <mat-option *ngFor="let dl of sizeList" [value]="dl._id">
+                                   {{dl.ten}}
+                               </mat-option>
+                               </mat-select>
+                           </mat-form-field>
+                           <div class="text-left text-danger" 
+                               *ngIf="kichco_id.invalid && kichco_id.touched">
+                               Chọn kích cỡ.
+                           </div>
+               
+                       
+               
+                           <button class="mt-4" mat-raised-button 
+                           color="primary" type="submit"
+                           [disabled]="form.invalid && (imageList?.length == 0)">Thêm</button>
+                       </form>
+                   </div>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    
+    
+</div>

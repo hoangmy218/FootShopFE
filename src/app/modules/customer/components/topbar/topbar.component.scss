@@ -1,0 +1,276 @@
+
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+
+nav{
+    background: black;
+    color: white;
+
+}
+.top-page {
+    position: fixed;
+    bottom: 0;
+    right: 4rem;
+    padding: 1rem 1.3rem;
+    background: rgba($color: black, $alpha: 0.8);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    display: none;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+.top-bar {
+    background: black;
+    color: white;
+    padding: 0 6rem;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    @include setMaxwidth($xl) {
+        padding: 0;
+    }
+    &__nav {
+        @include flex($justify: space-between, $wrap: wrap);
+        &-img {
+            @include setMaxwidth($xl) {
+                padding: 1rem 2rem;
+            }
+        }
+        &-menu {
+            @include setMaxwidth($xl) {
+                @include flexitem($basis: 100%);
+                position: relative;
+            }
+        }
+        .menu {
+            @include flex();
+            @include setMaxwidth($xl) {
+                // max-height: 0;
+                // transition: .5s ease-in-out;
+                // background: $bgfantastic;
+                // @include flex($direction: column);
+                // overflow: hidden;
+                flex-direction: column !important;
+                width: 100%;
+                max-height: 0;
+                    overflow: hidden;
+                    background: $greyx4;
+                    -webkit-transition: all 0.4s ease-in-out;
+                        -moz-transition: all 0.4s ease-in-out;
+                        -o-transition: all 0.4s ease-in-out;
+                        transition: all 0.4s ease-in-out;
+            }
+            &-item {
+                margin-left: 3rem;
+                text-transform: uppercase;
+                @include setMaxwidth($xl) {
+                    display: block!important;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+                .link-item:not(.home) {
+                    color: white;
+                    display: block;
+                    // padding-left: rem;
+                    @include setMaxwidth($xl) {
+                        font-size: 1rem !important;
+                        font-family: $primary-font;
+                        display: block;
+                        &:hover {
+                            background: $orange;
+                            color: white;
+                        }
+                    }
+                    &:not(.makeapoint):hover {
+                        color: $orange;
+                        transition: all 0.3s;
+                    }
+                }
+            }
+            a {
+                display: block;
+                line-height: 8rem;
+                color: white;
+                
+                font-weight: 600;
+                transition: .4s ease-in-out;
+               
+                @include setMaxwidth($xl) {
+                    padding-left: 2.5rem;
+                    line-height: 3rem;
+                    color: white;
+                }
+                &:hover {
+                    color: $orange;
+                    // border-bottom: 2px solid $orange;
+                }
+            }
+            .order-now {
+                background: $grey;
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 2px;
+                transition: .3s ease-in-out;
+                &:hover {
+                    background: $bluesky;
+                }
+                @include setMaxwidth($xl) {
+                    background: none;
+                    padding: 0;
+                    &:hover {
+                        background: none;
+                        color: $bluesky;
+                    }
+                }
+            }
+            .cart {
+                @include setMaxwidth($xl) {
+                    display: none;
+                }
+                i{
+                    font-size: 1.5rem;
+                    .badge{
+                        position: absolute;
+                        top: -0.1rem;
+                        padding: 1px 5px;
+                        margin-bottom: 2rem;
+                        border-radius: 50%;
+                        background-color: red;
+                        color: white;
+                    }
+                }
+               
+            }
+            .overview,
+            .technology,
+            .access,
+            .order {
+                @include setMaxwidth($xl) {
+                    border-bottom: 1px solid $greyx1;
+                }
+            }
+        }
+        .has-menu {
+            position: relative;
+            @include setMaxwidth($xl){
+                @include flex($justify:space-between,$wrap: wrap);
+            }
+            
+            &:hover {
+                .sub-menu {
+                    display: block;
+                    @include setMaxwidth($xl){
+                        display: none;
+                    }
+                }
+            }
+        }
+        .icon-dropdown{
+            margin-right: 3rem;
+            color:white;
+            display: none;
+            @include setMaxwidth($xl){
+                display: inline;
+            }    
+        }
+        .sub-menu {
+            z-index: 1;
+            width: 230px;
+            position: absolute;
+            display: none;
+            border-top: 4px solid $orange;
+            // text-transform: ;
+            background:  $greyx4;
+            cursor: pointer;
+            @include setMaxwidth($xl){
+                position: relative;
+                @include flexitem($basis:100%);
+                background:inherit;
+                border-top:none;
+                display: block!important;
+                max-height: 0;
+                -webkit-transition: all 0.4s ease-in-out;
+                -moz-transition: all 0.4s ease-in-out;
+                -o-transition: all 0.4s ease-in-out;
+                transition: all 0.4s ease-in-out;
+                overflow: hidden;
+            }
+            &-item {
+                line-height: 4rem;
+                // border-bottom: 1px solid white;
+                @include setMaxwidth($xl){
+                    // border-top:1px solid white;
+                    border-bottom: none;
+                }
+            }
+        }
+        .sub-link {
+            color: white;
+            font-size: 1rem;
+            display: block;
+            padding: 0 2rem;
+            line-height: 3rem!important;
+            @include setMaxwidth($xl){
+                padding:0 4rem;
+                &::before{
+                    content: ' -';
+                }
+            }
+            &:hover {
+                color: $orange!important;
+                
+                background: $greyx4;
+                transition: 0.4s all;
+            }
+        }
+    }
+    .icon-res {
+        display: none;
+        margin: 0 2rem;
+        @include setMaxwidth($xl) {
+            display: inline;
+        }
+        @include setMaxwidth($xl) {
+            margin: 1rem;
+        }
+    }
+    .icon-cart,
+    .icon-menu {
+        border: none;
+        background: none;
+        font-size: 1.5rem;
+        color: white;
+        margin-left: 1rem;
+        
+       
+        display: none;
+        @include setMaxwidth($md) {
+            display: inline;
+        }
+    }
+}
+
+.sticky {
+    position: fixed;
+    z-index: 99;
+    right: 0;
+    left: 0;
+    background: white;
+}
+
+.show-toppage {
+    display: inline;
+}
+
+.active {
+    color: $bluesky!important;
+}
+
+.show-menu {
+    max-height: 600px!important;
+}

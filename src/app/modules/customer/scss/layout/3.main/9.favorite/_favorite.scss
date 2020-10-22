@@ -1,0 +1,76 @@
+.favorite {
+    padding: 8rem 2rem;
+    @include setMaxwidth($lg) {
+        padding: 4rem 2rem;
+    }
+    .container {
+        @include setMaxwidth($lg) {
+            padding: 0;
+            max-width: none;
+        }
+    }
+    &__top {
+        margin-bottom: 8rem;
+        @include setMaxwidth($md) {
+            margin-bottom: 4rem;
+        }
+        text-align: center;
+        &-title {
+            @extend %title;
+            margin-bottom: 2rem;
+            @include setMaxwidth($lg) {
+                font-size: 3rem;
+            }
+        }
+        &-text {
+            @extend %text;
+            padding: 0 20rem;
+            @include setMaxwidth($xl) {
+                padding: 0 14rem;
+            }
+            @include setMaxwidth($lg) {
+                padding: 0 8rem;
+            }
+            @include setMaxwidth($md) {
+                padding: 0;
+            }
+        }
+    }
+    &__menu {
+        @include flex($justify: center, $wrap: wrap);
+    }
+    .item {
+        text-align: center;
+        @include flexitem($basis: 33.33%);
+        @include setMaxwidth($md) {
+            @include flexitem($basis: 50%);
+        }
+        @include setMaxwidth($sm) {
+            @include flexitem($basis: 100%);
+            padding: 4rem;
+        }
+        @include setMaxwidth($xsm) {
+            padding: 0;
+            margin-top: 4rem;
+        }
+        &__name {
+            font-size: 2rem;
+            margin-top: 3rem;
+            color: $grey;
+        }
+    }
+    .pink {
+        margin-top: 6rem;
+        @include setMaxwidth($sm) {
+            margin-top: 0;
+        }
+        @include setMaxwidth($sm) {
+            margin-top: 4rem;
+        }
+    }
+    img {
+        @include setMaxwidth($lg) {
+            width: 80%;
+        }
+    }
+}

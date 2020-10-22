@@ -1,0 +1,137 @@
+.top-page {
+    position: fixed;
+    bottom: 0;
+    right: 4rem;
+    padding: 1rem 1.3rem;
+    background: rgba($color: black, $alpha: 0.8);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    display: none;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+
+.top-bar {
+    padding: 0 6rem;
+    position: relative;
+    @include setMaxwidth($xl) {
+        padding: 0;
+    }
+    &__nav {
+        @include flex($justify: space-between, $wrap: wrap);
+        &-img {
+            @include setMaxwidth($xl) {
+                padding: 1rem 2rem;
+            }
+        }
+        &-menu {
+            @include setMaxwidth($xl) {
+                @include flexitem($basis: 100%);
+            }
+        }
+        .menu {
+            @include flex();
+            @include setMaxwidth($xl) {
+                max-height: 0;
+                transition: .5s ease-in-out;
+                background: $bgfantastic;
+                @include flex($direction: column);
+                overflow: hidden;
+            }
+            &-item {
+                margin-left: 3rem;
+                @include setMaxwidth($xl) {
+                    display: block!important;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            a {
+                display: block;
+                line-height: 8rem;
+                color: $greyx2;
+                font-weight: 600;
+                transition: .4s ease-in-out;
+                @include setMaxwidth($xl) {
+                    padding-left: 2.5rem;
+                    line-height: 3rem;
+                    color: white;
+                }
+                &:hover {
+                    color: $bluesky;
+                }
+            }
+            .order-now {
+                background: $grey;
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 2px;
+                transition: .3s ease-in-out;
+                &:hover {
+                    background: $bluesky;
+                }
+                @include setMaxwidth($xl) {
+                    background: none;
+                    padding: 0;
+                    &:hover {
+                        background: none;
+                        color: $bluesky;
+                    }
+                }
+            }
+            .cart {
+                @include setMaxwidth($xl) {
+                    display: none;
+                }
+            }
+            .overview,
+            .technology,
+            .access,
+            .order {
+                @include setMaxwidth($xl) {
+                    border-bottom: 1px solid $greyx1;
+                }
+            }
+        }
+    }
+    .icon-res {
+        display: none;
+        margin: 0 2rem;
+        @include setMaxwidth($xl) {
+            display: inline;
+        }
+        @include setMaxwidth($xl) {
+            margin: 1rem;
+        }
+    }
+    .icon-cart,
+    .icon-menu {
+        border: none;
+        background: none;
+        font-size: 1.5rem;
+        color: $greyx1;
+        margin-left: 1rem;
+    }
+}
+
+.sticky {
+    position: fixed;
+    z-index: 99;
+    right: 0;
+    left: 0;
+    background: white;
+}
+
+.show-toppage {
+    display: inline;
+}
+
+.active {
+    color: $bluesky!important;
+}
+
+.show-menu {
+    max-height: 600px!important;
+}

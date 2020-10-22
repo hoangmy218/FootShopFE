@@ -1,0 +1,377 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+@import '../../scss/helpers/shared';
+
+
+.title_page{
+    background-color: $bgsimple;
+    color: white;
+    width: 100%;
+    @extend %title-list;
+    font-size: 1.5rem;
+    a{
+        color: $grey0;
+        &:hover{
+            color: white;
+        }
+    }
+
+}
+
+.cart{
+    color:$greyx1;
+    padding:4rem 2rem;
+    text-align: center;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+
+    &__top{
+        padding-left: 10rem;
+        padding-right: 10rem;
+        margin-top: 2rem;
+        text-align: left;
+        @include grid($columns:repeat(1,1fr));
+        margin-bottom: 1rem;
+        @include setMaxwidth($xl){
+            margin-bottom:5rem;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+        }
+        &-list{
+            // width: 50rem;
+        }
+    }
+}
+table {
+    border-color: #f7f8f8!important;
+    border: 1px solid rgba(0,0,0,.1);
+    margin: 0 -1px 24px 0;
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+    vertical-align: middle!important;
+    thead{
+        border-color: #f7f8f8!important;
+        border: 1px solid rgba(0,0,0,.1);
+        text-align: center;
+        width: 100%;
+        border-collapse: separate;
+        th{
+            padding: 1rem 0.5rem 1rem 0.5rem;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            color: black;
+        }
+    }
+    tbody{
+        tr{
+        border-color: #f7f8f8!important;
+        border: solid thin;
+        margin: 0 -1px 24px 0;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+        text-align: center;
+        width: 100%;
+        border-collapse: separate;
+        td{
+            padding: 0.5rem 0rem 0.5rem 0.5rem;
+            vertical-align: middle!important;
+        }
+        }
+    }
+}
+
+.table{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: $boldfont;
+    font-size: 1.2rem;
+    
+
+    &__title{
+        font-family: $boldfont;
+    }
+    &__image{
+        img{
+            height: auto;
+            min-width: 50px!important;
+            max-width: 80px;
+        }
+    }
+    &__product{
+        a{
+            // padding: 0.5rem 0rem 0.5rem 0.5rem;
+            color: $grey;
+            padding-left: 0.5rem;
+            font-family: $title-font;
+            &:hover{
+                color: $greyx4;
+            }
+        }
+        .color-size{
+            background-color: $orange;
+            color: white;
+            font-weight: bold;
+            line-height: 2rem;
+            border-radius: 2px;
+            border: none;
+            transition: .4s ease-in-out;
+            &:hover {
+                background: $orangesd;
+            }
+        }
+        
+    }
+    
+    &__price{
+        font-family: $boldfont;
+        font-size: 1.4rem;
+        color:$greyx4;
+        .old-price{
+            color: $grey;
+            padding-top: 0rem;
+            font-size: 1rem;
+            font-weight: 50;
+            text-decoration-line: line-through;
+        }
+    }
+    &__quantity{
+        color: $discount!important;
+
+    }
+    &__amount{
+
+    }
+    &__btn{
+        padding-right: 0.5rem!important;
+        .btn-delete{
+           
+            background-color: $discount;
+            color: white;
+            font-weight: bold;
+            line-height: 2rem;
+            border-radius: 2px;
+            display: block;
+            border: none;
+            transition: .4s ease-in-out;
+            &:hover {
+                background:#c2220c;
+            }
+        }
+    }
+
+}
+
+table#cart tbody tr {
+    &:hover{
+        background: $bggrey ;
+    }  
+}
+table#cart tbody td:before {
+    display: inline-block;
+}
+
+.card{
+    float: right;
+    width: 50%;
+    padding-top: 1rem;
+    &__title{
+        @extend %title-list;
+        text-align: left;
+        font-size: 1.8rem;
+        font-weight: 700;
+        
+        border-bottom: 1px solid $grey0;
+        color: black;
+        
+    }
+    &__content{
+        font-family: $boldfont;
+        font-size: 1.5rem;
+    }
+    &__item{
+        display: flex;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $grey0;
+        @include grid($columns:repeat(2,1fr));
+    }
+    &__footer{
+        
+        
+    }
+    .card_name{
+        text-align: left;
+        color: black;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+    .card_value{
+        text-align: right;
+        color: black;
+    }
+    .total{
+        color: $greyx4;
+        font-weight: bold;
+        line-height: 1.2rem;
+        font-size: 1.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: none!important;
+        .card_name{
+            font-size: 1.5rem;
+        }
+    }
+    &__btn{
+        .btn-checkout{
+            color:white;
+            width: 100%;
+            height: 50%;
+            font-family: $boldfont;
+            font-weight: 200;
+            // chuyen mau tu trai sang phai
+            background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+            border: snow 2px;
+            border-radius: 2px;
+            border: none !important;
+            padding:1rem 2rem;
+            font-size: 1.5rem;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: left;
+            }
+        }
+        
+    }
+
+}
+
+.btn-update{
+    float: right;
+    color:white;
+    width: 30%;
+    height: 50%;
+    font-family: $boldfont;
+    font-weight: 200;
+    // chuyen mau tu trai sang phai
+    background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+    border: snow 2px;
+    border-radius: 2px;
+    border: none !important;
+    padding:1rem 2rem;
+    font-size: 1.5rem;
+    background-size: 200%;
+    
+    transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }
+}
+
+input{
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 1rem;
+    
+    border: 1px solid $grey0;
+    border-radius: 0.2rem 0 0 0.2rem;
+    
+    &:focus{
+        outline: 0 !important;
+        border: 1px solid $grey0;
+        border-radius: 0.2rem 0 0 0.2rem!important;
+    }
+    &:hover{
+        border: 1px solid $greyx2;
+    }
+}
+
+//stepwizard
+.progressbar {
+    counter-reset: step;
+    margin-top: 1rem;
+    li {
+        list-style-type: none;
+        width: 25%;
+        float: left;
+        font-size: 12px;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+        padding-bottom: 1rem;
+        &:before {
+            width: 30px;
+            height: 30px;
+            content: counter(step);
+            counter-increment: step;
+            line-height: 30px;
+            border: 2px solid #7d7d7d;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            background-color: white;
+        }
+        &:after {
+            width: 100%;
+            height: 2px;
+            content: '';
+            position: absolute;
+            background-color: #7d7d7d;
+            top: 15px;
+            left: -50%;
+            z-index: -1;
+        }
+        &:first-child{
+            &:after {
+                content: none;
+            }
+        }
+        .active{
+            color: green;
+            border-color: #55b776;
+            &:before{
+                border-color: #55b776;
+            }
+            
+        }
+        .done{
+            &:before{
+                border-color: #55b776;
+                background-color: #55b776;
+                color: white;
+                content: url('../../../../../assets/img/done-white-24dp.svg');
+            }
+        }
+    }
+}
+
+.progressbar li.active {
+    color: green;
+}
+.progressbar li.active:before {
+    border-color: #55b776;
+}
+.progressbar li.active + li:after {
+    border-color: #55b776;
+    background-color: #55b776;
+}
+.progressbar li.done:before{
+    background-color: #55b776;
+    color: white;
+    content: url('../../../../../assets/img/done-white-24dp.svg');
+   
+}

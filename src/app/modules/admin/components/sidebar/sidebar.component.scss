@@ -1,0 +1,234 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+
+
+
+
+.wrapper{
+    .header{
+        z-index: 1;
+        background-color: $greyx4;
+        position: fixed;
+        width: calc(100% - 0%);
+        height: 70px;
+        display: flex;
+        top: 0;
+        &-menu{
+            width: calc(100% - 0%);
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            .title{
+                color: $bggrey;
+                font-size: 1.5rem;
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+            span{
+                color: $orange;
+            }
+            .sidebar-btn{
+                color: $orange;
+                position: absolute;
+                margin-left: 10rem;
+                font-size: 1.5rem;
+                font-weight: 800;
+                cursor: pointer;
+                transition: 0.3s;
+                transition-property: color;
+                &:hover{
+                    color: $orangesd;
+                }
+            }
+            ul{
+                display: flex;
+                li{
+                    a{
+                        // color: $orange;
+                        color: white;
+                        display: block;
+                        margin-right: 2rem;
+                        font-size: 1.5rem;
+                        width: 35px;
+                        height: 35px;
+                        line-height: 35px;
+                        text-align: center;
+                        background-color: $orange;
+                        // background-color: white;
+                        border-radius: 50%;
+                        transition: 0.3s;
+                        transition-property: color;
+                        &:hover{
+                            background-color: $orangesd;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    .sidebar{
+        z-index: 1;
+        background: $greyx3;
+        position: fixed;
+        padding-bottom: 1rem;
+        top: 70px;
+        width: 35vh;
+        height: calc(100% - 9%);
+        transition: 0.3s;
+        transition-property: width;
+        overflow-y: auto;
+
+        &-menu{
+            overflow: hidden;
+            .profile{
+                text-align: center;
+                img{
+                    margin: 1rem 1rem 0 1rem;
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover; //scale and crop img
+                    border-radius: 50%;
+                }
+                p{
+                    color: $bggrey;
+                    margin-bottom: 1rem;
+                    font-weight: 800;
+                }
+            }
+        }
+        li{
+            list-style-type: none;
+        }
+        .item{
+            width: 35vh;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            .menu-btn{
+                display: block;
+                color: $bggrey;
+                position: relative;
+                padding: 1rem 1rem;
+                transition: 0.3s;
+                transition-property: color;
+                &:hover{
+                    color: $orange;
+                }
+                .fas {
+                    margin-right: 1rem;
+                    
+                }
+                .material-icons{
+                    margin-right: 1rem!important;
+                    font-size: 1.5rem!important;
+                    line-height: normal;
+                    align-items: center;
+                }
+                .dropdown{
+                    float: right;
+                    font-size: 0.9rem;
+                    margin-top: 0.2rem;
+                }
+            }
+            .active{
+                border-left: 4px solid $orange;
+                background-color: $greyx4;
+                color: $orange;
+                
+            }
+            .sub-menu{
+                background-color: $orange;
+                overflow: hidden;
+                max-height: 0;
+                transition: 0.3s;
+                transition-property: background, max-height;
+                a{
+                    display: block; //enter row
+                    position: relative;
+                    color: white;
+                    white-space: nowrap;
+                    padding: 1rem;
+                    padding-left: 2rem;
+                    border-bottom: 1px solid $orangex0;
+                    transition: 0.3s;
+                    &:hover{
+                        background-color: $orangesd;
+                    }
+                    .fas {
+                        margin-right: 1rem;
+                        
+                    }
+                   
+                }
+            }
+            
+        }
+        
+    }
+    .main-container{
+        width: calc(100% - 35vh);
+        margin-top: 70px;
+        padding-top: 5px;
+        margin-left: 35vh;
+        padding-bottom: 2vh;
+        min-height: 100vh; //set cho bg vừa khung mh
+        margin-right: 0;
+        // padding: 3rem;
+        background-color: $bggrey;
+        // height: 100vh;
+    }
+}
+
+.show-submenu{
+    max-height: 500px!important;
+}
+.show{
+    display: none;
+}
+.unshow{
+
+}
+.collapse{
+    .sidebar{
+        width: 70px;
+        .profile{
+            display: none;
+        }
+        a{
+            display: none;
+        }
+        span{
+            display: none;
+        }
+        &-menu{
+            .item{
+                .menu-btn{
+                    font-size: 2rem;
+                }
+                .sub-menu{
+                    a{
+                        padding-left: 1rem!important;
+                    }
+                    i{
+                        font-size: 1.8rem;
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    .main-container{
+        width: calc(100% - 70px);
+        margin-left: 70px;
+    }
+}
+
+.active{
+    color: $orange;
+}

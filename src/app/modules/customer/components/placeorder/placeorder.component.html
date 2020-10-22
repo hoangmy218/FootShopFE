@@ -1,0 +1,134 @@
+<div id="checkout">
+    <section class="checkout">
+        <div class="title_page">
+            <a routerLink="">Trang chủ</a> \ 
+            <a routerLink="/cart">Giỏ hàng</a> \ 
+            <a routerLink="/checkout">Đặt hàng</a> \ Thanh toán
+        </div>
+        <ul class="progressbar">
+            <li  class="active done">Giỏ hàng</li>
+            <li  class="active done">Đặt hàng</li>
+            <li  class="active ">Thanh toán</li>
+            <li>Thành công</li>
+        </ul>
+        <div class="container">
+            <div class="checkout__top">
+                <div class="checkout__top-form">
+                    <div class="checkout__top-form-title">
+                        Thanh Toán
+                    </div>
+                    <form   #myForm="ngForm" (submit)="submitForm(myForm)" id="placeorderForm">
+                        <div class="form-group checkout__top-form-label">Hình thức thanh toán</div>
+                        <div class="radio">
+                            <label class="radio-container"
+                                *ngFor="let payment of paymentList">            
+                                <span>{{payment['ten']}}</span>
+                                <input type="radio" checked="checked" name="radio"
+                                    [(ngModel)]="defaultChecked"
+                                    (ngModelChange)="choose($event)"
+                                    id="{{payment['_id']}}"
+                                    [value]="payment['_id']">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        
+                        <!-- <div class="choosecard"
+                            *ngIf="showCard">
+                            <div class="form-group checkout__top-form-label"
+                            >Chọn thẻ <button class="checkout__top-form-btn btn-add-address">Thêm thẻ mới</button></div>
+                            <select class="form-control checkout__top-select">
+                                <option class="checkout__top-option">Visa 1</option>
+                                <option class="checkout__top-option">Sacombank</option>
+                                <option class="checkout__top-option">Vietcombank</option> 
+                            </select>
+                        </div> -->
+                        <app-stripe *ngIf="showCard"></app-stripe>
+                        
+                        <button type="submit" *ngIf="!showCard" class="btn checkout__top-form-btn btn-placeorder"
+                        
+                        >THANH TOÁN</button>
+                    </form>
+                </div>
+                <div class="checkout__top-total">
+                    <div class="card">
+                        <div class="card__title">
+                            TÓM TẮT ĐƠN HÀNG
+                        </div>
+                        <div class="card__content">
+                            <div class="cart__item">
+                                <div class="card__item">
+                                    <div class="card_name">
+                                        Sản phẩm
+                                    </div>
+                                    <div class="card_value">
+                                        Thành tiền
+                                    </div>
+                                </div>
+                                
+                                <div class="card__product">      
+                                    <div class="card__product-item" 
+                                        *ngFor="let item of cartList; let i = index">
+                                        <div class="card__product-item-image">
+                                            <img src="../../../../../assets/img/5_collection1.jpg" alt="">
+                                        </div>
+                                        <div class="card__product-item-name">
+                                            {{item['ctsp_id']['mausanpham_id']['sanpham_id']['ten']}} 
+                                            {{item['ctsp_id']['mausanpham_id']['mausac_id']['ten']}} / 
+                                            {{item['ctsp_id']['kichco_id']['ten']}}
+                                        </div>
+                                        <div class="card__product-item-quantity">x {{item['soluongdat']}}</div>
+                                        <div class="card__product-item-total card_value">
+                                            <div *ngFor="let price of priceList">
+                                                <!-- <span>{{price}} </span>    -->
+                                                <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']">
+                                                    {{price['dongia']* item['soluongdat']}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div> 
+                            </div>
+                            <div class="card__item">
+                                <div class="card_name">
+                                    Tổng tiền
+                                </div>
+                                <div class="card_value">
+                                    {{subTotal}}
+                                </div>
+                            </div>
+                            <div class="card__item">
+                                <div class="card_name">
+                                    Giảm giá
+                                </div>
+                                <div class="card_value">
+                                    {{discount}}
+                                </div>
+                            </div>
+                            <div class="card__item">
+                                <div class="card_name">
+                                    Phí vận chuyển
+                                </div>
+                                <div class="card_value">
+                                    {{shipcost}}
+                                </div>
+                            </div>
+
+                        
+                            <div class="card__item total">
+                                <div class="card_name ">
+                                    Thành tiền
+                                </div>
+                                <div class="card_value ">
+                                    {{total}}
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

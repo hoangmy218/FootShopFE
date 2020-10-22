@@ -1,0 +1,13 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+
+.main-container{
+    width: 80%;
+    margin-top: 50px;
+    margin-left: 35vh;
+    margin-right: 0;
+    // padding: 3rem;
+    background: linear-gradient(to right, #03a9f4, #00ff9b);
+    height: 100vh;
+}

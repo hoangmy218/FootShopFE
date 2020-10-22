@@ -1,0 +1,55 @@
+.available{
+    padding:6rem 2rem;
+    background-color: $bluesky;
+    @include setMaxwidth($sm){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include flex($justify:space-between,$wrap:wrap);
+        @include setMaxwidth($md){
+            padding:0 2rem;
+            max-width: none;
+        }
+        @include setMaxwidth($md){
+            padding:0;
+        }
+    }
+    &__content{
+        @include flexitem($basis:70%);
+        @include setMaxwidth($md){
+            @include flexitem($basis:100%);
+            text-align: center;
+        }
+        &-title{
+            @extend %title;
+            font-size: 3.4rem;
+            margin-bottom: 2rem;
+            color:white;
+        }
+        &-text{
+            @extend %text;
+            font-size: 1.7rem;
+            color:white;
+        }
+    }
+    &__btn{
+        @include flexitem($basis:30%);
+        @include setMaxwidth($md){
+            @include flexitem($basis:100%);
+            text-align: center;
+            margin-top:2rem;
+        }
+        
+    }
+    .btn{
+        @extend %btn;
+        background-color: white;
+        color:$greyx2;
+        transition: .5s ease-in-out;
+        &:hover{
+            color:$bluesky;
+            background:white;
+        }
+
+    }
+}

@@ -1,0 +1,77 @@
+<div class="title">
+    <span>Thêm sản phẩm mới</span>
+    <button mat-button (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div >
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+        <mat-form-field class="example-full-width">
+            <mat-label>Tên</mat-label>
+            <input matInput required minlength="2" type="text" class="form-control"
+            name="ten" #ten="ngModel" [(ngModel)]="service.formProduct.ten">
+        </mat-form-field>
+
+        <div class="text-left text-danger"
+            *ngIf="ten.invalid && ten.touched">
+            Nhập tên sản phẩm.
+        </div>
+
+        <!-- Giá -->
+        <mat-form-field class="example-full-width">
+        <mat-label>Giá</mat-label>
+            <input matInput required minlength="2" type="text" class="form-control"
+            name="dongia" #gia="ngModel"  (change)="setPrice(gia)" [(ngModel)]="service.formProduct.dongia">
+            </mat-form-field>
+            
+        <!-- End Giá -->
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Mô tả</mat-label>
+            <textarea matInput class="form-control" minlength="10" class="form-control"
+            name="mota" required
+            #mota="ngModel"
+            [(ngModel)]="service.formProduct.mota"></textarea>
+        </mat-form-field>
+    
+        <div class="text-left text-danger"
+            *ngIf="mota.invalid && mota.touched">
+            Nhập mô tả sản phẩm.
+        </div>
+
+        <mat-form-field appearance="fill"  class="example-full-width">
+            <mat-label>Danh mục</mat-label>
+            <mat-select name="danhmuc_id"
+            #danhmuc_id="ngModel"
+            [(ngModel)]="service.formProduct.danhmuc_id" >
+              <mat-option *ngFor="let dl of cateList | keyvalue" [value]="dl.key">
+                {{dl.value}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="text-left text-danger"
+            *ngIf="danhmuc_id.invalid && danhmuc_id.touched">
+            Chọn danh mục
+        </div>
+
+        <mat-form-field appearance="fill"  class="example-full-width">
+            <mat-label>Thương hiệu</mat-label>
+            <mat-select name="thuonghieu_id"
+            #thuonghieu_id="ngModel"
+            [(ngModel)]="service.formProduct.thuonghieu_id" >
+              <mat-option *ngFor="let dl of brandList | keyvalue" [value]="dl.key">
+                {{dl.value}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="text-left text-danger"
+            *ngIf="thuonghieu_id.invalid && thuonghieu_id.touched">
+            Chọn thương hiệu.
+        </div>
+
+        <button class="mt-4" mat-raised-button 
+        color="primary" type="submit"
+        [disabled]="form.invalid">Thêm</button>
+    </form>
+</div>

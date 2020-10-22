@@ -1,0 +1,32 @@
+<div id="address">
+    <section class="address">
+        <div class="title_page">
+            <a href="">Trang chủ</a> \ Địa chỉ
+        </div>
+
+        <div class="container">
+            <div class="address__top">
+                    <div class="address__top-title">
+                        <span class="address__top-text">Địa chỉ nhận hàng</span> 
+                        <button class="btn-add" (click)="onAdd()">Thêm địa chỉ mới</button>
+                    </div>
+                    <div class="address__top-item" 
+                        *ngFor="let address of addressList; let i=index;">
+                        <div class="address__top-item-content">    
+                            <span class="address__top-item-label">Họ và tên</span>
+                            <span class="address__top-item-text">{{address['ten']}}</span>
+                            <span class="address__top-item-label">Địa chỉ</span>
+                            <span class="address__top-item-text">{{address['diachi']}}</span>
+                            <span class="address__top-item-label">Số điện thoại</span>
+                            <span class="address__top-item-text">{{address['dienthoai']}}</span>
+                        </div>
+                        <div class="address__top-item-options">
+                            <button class="btn-edit" (click)="onEdit(address['_id'])">Sửa</button>
+                            <button class="btn-delete" (click)="onDelete(address['_id'])">Xóa</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+</div>
+

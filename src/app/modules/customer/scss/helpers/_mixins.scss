@@ -1,0 +1,36 @@
+//Media Queries
+@mixin setMinwidth($breakPoint){
+    @media only screen and(min-width:$breakPoint){
+        @content;
+    }
+}
+
+@mixin setMaxwidth($breakPoint){
+    @media only screen and(max-width:$breakPoint){
+        @content;
+    }
+}
+
+//Flexbox
+@mixin flex($direction:row,$justify:flex-start,$align:center,$wrap:nowrap){
+    display:flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
+
+@mixin flexitem($basis:auto,$grow:0,$shrink:0){
+    flex-basis: $basis;
+    flex-grow: $grow;
+    flex-shrink: $shrink;
+}
+
+// Grid
+@mixin grid($columns, $rows: unset, $columnGap: 3rem, $rowGap: 3rem) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-template-rows: $rows;
+    column-gap: $columnGap;
+    row-gap: $rowGap;
+  }

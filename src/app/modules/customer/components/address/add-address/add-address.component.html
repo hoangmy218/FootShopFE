@@ -1,0 +1,57 @@
+<section class="address">
+    <div class="title_page" ><a href="">Trang chủ</a> \ <a routerLink="/address">Địa chỉ</a> \ Thêm địa chỉ mới</div>
+    <div class="container">
+        <div class="address__item">
+            
+                <div class="address__item-title">
+                    Thêm địa chỉ
+                </div>
+                <form [formGroup]="AddressForm" id="address__item-form" class="address__item-form">
+                    
+                    <div class="form-group address__item-form-group">
+                        <span class="address__item-form-label">Họ và tên *</span>
+                        <input type="text" class="form-control"  required
+                            formControlName="name" id="inputName" >   
+                        <mat-error *ngFor="let validation of account_validation_messages.name">
+                            <mat-error class="error-message" *ngIf="AddressForm.get('name').hasError(validation.type) 
+                                && (AddressForm.get('name').dirty 
+                                || AddressForm.get('name').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error>   
+                    </div>
+
+                    <div class="form-group address__item-form-group">
+                        <span class="address__item-form-label">Số điện thoại *</span>
+                        <input type="text" class="form-control"  required
+                            formControlName="phone" id="inputPhone" >
+                        <mat-error *ngFor="let validation of account_validation_messages.phone">
+                            <mat-error class="error-message" *ngIf="AddressForm.get('phone').hasError(validation.type) 
+                                && (AddressForm.get('phone').dirty 
+                                || AddressForm.get('phone').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error>       
+                    </div>
+                    
+                    <div class="form-group address__item-form-group">
+                        <span class="address__item-form-label">Địa chỉ *</span>
+                        <textarea  class="form-control" required
+                            formControlName="address" id="inputAddress" ></textarea>
+                        <mat-error *ngFor="let validation of account_validation_messages.address">
+                            <mat-error class="error-message" *ngIf="AddressForm.get('address').hasError(validation.type) 
+                                && (AddressForm.get('address').dirty 
+                                || AddressForm.get('address').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error> 
+                    </div>
+                    
+                    <button type="submit" class="btn address__item-btn"
+                        [disabled]="!AddressForm.valid"
+                        (click)="onAddress()">THÊM ĐỊA CHỈ</button>
+            
+                </form> 
+        </div>     
+    </div>
+</section>

@@ -1,0 +1,51 @@
+.apps{
+    @include grid($columns:repeat(2,1fr),$columnGap: 0,$rowGap:0);
+    @include setMaxwidth($lg){
+        @include grid($columns:repeat(1,1fr),$columnGap: 0,$rowGap:0);
+    }
+    &__item{
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        padding:8rem;
+        @include setMaxwidth($lg){
+            padding:4rem;
+        }
+        @include setMaxwidth($xsm){
+            padding:4rem 1.5rem;
+        }
+        &-title{
+            @extend %title;
+            color:white;
+            @include setMaxwidth($lg){
+                font-size: 2.3rem;
+            }
+        }
+        &-menuimg{
+            padding:2rem;
+        }
+        img{
+            width: 45%;
+            transition: .7s ease-in-out;
+            &:hover{
+                transform: scale(1.2);
+            }
+        }
+        &-text{
+            @extend %text;
+            color:$grey0;
+        }
+    }
+    .fantastic{
+        background-color: $bgfantastic;
+    }
+    .payment{
+        background-color: $bgpayment;
+    }
+    .need{
+        background-color: $bgneed;
+    }
+    .simple{
+        background-color: $bgsimple;
+    }
+}

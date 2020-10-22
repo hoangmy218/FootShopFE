@@ -1,0 +1,51 @@
+/* ---- Import reset CSS ----- */
+@import "../scss/helpers/reset";
+
+/* ---- Utils ---- */
+@import "./helpers/variables";
+@import "./helpers/colors";
+@import "./helpers/mixins";
+@import "./helpers/global";
+@import "./helpers/shared";
+
+/* ---- Import styles for layout ---- */
+// 1. Topbar
+@import "./layout/1.topbar/topbar";
+
+// 2. Header
+@import "./layout/2.header/1.header/header";
+
+// 3. Main
+// 3.1. Everything
+@import "./layout/3.main/1.everything/everything";
+// 3.2. No limits
+@import "./layout/3.main/2.no-limits/no-limits";
+// 3.3. Apps
+@import "./layout/3.main/3.apps/apps"; 
+// 3.4 Explore
+@import "./layout/3.main/4.explore/explore";
+// 3.5 Fluxos
+@import "./layout/3.main/5.fluxos/fluxos";
+// 3.6 Amazing
+@import "./layout/3.main/6.amazing/amazing";
+// 3.7 Connect
+@import "./layout/3.main/7.connect/connect";
+// 3.8.Timepiece
+@import "./layout/3.main/8.timepiece/timepiece";
+// 3.9 Favorite
+@import "./layout/3.main/9.favorite/favorite";
+// 3.10 Elegant
+@import "./layout/3.main/10.elegant/elegant";
+// 3.11 Hand watch
+@import "./layout/3.main/11.handwatch/handwatch";
+// 3.12 Accessories
+@import "./layout/3.main/12.accessories/accessories";
+// 3.13 Guide 
+@import "./layout/3.main/13.guide/guide";
+// 3.14 Available
+@import "./layout/3.main/14.available/available";
+// 3.15 Location
+@import "./layout/3.main/15.location/location";
+
+// 4. Footer
+@import "./layout/4.footer/footer";

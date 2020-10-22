@@ -1,0 +1,48 @@
+.connect{
+    padding:8rem;
+    background-image: url('/img/smartphone_section_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include setMaxwidth($lg){
+        padding:8rem 2rem;
+    }
+    @include setMaxwidth($lg){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include flex($justify:flex-start,$align:left);
+        @include setMaxwidth($lg){
+            padding:0 1rem;
+            max-width: none;
+        }
+        @include setMaxwidth($md){
+            text-align: center;
+            @include flex($direction:column,$align:center);
+        }
+    }
+    &__left{
+        @include flexitem($basis:50%);
+        @include setMaxwidth($md){
+            margin-bottom: 4rem;
+
+        }
+        &-title{
+            @extend %title;
+            margin-bottom: 2rem;
+            @include setMaxwidth($xsm){
+                font-size: 3rem;
+            }
+        }
+        &-text{
+            @extend %text;
+            margin-bottom: 2rem;
+        }
+        .btn{
+            @extend %btn;
+        }
+    }
+    &__phoneimg{
+        @include flexitem($basis:50%);
+    }
+}

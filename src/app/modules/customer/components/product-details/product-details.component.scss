@@ -1,0 +1,357 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+@import '../../scss/helpers/shared';
+
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+    transform: none !important;
+}
+.title_page{
+    background-color: $bgsimple;
+    color: white;
+    width: 100%;
+    @extend %title-list;
+    font-size: 1.5rem;
+    a{
+        color: $grey0;
+        &:hover{
+            color: white;
+        }
+    }
+
+}
+
+.details{
+    color:$greyx1;
+    padding:4rem 2rem;
+    text-align: center;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+
+    &__top{
+        padding-left: 10rem;
+        padding-right: 10rem;
+        margin-top: 2rem;
+        text-align: left;
+        @include grid($columns:repeat(2,1fr));
+        margin-bottom: 1rem;
+        @include setMaxwidth($xl){
+            margin-bottom:5rem;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+        }
+        &-gallery{
+            
+        }
+        &-thumbnail{
+            display: flex;
+        }
+        &-content{
+            padding-top:3rem;
+            @include setMaxwidth($md){
+                padding-top:0;
+            }
+        }
+        &-img{
+            @include setMaxwidth($md){
+                text-align: center;
+            }
+        }
+        &-title{
+            @extend %title-list;
+            line-height: 2.5rem;
+            
+            font-weight: 400;
+            .sku{
+                font-family: $title-font;
+                font-size: 1.2rem;
+                font-weight: lighter;
+                color: $greyx1;
+            }
+        }
+        &-price{
+            margin-top: 1.5rem;
+            font-family: $primaryfont;
+            font-size: 1.8rem;
+            color:$discount;
+            font-weight: bold;
+            margin-bottom: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid $grey0;
+        }
+        .old-price{
+            color: $grey;
+            font-size: 1.6rem;
+            font-weight: 50;
+            text-decoration-line: line-through;
+        }
+        &-text{
+            margin-top: 1.5rem;
+            color: $greyx4;
+            font-weight: bold;
+            font-size: 1.3rem;
+            font-family: $title-font;
+            a{
+                color: $bglink;
+                font-weight: 300;
+                &:hover{
+                    color: $bluesky;
+                    font-weight: normal;
+                }
+            }
+        }
+
+        
+        &-color{
+            margin-top: 1rem;
+            display: inline-block;
+            img{
+                padding: 0.2rem 0.2rem 0.2rem 0.2rem ;
+                margin: 0rem 0.5rem 0rem 0.5rem;
+                border-radius: 50%;
+                height: 40px !important;
+                width: 40px !important;
+                &:hover{
+                    border: $bluesky 2px solid;
+                }
+            }
+            .active{
+                border: $bluesky 3px solid;
+            }
+            a{
+                
+            }
+            &-img{
+                
+            }
+        }
+        &-size{
+            option{
+                height: 80px;
+            }
+        }
+        
+        &-option{
+            height: 80px;
+        }
+        &-quantity{
+            display: inline;
+            color: $discount!important;
+
+        }
+        &-btn{
+            a{
+                margin-left: 3rem;
+                font-size: 2.5rem;
+                color: $greyx4;
+                padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+                border-radius: 50%;
+                // border: $bluesky 1px solid;
+                .fas{
+                    transition: transform .2s;
+                &:hover{
+                    transform: scale(1.1);
+                }
+                }
+                
+                
+                  
+            }
+        }
+
+        
+        
+        
+    }
+    &__rating{
+        margin-top: 2rem;
+        text-align: left;
+        line-height: 3rem;
+        word-spacing: 3px;
+        color:$greyx4;
+        font-size:1.2rem;
+        padding: 1rem 1rem 1rem 1rem;
+        @include setMaxwidth($md){
+            padding:0 4rem;
+        }
+        @include setMaxwidth($sm){
+            padding:0;
+        }
+       
+        margin-top: 1rem;
+        
+        
+        .title{
+            
+            @extend %title-list;
+            line-height: 2.5rem;
+            
+            font-weight: 400;
+        }
+    }
+        
+    &__comment{
+
+        margin-top: 2rem;
+        display: flex;
+        text-align: left;
+        img{
+            border-radius: 50%;
+            height: 80px;
+            width: 80px;
+        }
+    
+        &-content{
+            
+            @include setMaxwidth($md){
+                padding-top:0;
+            }
+        }
+        &-img{
+            @include setMaxwidth($md){
+                text-align: center;
+            }
+        }
+       
+    }
+
+    &__item{
+        &-content{
+            padding-left: 10rem;
+            padding-right: 10rem;
+        }
+    }
+    
+}
+
+.comment{
+    margin-top: 2rem;
+    text-align: left;
+    &__form{
+        
+        &-group{
+            display: block;
+        }
+        &-label{
+
+        }
+    }
+}
+.title{
+     text-align: left;       
+    @extend %title-list;
+    line-height: 2.5rem;
+    font-weight: 400;
+}
+
+textarea{
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid $grey0;
+    border-radius: 0.2rem 0 0 0.2rem;
+    
+    &:focus{
+        outline: 0 !important;
+        border: 1px solid $grey0;
+        border-radius: 0.2rem 0 0 0.2rem!important;
+    }
+    &:hover{
+        border: 1px solid $greyx2;
+    }
+}
+.rating{
+    color: #ff523b;
+    .avg{
+        font-family: $title-font;
+        margin-left: 0.8rem;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+}
+.form-control{
+    font-size: 1.2rem;
+    width: 50%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid $grey0;
+    border-radius: 0.2rem 0 0 0.2rem;
+    
+    &:focus{
+        outline: 0 !important;
+        border: 1px solid $grey0;
+        border-radius: 0.2rem 0 0 0.2rem!important;
+    }
+    &:hover{
+        border: 1px solid $greyx2;
+    }
+}
+
+.btn-add-to-cart{
+    color:white;
+    width: 100%;
+    height: 50%;
+    font-family: $boldfont;
+    font-weight: 200;
+    // chuyen mau tu trai sang phai
+    background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+    border: snow 2px;
+    border-radius: 2px;
+    border: none !important;
+    padding:1rem 2rem;
+    font-size: 1.5rem;
+    background-size: 200%;
+    
+    transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }
+    &:disabled,
+    button[disabled]{
+        background: $grey;
+    }
+    
+}
+
+.product-gallery__featured {
+    width: 600px;
+    border-radius: 8px;
+    border: solid 1px #F0F3F4;
+    background-color: #fff;
+  }
+  
+.product-gallery__carousel {
+    text-align: center;
+    margin-top: 9px;
+    owl-carousel-o img{
+        border-radius: 8px;
+        border: solid 1px #F0F3F4;
+    }
+}
+
+.product-gallery__carousel-item--active {
+border: solid 1px #459AD4 !important;
+}
+
+owl-carousel-o::ng-deep{
+    img{
+    border-radius: 8px;
+    }
+}
+.mat-tab-group {
+    margin-bottom: 48px;
+    
+}
+.mat-tab{
+    color: white;
+    background: $bgsimple;
+}

@@ -1,0 +1,86 @@
+<section class="register">
+    <div class="title_page" ><a href="">Trang chủ</a> \ Đăng ký</div>
+    <div class="container">
+        <div class="register__item">
+            
+                <div class="register__item-title">
+                    Đăng ký
+                </div>
+                <form [formGroup]="RegisterForm" id="register__item-form" class="register__item-form">
+                    
+                    <div class="form-group register__item-form-group">
+                        <span class="register__item-form-label">Họ và tên *</span>
+                        <input type="text" class="form-control"  required
+                            formControlName="name" id="inputName" >   
+                        <mat-error *ngFor="let validation of account_validation_messages.name">
+                            <mat-error class="error-message" *ngIf="RegisterForm.get('name').hasError(validation.type) 
+                                && (RegisterForm.get('name').dirty 
+                                || RegisterForm.get('name').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error>   
+                    </div>
+                    <div class="form-group register__item-form-group">
+                        <span class="register__item-form-label">Giới tính * </span>
+                        <label  class="radio-container">Nam
+                            <input type="radio" checked="checked" name="radio"
+                            id="inputMale"  >
+                            <span class="checkmark"></span>
+                        </label>
+                        <label  class="radio-container">Nữ
+                            <input type="radio"  name="radio"
+                            id="inputMale"  >
+                            <span class="checkmark"></span>
+                        </label>
+                              
+                    </div>
+
+                    <div formGroupName="check_date" [formGroup]="check_date">
+                        <div class="form-group register__item-form-group">
+                            <span class="register__item-form-label">Ngày sinh </span>
+                            <input type="date" class="form-control"  
+                                formControlName="dob" id="inputDOB"  >  
+                            <mat-error class="error-message" 
+                                *ngIf="RegisterForm.hasError('isInvalid',['check_date']) && RegisterForm.get('check_date').touched"
+                                >Ngày không hợp lệ
+                            </mat-error>     
+                        </div>
+                    </div>
+
+
+                    <div class="form-group register__item-form-group">
+                        <span class="register__item-form-label">Email *</span>
+                        <input type="email" class="form-control"  required
+                            formControlName="email" id="inputEmail" >
+                        <mat-error *ngFor="let validation of account_validation_messages.email">
+                            <mat-error class="error-message" *ngIf="RegisterForm.get('email').hasError(validation.type) 
+                                && (RegisterForm.get('email').dirty 
+                                || RegisterForm.get('email').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error>       
+                    </div>
+                    
+                    <div class="form-group register__item-form-group">
+                        <span class="register__item-form-label">Mật khẩu *</span>
+                        <input type="password" class="form-control" required
+                            formControlName="password" id="inputPassword" >
+                        <mat-error *ngFor="let validation of account_validation_messages.password">
+                            <mat-error class="error-message" *ngIf="RegisterForm.get('password').hasError(validation.type) 
+                                && (RegisterForm.get('password').dirty 
+                                || RegisterForm.get('password').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error> 
+                    </div>
+                    <div class="forgot register__item-link">
+                        Đã có tài khoản? <a routerLink="/login">Đăng nhập</a>
+                    </div>
+                    <button type="submit" class="btn register__item-btn"
+                        [disabled]="!RegisterForm.valid"
+                        (click)="onRegister()">ĐĂNG KÝ</button>
+            
+                </form> 
+        </div>     
+    </div>
+</section>

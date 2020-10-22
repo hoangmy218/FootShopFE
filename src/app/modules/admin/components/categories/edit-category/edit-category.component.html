@@ -1,0 +1,32 @@
+<div class="title">
+    <span>Cập nhật danh mục</span>
+    <button mat-button (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div >
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Mã</mat-label>
+            <input matInput readonly type="text" class="form-control"
+            name="_id" #cate_id="ngModel" [(ngModel)]="service.formCate._id">
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+            <mat-label>Tên</mat-label>
+            <input matInput required minlength="2" type="text" class="form-control"
+            name="ten" #ten="ngModel" [(ngModel)]="service.formCate.ten">
+        </mat-form-field>
+
+        <div class="text-left text-danger"
+            *ngIf="ten.invalid && ten.touched">
+            Nhập tên danh mục.
+        </div>
+
+        <button class="mt-4" mat-raised-button 
+        color="primary" type="submit"
+        [disabled]="form.invalid">Cập nhật</button>
+    </form>
+</div>

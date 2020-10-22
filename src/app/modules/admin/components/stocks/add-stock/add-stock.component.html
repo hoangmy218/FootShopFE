@@ -1,0 +1,116 @@
+<div class="grid-container">
+    <div class="dashboard-card">
+     <h1 class="mat-h1">Thêm phiếu nhập mới</h1>
+    </div>
+    <div class="container">
+        <div class="col-md-2" [formGroup]="addForm">
+            <div class="form-group">
+                
+
+                <!-- SWITCH -->
+                <!-- <label class="switch">
+                    <input type="checkbox" class="form-control" formControlName="items">
+                    <span class="slider round">
+                    <span class="on">
+                        {{addForm.value.items_value}}
+                    </span> 
+                    <span class="off">
+                        {{addForm.value.items_value}}
+                    </span>
+                    </span>
+                </label> -->
+                <mat-form-field appearance="fill"  class="example-full-width">
+                    <mat-label>Nhà cung cấp</mat-label>
+                    <mat-select name="supplier"
+                    formControlName="supplier"
+                    >
+                    <mat-option *ngFor="let supplier of supplierList " [value]="supplier._id">
+                        {{supplier.ten}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    Danh sách sản phẩm
+                 <button class="mt-4 btn-add" mat-raised-button color="primary" 
+                     (click)="onAddRow()" *ngIf="addForm.get('rows')" 
+                     >Thêm sản phẩm</button>
+                 </div>
+                
+                <table>
+                    <thead>
+                        
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                            <td>
+                                <mat-form-field appearance="fill"  class="example-full-width">
+                                    <mat-label>Tên sản phẩm</mat-label>
+                                    <mat-select name="sanpham_id"
+                                    [formControl]="row.get('sanpham_id')"
+                                    >
+                                    <mat-option *ngFor="let dl of productList " [value]="dl._id">
+                                        {{dl.ten}}
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                
+                                <mat-form-field appearance="fill"  class="example-full-width">
+                                    <mat-label>Màu sắc</mat-label>
+                                    <mat-select name="mausac_id"
+                                    [formControl]="row.get('mausac_id')"
+                                    >
+                                    <mat-option *ngFor="let color of colorList " [value]="color._id">
+                                        {{color.ten}}
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                            
+                                <mat-form-field appearance="fill"  class="example-full-width">
+                                    <mat-label>Kích cỡ</mat-label>
+                                    <mat-select name="kichco_id"
+                                    [formControl]="row.get('kichco_id')"
+                                    >
+                                    <mat-option *ngFor="let size of sizeList " [value]="size._id">
+                                        {{size.ten}}
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                            <td class="inputnumber">
+                                <mat-form-field class="example-full-width number">
+                                    <mat-label>Số lượng</mat-label>
+                                    <input matInput required  type="number" class="form-control" value="1"
+                                        min="1" step="1" max="100"
+                                        name="soluongnhap"  [formControl]="row.get('soluongnhap')">
+                                </mat-form-field>
+                            </td>
+                            <td class="inputnumber">
+                                <mat-form-field class="example-full-width number">
+                                    <mat-label>Đơn giá</mat-label>
+                                    <input matInput required  type="number" class="form-control" value="1000"
+                                        min="1000" step="1000" 
+                                        name="dongianhap"  [formControl]="row.get('dongianhap')">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="warn"
+                                    (click)="onRemoveRow(index)" class="btn-delete"
+                                    >Xóa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <button class="mt-4 btn-addstock" mat-raised-button color="primary" 
+                     (click)="onAddStock()"  
+                     >Thêm</button>
+            </div>
+        </div>
+        
+        <!-- <pre>{{rows.value | json}}</pre> -->
+    </div>
+</div>

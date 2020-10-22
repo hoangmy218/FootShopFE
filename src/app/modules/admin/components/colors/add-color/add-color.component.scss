@@ -1,0 +1,41 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 50%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .form-control{
+      box-shadow: none!important;
+      display: block!important;
+  }
+  .text-danger{
+      color: red;
+  }
+.title{
+    display: flex;
+    justify-content: space-between;
+    span{
+       font-size: 1.5rem;
+       font-weight: 800; 
+       font-family: $title-font;
+    }
+}
+
+.image{
+    span{
+        display: block;
+    }
+    input{
+        margin: 0.8rem 0 1.5rem;
+    }
+
+}

@@ -1,0 +1,69 @@
+%btn{
+    background:$grey;
+    padding:0.8rem 2rem;
+    font-size: 1.3rem;
+    color:white;
+    border-radius: 2px;
+    font-weight: 600;
+    font-family: $primary-font;
+    transition: .3s ease-in-out;
+    &:hover{
+        background:$bluesky;
+    }
+}
+
+%title{
+    font-size: 3.7rem;
+    color:$greyx2;
+    font-family: $title-font;
+    line-height: 4.5rem;
+}
+
+%text{
+    font-size: 1.7rem;
+    color:$greyx1;
+    line-height: 2.5rem;
+}
+
+
+%text-list{
+    font-size: 1.7rem;
+    font-family: $yesevafont;
+    color:$greyx1;
+    line-height: 2.5rem;
+}
+
+%title-list{
+    font-family: $boldfont;
+    font-size: 2.5rem;
+    color: $greyx4;
+    line-height: 4.5rem;
+}
+
+//Carousel
+%bg-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+%btn-ltr{
+    color:white;
+        // background:$bluesky;
+        font-family: $boldfont;
+        font-weight: 200;
+        // chuyen mau tu trai sang phai
+        background: linear-gradient(to left, $bluesky 50%, #2a94c1 50%)right;
+        border: snow 2px;
+        border-radius: 2px;
+        border: none !important;
+        padding:1rem 2rem;
+        font-size: 1.6rem;
+        background-size: 200%;
+        
+        transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }
+    
+}

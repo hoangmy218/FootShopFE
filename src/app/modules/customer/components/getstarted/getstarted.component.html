@@ -1,0 +1,31 @@
+<section class="getstarted">
+    <div class="title_page" ><a href="">Trang chủ</a> \ Bắt đầu</div>
+    <div class="container">
+        <div class="getstarted__item">
+            
+                <div class="getstarted__item-title">
+                    Bắt đầu
+                </div>
+                <form [formGroup]="GetStartedForm" id="getstarted__item-form" class="getstarted__item-form">
+                    
+                    <div class="form-group getstarted__item-form-group">
+                        <span class="getstarted__item-form-label">Số điện thoại *</span>
+                        <input type="text" class="form-control" 
+                            formControlName="phone" id="inputPhone" >   
+                        <mat-error *ngFor="let validation of account_validation_messages.phone">
+                            <mat-error class="error-message" 
+                                *ngIf="GetStartedForm.get('phone').hasError(validation.type) 
+                                    && (GetStartedForm.get('phone').dirty 
+                                    || GetStartedForm.get('phone').touched)"
+                            >{{validation.message}}</mat-error>   
+                        </mat-error>
+                    </div>
+                    <button type="submit" class="btn getstarted__item-btn"
+                        [disabled] = "!GetStartedForm.valid"
+                        (click)="onGetStarted()">BẮT ĐẦU</button>
+            
+                     
+                </form> 
+        </div>     
+    </div>
+</section>

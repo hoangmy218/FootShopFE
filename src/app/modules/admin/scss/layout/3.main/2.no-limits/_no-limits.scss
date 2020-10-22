@@ -1,0 +1,79 @@
+.no-limits{
+    padding:8rem 2rem;
+    background-color: $bggrey;
+    color:$greyx1;
+    @include setMaxwidth($xsm){
+        padding: 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &__top{
+        text-align: center;
+        padding:2rem;
+        @include setMaxwidth($sm){
+            padding:2rem 0;
+        }
+        &-title{
+            @extend %title;
+            @include setMaxwidth($xsm){
+                font-size: 3rem;
+                line-height: 4rem;
+            }
+            @include setMaxwidth($fold){
+                font-size: 2.6rem;
+            }
+        }
+        &-text{
+            @extend %text;
+            padding:2rem 15rem;
+            @include setMaxwidth($md){
+                padding:2rem 0;
+            }
+
+        }
+        
+    }
+    &__menu{
+        @include grid($columns:repeat(3,1fr));
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(2,1fr));
+        }
+        @include setMaxwidth($sm){
+            @include grid($columns:repeat(1,1fr));
+        }
+        &-item{
+            text-align: center;
+            cursor: pointer;
+            &:hover{
+                i{
+                    transform: scale(0.8);
+                }
+                .title{
+                    color:white;
+                }
+            }
+        }
+        i{
+            font-size: 4.7rem;
+            color:$bluesky;
+            border-radius: 100%;
+            padding:1.7rem;
+            background-color: white;
+            transition: all .5s ease-in-out;
+        }
+        .title{
+            margin:2rem;
+            font-size: 2.2rem;
+            transition: all .5s ease-in-out;
+            color:$greyx2;
+        }
+        .text{
+            @extend %text;
+            padding:0 1.7rem;
+        }
+    }
+}

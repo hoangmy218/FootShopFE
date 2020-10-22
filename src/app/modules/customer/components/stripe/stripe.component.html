@@ -1,0 +1,10 @@
+<h4>PAY WITH STRIPE</h4>
+<br>
+<ngx-stripe-card
+  [options]="cardOptions"
+  [elementsOptions]="elementsOptions"
+></ngx-stripe-card>
+<br>
+<button class="btn-danger" type="submit" (click)="createToken()">
+  THANH TOÁN
+</button>

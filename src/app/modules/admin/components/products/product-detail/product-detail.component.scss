@@ -1,0 +1,40 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+.grid-container {
+    margin: 20px;
+  }
+  
+  
+  .btn-add{
+      float: right;
+  }
+  
+.text-center{
+    text-align: center;
+}
+.break { 
+    word-break: break-all;
+    white-space: pre-wrap!important;      /* CSS3 */   
+    white-space: -moz-pre-wrap!important; /* Firefox */    
+    white-space: -pre-wrap!important;     /* Opera <7 */   
+    white-space: -o-pre-wrap!important;   /* Opera 7 */    
+    word-wrap: break-word!important;      /* IE */
+ }
+.content{
+    padding-left: 5rem;
+    padding-right: 5rem;
+    text-align: left;
+    padding-top:1rem;
+    @include setMaxwidth($md){
+        padding-top:1rem;
+    }
+    .grid-container{
+        margin-top: 10px;
+        display: block!important;
+    }
+    .dashboard-card{
+
+    }
+}

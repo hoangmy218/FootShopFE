@@ -1,0 +1,124 @@
+<div id="cart">
+    <section class="cart">
+        <div class="title_page">
+            <a href="">Trang chủ</a> \ Giỏ hàng
+        </div>
+        
+        <ul class="progressbar">
+            <li  class="active">Giỏ hàng</li>
+            <li  class="">Đặt hàng</li>
+            <li>Thanh toán</li>
+            <li>Thành công</li>
+        </ul>
+        <div class="container">
+            <div *ngIf = "!cartList"><span>Giỏ hàng trống!</span></div>
+            <div class="cart__top" *ngIf = "cartList">
+                
+                    <div class="cart__top-list" >
+                        
+                        <table id="cart" class="table">
+                            <thead>
+                                <tr>
+                                    <th class="table__title">&nbsp;</th>
+                                    <th class="table__title">Sản Phẩm</th>
+                                    <th class="table__title">Đơn Giá</th>
+                                    <th class="table__title">Số Lượng</th>
+                                    <th class="table__title">Tổng Cộng</th>
+                                    <th class="table__title">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr *ngFor="let item of cartList; let i = index">
+                                    <!-- {{item}} -->
+                                    <td class="table__image">
+                                    
+                                        <img src="../../../../../assets/img/1_collection1-600x454.jpg" alt="">
+                                        
+                                    </td>
+                                    <td class="table__product">
+                                        
+                                        <a href="" class="name">{{item['ctsp_id']['mausanpham_id']['sanpham_id']['ten']}}</a>                                        
+                                        <br>
+                                        <button class="color-size">
+                                            {{item['ctsp_id']['mausanpham_id']['mausac_id']['ten']}} / 
+                                            {{item['ctsp_id']['kichco_id']['ten']}}</button>
+                                    </td>
+                                    <td class="table__price">
+                                        <!-- <span class="old-price">$249 </span> &nbsp;  -->
+                                        <!-- {{priceList}}    -->
+                                        <div *ngFor="let price of priceList">
+                                            <!-- <span>{{price}} </span>    -->
+                                            <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']">{{price['dongia']}}</div>
+                                        </div>
+                                    </td>
+                                    <td class="table__quantity">
+                                        <input type="number" class="form-control" step="1"
+                                                id="quantity[{{item['ctsp_id']['_id']}}]" [(value)]="item['soluongdat']"  
+                                                min="1" max="{{item['ctsp_id']['soluong']}}" 
+                                                (change)="onChange(item['_id'],item['ctsp_id']['_id'], $event.target.value)"> 
+                                        <br>
+                                        <span class="note">Còn {{item['ctsp_id']['soluong']}} đôi </span>   
+                                                                      
+                                    </td>
+                                    <td class="table__price">
+                                        
+                                        <span class="amount">
+                                            <div *ngFor="let price of priceList">
+                                                <!-- <span>{{price}} </span>    -->
+                                                <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']">{{price['dongia']* item['soluongdat']}}</div>
+                                            </div>
+                                        </span>
+                                    </td>
+                                    <td class="table__btn">
+                                        <button class="btn-delete" (click)="onDelete(item['_id'])">X</button>
+                                    </td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                       
+                        
+                    </div>
+                    <div class="cart__top-total">
+                        <div class="card">
+                            <div class="card__title">
+                                TÓM TẮT ĐƠN HÀNG
+                            </div>
+                            <div class="card__content">
+                                <div class="card__item">
+                                    <div class="card_name">
+                                        Tổng tiền
+                                    </div>
+                                    <div class="card_value">
+                                        {{subTotal}}
+                                    </div>
+                                </div>
+                                <div class="card__item">
+                                    <div class="card_name">
+                                        Giảm giá
+                                    </div>
+                                    <div class="card_value">
+                                        {{discount}}
+                                    </div>
+                                </div>
+                            
+                                <div class="card__item total">
+                                    <div class="card_name ">
+                                        Thành tiền
+                                    </div>
+                                    <div class="card_value ">
+                                        {{total}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card__btn">
+                                <button class="btn-checkout" (click)="onCart()">THANH TOÁN</button>
+                            </div>
+                        </div>
+                    </div>
+              
+            </div>
+        </div>
+    </section>
+</div>

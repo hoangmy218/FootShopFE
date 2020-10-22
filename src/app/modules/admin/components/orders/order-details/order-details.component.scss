@@ -1,0 +1,37 @@
+.img-cart{
+    width: 130px; /* width of container */
+    height: 130px; /* height of container */
+    object-fit: cover;
+    border: none;
+    border-radius: 10%;
+}
+.price{
+    float: right;
+}
+.btn-checkout{
+    align-items: center;
+    float: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.total{
+    font-size: 20px;
+}
+.card-header{
+    background-color: #28A745;
+    color: white;
+}
+
+
+.list-group-item.row-color{
+    background-color: #F9F9F9!important;
+}
+
+.card.bg-light{
+    background-color: #dfe0e1!important;
+}
+
+.table-title{
+    color: #28A745;
+}

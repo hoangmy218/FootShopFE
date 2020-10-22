@@ -1,0 +1,34 @@
+<section class="verify">
+    <div class="title_page" ><a href="">Trang chủ</a> \ Xác thực</div>
+    <div class="container">
+        <div class="verify__item">
+            
+                <div class="verify__item-title">
+                    Xác thực
+                </div>
+                <form [formGroup]="VerifyForm" id="verify__item-form" class="verify__item-form">
+                    
+                    <div class="form-group verify__item-form-group">
+                        <span class="verify__item-form-label">Mã xác thực*</span>
+                        <input type="text" class="form-control" 
+                            formControlName="code" id="inputCode" > 
+                        <mat-error *ngFor="let validation of account_validation_messages.code">
+                            <mat-error class="error-message" 
+                                *ngIf="VerifyForm.get('code').hasError(validation.type) 
+                                    && (VerifyForm.get('code').dirty 
+                                    || VerifyForm.get('code').touched)"
+                            >{{validation.message}}</mat-error> 
+                        </mat-error>       
+                    </div>
+            
+                    <div class="forgot verify__item-link">
+                         <a routerLink="">Gửi lại mã</a>
+                    </div>
+                    <button type="submit" class="btn verify__item-btn"
+                        [disabled] = "!VerifyForm.valid"
+                        (click)="onVerify()">XÁC THỰC</button>
+            
+                </form> 
+        </div>     
+    </div>
+</section>

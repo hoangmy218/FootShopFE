@@ -1,0 +1,140 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+@import '../../scss/helpers/shared';
+
+.filter{
+    padding:4rem 2rem;
+    max-width: 500px;
+    min-width: 300px;
+    .container{
+        
+    }
+    
+    &__item{
+        text-align: left;
+        line-height: 3rem;
+        word-spacing: 3px;
+        color:$greyx4;
+        font-size:1.2rem;
+        
+        @include setMaxwidth($md){
+            padding:0 4rem;
+        }
+        @include setMaxwidth($sm){
+            padding:0;
+        }
+        &-link{
+            a{
+                color: $greyx3;
+                font-weight: 200;
+                &:hover{
+                    color: $bglink;
+                    font-weight: 100;
+                }
+            }
+            
+        }
+        &-title{
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: $boldfont;
+            font-weight: 200;
+            color: $greyx4;
+
+        }
+        &-img{
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        &-text{
+            color: $bggrey1;
+            font-family: $title-font;
+            text-align: left;
+            @include setMaxwidth($lg){
+                padding:0 2rem;
+            }
+            @include setMaxwidth($sm){
+                padding:0;
+            }
+        }
+    }
+}
+
+
+.footerav{
+    padding:2rem 2rem;
+    text-align: center;
+    line-height: 3rem;
+    word-spacing: 3px;
+    color:$greyx2;
+    font-size:1.2rem;
+    background-color: $greyx4;
+    .container{
+        @include grid($columns:repeat(2,1fr));
+        @include setMaxwidth($lg){
+            padding:0 2rem;
+            max-width: none;
+        }
+        @include setMaxwidth($md){
+            padding:0;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+        }
+    }
+    
+    &__copyright{
+        
+        text-align: left;
+    }
+    &__social{
+        @include flex($justify:center);
+        li{
+            margin-left: 2rem;
+        }
+        a{
+            color: $grey0;
+            font-size: 3rem;
+            transition: .5s ease-in-out;
+            &:hover{
+                color:$greyx1;
+            }
+        }
+    }
+}
+
+.input-group{
+    font-family: $title-font;
+}
+input{
+    
+}
+.form-control{
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border: 1px solid;
+    border-radius: 0.2rem 0 0 0.2rem;
+    
+    &:focus{
+        outline: 0 !important;
+        border: 2px solid;
+        border-radius: 0.2rem 0 0 0.2rem!important;
+    }
+}
+  
+
+.input-group-btn{
+    border: 1px solid;
+    border-radius: 0 0.2rem 0.2rem 0 ;
+    max-width: 500px;
+    padding-bottom: 1rem;
+    margin:auto;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    &:focus{
+        outline: 0 !important;
+        border: 2px solid;
+        border-radius: 0 0.2rem 0.2rem 0 !important;
+    }
+}

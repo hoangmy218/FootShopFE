@@ -1,0 +1,59 @@
+.location{
+    padding:6rem 2rem;
+    .container{
+        @include grid($columns:repeat(2,1fr));
+        @include setMaxwidth($lg){
+            padding:0 2rem;
+            max-width: none;
+        }
+        @include setMaxwidth($md){
+            padding:0;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+        }
+    }
+    &__item{
+        text-align: center;
+        @include setMaxwidth($md){
+            padding:0 4rem;
+        }
+        @include setMaxwidth($sm){
+            padding:0;
+        }
+        &-title{
+            margin-top: 2rem;
+            @extend %title;
+            font-size: 2.3rem;
+        }
+        &-text{
+            margin-top: 1rem;
+            @extend %text;
+            padding:0 4rem;
+            margin-bottom: 2rem;
+            @include setMaxwidth($lg){
+                padding:0 2rem;
+            }
+            @include setMaxwidth($sm){
+                padding:0;
+            }
+        }
+        .btn{
+            @extend %btn;
+            font-size: 1rem;
+        }
+    }
+    .icon{
+        font-size: 3rem;
+        color:$bluesky;
+        
+    }
+    i{
+        padding:1.5rem;
+        border-radius: 50%;
+        border:1px solid $bluesky;
+        width: 80px;
+        height: 80px;
+    }
+
+}

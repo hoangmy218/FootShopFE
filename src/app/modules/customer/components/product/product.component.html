@@ -1,0 +1,51 @@
+
+<!-- PRODUCT -->
+<div id="products">
+    <!--products-->
+    <section class="products">
+        <div class="container">
+            <div class="products__top">
+                <h3 class="products__top-title">
+                    SẢN PHẨM
+                </h3>
+                
+            </div>
+            <div class="products__menu">
+                <div *ngFor = "let item of product; let i = index">
+                <div class="item">
+                    <div class="item__img">
+                        <img src="../../../../../assets/img/smartphone_section_bg.jpg" alt="">
+                        <div class="discount-badge">
+                            <span class="amount">Giảm 25%</span>
+                        </div>
+                    </div>
+                    <h5 class="item__name">
+                        <a href="">{{item.sanpham['ten']}}</a>
+                        <a href="" class="favorite active"><i class="fas fa-heart"></i></a>
+                    </h5>
+
+                    <p class="item__price">
+                        <!-- <span class="old-price">$249 </span>  -->
+                        &nbsp; {{item.dongia | currency: 'VND'}}</p>
+                    <div class="item__colors">
+                        <!-- <div >  -->
+                            <!-- {{img.mau['mausac_id']['ten']}}  -->
+                            <img class="item_colors-img" 
+                            *ngFor = "let img of item.mausanpham; let i = index"
+                            src="{{img.mau['mausac_id']['hinh']}}" alt=""> 
+                        <!-- </div> -->
+                       
+                        <!-- <img class="item_colors-img" src="../../../../../assets/img/red.png" alt=""> -->
+                    </div>
+                    <div class="item__btn">
+                        <button class=" btn-add-to-cart">THÊM VÀO GIỎ</button>
+                        <button class="btn-detail" routerLink="/details/{{item.sanpham['_id']}}/{{item['mausanpham'][0].mau.mausac_id['_id']}}">XEM CHI TIÊT</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End products-->
+</div>
+

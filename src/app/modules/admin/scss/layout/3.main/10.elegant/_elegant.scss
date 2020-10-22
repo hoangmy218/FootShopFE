@@ -1,0 +1,41 @@
+.elegant{
+    padding:5rem 2rem;
+    padding-top:0;
+    background-image: url('/img/light_gradient_bands_bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .container{
+        @include flex();
+        @include setMaxwidth($lg){
+            padding:0 2rem;
+            max-width: none;
+        }
+        @include setMaxwidth($md){
+            @include flex($direction:column);
+        }
+    }
+    &__img{
+        @include flexitem($basis:60%);
+        @include setMaxwidth($md){
+            @include flexitem($basis:45%);
+        }
+    }
+    &__new{
+        @include flexitem($basis:40%);
+        @include setMaxwidth($md){
+            text-align: center;
+        }
+        &-title{
+            @extend %title;
+            margin-bottom:2rem;
+        }
+        &-text{
+            @extend %text;
+            margin-bottom: 2rem;
+        }
+        .btn{
+            @extend %btn;
+        }
+    }
+}

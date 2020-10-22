@@ -1,0 +1,38 @@
+<!-- PRODUCT -->
+<div id="related-products">
+    <!--products-->
+    <section class="products">
+        <div class="container">
+            <div class="products__top">
+                <h3 class="products__top-title">
+                    SẢN PHẨM LIÊN QUAN
+                </h3>
+            </div>
+            <div class="products__menu">
+
+                <owl-carousel [options]="customOptions"  
+                [carouselClasses]="['owl-theme', 'sliding']">
+                <div class="item" *ngFor="let image of images; let i = index" >
+                    <div class="slide" >
+                        
+                        <div class="item__img">
+                            <img src="{{image.image}}" alt="">
+                        </div>
+                        <h5 class="item__name">
+                            <a href="">{{image.text}}</a>
+                        </h5>
+                        <p class="item__price"><span class="old-price">$249 </span> &nbsp; $199</p>
+                        
+                        
+                    </div>
+                </div>
+                </owl-carousel>
+
+                
+                
+            </div>
+        </div>
+    </section>
+    <!--End products-->
+</div>
+

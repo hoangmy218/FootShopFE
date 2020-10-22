@@ -1,0 +1,35 @@
+.amazing{
+    padding-top:8rem;
+    background-image: url('/img/light_gradient_violet_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include setMaxwidth($xsm){
+        padding-top:4rem;
+    }
+    .container{
+        @include flex($direction:column);
+        @include setMaxwidth($md){
+            padding:0 1rem;
+            max-width: none;
+        }
+    }
+    &__title{
+        @extend %title;
+        text-align: center;
+        line-height: 5rem;
+        @include setMaxwidth($xsm){
+            font-size: 3rem;
+        }
+    }
+    &__text{
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+        padding:0 10rem;
+        text-align: center;
+        @extend %text;
+        @include setMaxwidth($sm){
+            padding:0 1rem;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+.timepiece{
+    padding:8rem 2rem;
+    text-align: center;
+    background-image: url('/img/timepiece_section_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color:$grey0;
+    @include setMaxwidth($lg){
+        padding:4rem 2rem;
+    }
+    &__title{
+        @extend %title;
+        margin-bottom: 2rem;
+        color:white;
+        @include setMaxwidth($lg){
+            font-size: 3rem;
+        }
+    }
+    &__auctor{
+        font-size: 1.8rem;
+        @include setMaxwidth($lg){
+            margin-bottom: 3rem;
+        }
+    }
+    &__text{
+        @extend %text;
+        margin-bottom: 2rem;
+        padding:0 20rem;
+        color:$grey0;
+        @include setMaxwidth($lg){
+           padding:0 10rem;
+           margin-top:2rem;
+        }
+        @include setMaxwidth($lg){
+            padding:0 5rem;
+         }
+         @include setMaxwidth($sm){
+            padding:0;
+         }
+    }
+    .btn{
+        @extend %btn;
+    }
+}

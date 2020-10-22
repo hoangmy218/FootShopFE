@@ -1,0 +1,222 @@
+<div id="details">
+    <section class="details">
+        <div class="title_page">
+            <a href="">Trang chủ</a> \ Chi tiết sản phẩm
+        </div>
+        <div class="container">
+            
+            <div class="details__top">
+                <div class="details__top-gallery">
+                    
+                    <div class="product-gallery__featured">
+                        <owl-carousel-o [options]="{items: 1, dots:false, margin:8}" #owlCar>
+                          <ng-container *ngFor="let image of productImages">
+                            <ng-template carouselSlide [id]="image.url" [width]="imageSize">
+                              <!-- <img [src]="image.url"> -->
+                              <lib-ngx-image-zoom
+                                    [thumbImage]=image.url
+                                    [fullImage]=image.full
+                                ></lib-ngx-image-zoom>
+                            </ng-template>
+                          </ng-container>
+                        </owl-carousel-o>
+                      </div>
+                    
+                      <div class="product-gallery__carousel">
+                        <owl-carousel-o [options]="{items:3, dots:false, margin:5, autoWidth: true}">
+                          <ng-container *ngFor="let image of productImages; let i = index">
+                            <ng-template carouselSlide [id]="image.url+i"  [width]="80">
+                              <a (click)="owlCar.to(image.url); changeimage(image.url+i)">
+                                <img [src]="image.url"
+                                     [ngClass]="{'product-gallery__carousel-item--active':selectedImage === image.url+i || (i == 0 && !selectedImage)}">
+                              </a>
+                            </ng-template>
+                          </ng-container>
+                        </owl-carousel-o>
+                      </div>
+
+                </div>
+                <form [formGroup]="CartForm" id="cart-form" class="cart-form">
+                <div class="details__top-content">
+                    <div class="details__top-title">
+                        {{product['ten']}}
+                        <p class="sku">SKU: {{productcolor._id}}</p>
+                    </div>
+                    
+                    <div class="details__top-price">
+                        <!-- <span class="old-price">$249 </span> &nbsp; -->
+                         {{dongia.dongia}}
+                    </div>
+                    <div class="details__top-text">
+                        Màu sắc: <a href="">{{productcolor.mausac_id.ten}}</a>
+                    </div>                   
+                    <div class="details__top-color" >
+                        <div *ngFor = "let img of colorList; let i = index"> 
+                        <img class="details__top-color-img active" 
+                            src="{{img['mausac_id']['hinh']}}" alt=""> 
+    
+                        </div>
+                        <!-- <img class="details__top-color-img" src="../../../../../assets/img/red.png" alt=""> -->
+                    </div>
+                    <div class="details__top-text">
+                        Kích cỡ: 
+                    </div>
+                    <div class="details__top-size">
+                        <select formControlName="sku" class="form-control details__top-select" 
+                            
+                            (change)="selectOption($event.target.value)">
+                            <option class="details__top-option" 
+                                *ngFor = "let size of sizeList; let i = index" [(NgModel)]="selected" 
+                                value="{{size['_id']}}">{{size['kichco_id']['ten']}}</option>
+                        </select>
+                        <a href=""> Hướng dẫn kích thước</a>
+
+                    </div>
+                    <div class="details__top-text">
+                        Số lượng: 
+                    </div>
+                    <div class="details__top-quantity">
+                        <input type="number" class="form-control" step="1" [(max)]="qty"
+                            id="quantity"  formControlName="quantity"  (click)="onChange()"> 
+                         Còn {{qty}} đôi
+                    </div>
+                    <div>
+                        <mat-error *ngFor="let validation of cart_validation_messages.quantity">
+                            <mat-error class="error-message" *ngIf="CartForm.get('quantity').hasError(validation.type) 
+                                && ( CartForm.get('quantity').dirty 
+                                || CartForm.get('quantity').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error>
+                    </div>
+                    
+                    
+                   
+
+                    <div class="details__top-btn">
+                        <button class="btn-add-to-cart"
+                            [disabled] = "!CartForm.valid" (click)="onAddToCart()">THÊM VÀO GIỎ
+                        </button>
+                        <!-- <a href="" class="favorite active"><i class="fas fa-heart"></i></a> -->
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="details__item">
+            
+                <div class="details__item-more">
+                    <mat-tab-group color="accent" backgroundColor="primary">
+                        <mat-tab label="Mô Tả"> 
+                            <div class="details__item-content">
+                                <p class="text">
+                                    {{product['mota']}}
+                                </p> 
+                            </div>
+                            
+                        </mat-tab>
+                        <mat-tab label="Bình luận"> 
+                            <div class="details__item-content">
+                            <div class="details__rating">
+                                <span class="title">Đánh giá trung bình</span>
+                                <div class="rating">
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star" aria-hidden="true"></i>
+                                    <span class="avg"> 3.5</span>
+                                </div>
+                                
+                            </div>
+
+                            <!-- LIST COMMENTS -->
+                            
+                            <div class="details__comment">
+                                <div class="details__comment-info">
+                                    <img src="../../../../../assets/img/5_collection1.jpg" alt="" class="avatar">
+                                    <span class="name">Quỳnh Anh</span>
+                                </div>
+                                <div class="details__comment-content">
+                                    <p>Ngày 10/09/2020</p>
+                                    <div class="rating">
+                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <p class="text">
+                                    Sed non mauris vitae erat consequat auctor eu in elit. Class aptent tasociosqu ad litora torquent peer inpet mauris in erat justo. Nullam ac urna eu felis. Cras eleifend aliquam turpis, vitae aliquam eros blandit vel. Praesent id dolor id esteod maximus
+                                    id vitae eros. Nullam vehicula mattis sapien.
+                                    </p> 
+                                </div>
+                                
+                            </div>
+                            <div class="details__comment">
+                                <div class="details__comment-info">
+                                    <img src="../../../../../assets/img/5_collection1.jpg" alt="" class="avatar">
+                                    <span class="name">Quỳnh Anh</span>
+                                </div>
+                                <div class="details__comment-content">
+                                    <p>Ngày 10/09/2020</p>
+                                    <div class="rating">
+                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <p class="text">
+                                    Sed non mauris vitae erat consequat auctor eu in elit. Class aptent tasociosqu ad litora torquent peer inpet mauris in erat justo. Nullam ac urna eu felis. Cras eleifend aliquam turpis, vitae aliquam eros blandit vel. Praesent id dolor id esteod maximus
+                                    id vitae eros. Nullam vehicula mattis sapien.
+                                    </p> 
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <span class="title">Viết bình luận </span>
+                                <form [formGroup]="CommentForm" id="comment__form" class="comment__form">
+                    
+                                    <div class="form-group comment__form-group">
+                                        <span class="comment__form-label">Bình luận *</span>
+                                        <textarea name="comment" id="inputComment" cols="30" rows="10" 
+                                            formControlName="comment">
+                                        </textarea>
+                                          
+                                        <mat-error *ngFor="let validation of account_validation_messages.comment">
+                                            <mat-error class="error-message" 
+                                                *ngIf="CommentForm.get('comment').hasError(validation.type) 
+                                                    && (CommentForm.get('comment').dirty 
+                                                    || CommentForm.get('comment').touched)"
+                                            >{{validation.message}}
+                                            </mat-error>   
+                                        </mat-error>
+                                        
+                                    </div>
+                                    <div class="comment__form-group">
+                                        <span class="comment__form-label">Đánh giá *</span>
+                                        <ngx-star-rating [total]="5" [filledColor]="'#ff0000'" 
+                                            (rated)="onRating($event)"></ngx-star-rating> 
+                                        <mat-error class="error-message" 
+                                            *ngIf="rating_value == 0"
+                                        >Bạn chưa đánh giá</mat-error>   
+                                        
+                                    </div>
+                                    <button type="submit" class="btn btn-add-to-cart"
+                                            [disabled] = "(rating_value === 0 || (CommentForm.valid == false)) ? true: false"
+                                        (click)="onComment()">GỬI BÌNH LUẬN
+                                    </button>
+                                </form>
+                            </div>
+                             
+                            
+                        </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                    
+                </div>
+            
+            </div>
+        </div>
+    </section>
+</div>
+<app-relatedproduct></app-relatedproduct>

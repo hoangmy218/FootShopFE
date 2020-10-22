@@ -1,0 +1,82 @@
+<div class="grid-container">
+    <div class="dashboard-card">
+     <h1 class="mat-h1">Phiếu nhập</h1>
+     
+     <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)"
+        placeholder="Lọc">
+      </mat-form-field>
+      <button class="mt-2 btn-add" mat-raised-button (click)="onAdd()"
+        color="primary">
+        Thêm phiếu nhập
+      </button>
+
+      <div class="mat-elevation-z8" style="overflow: auto;">
+        <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <!-- Id Column -->
+          <ng-container matColumnDef="_id">
+            <mat-header-cell  *matHeaderCellDef mat-sort-header>MÃ</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="break">{{element._id}}</mat-cell>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="ngay">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>NGÀY</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ngay | date:'d/M/yyyy, h:mm a'}}</mat-cell>
+          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="nhacungcap_id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>NHÀ CUNG CẤP</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.nhacungcap_id['ten']}}</mat-cell>
+                </ng-container>
+            <!-- Name Column -->
+          <ng-container matColumnDef="tongnhap">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>TỔNG NHẬP</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.tongnhap}}</mat-cell>
+          </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="tongtien">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>TỔNG TIỀN</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.tongtien | currency:'VND'}}</mat-cell>
+                </ng-container>
+                 <!-- Name Column -->
+            <ng-container matColumnDef="trangthai">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>TRẠNG THÁI</mat-header-cell>
+                <mat-cell *matCellDef="let element" >
+                    <div *ngIf="element.trangthai == true" class="status" >Đã nhập</div>
+                    <div *ngIf="element.trangthai == false" ><button mat-button (click)="onSave(element._id)">Chưa nhập</button></div></mat-cell>
+                </ng-container>
+  
+          <!-- Description Column
+          <ng-container matColumnDef="brand_des">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.brand_des}}</mat-cell>
+          </ng-container> -->
+  
+          <ng-container matColumnDef="Options">
+            <mat-header-cell *matHeaderCellDef>THAO TÁC</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="onEdit(row)">
+                    <mat-icon>launch</mat-icon>
+                </button>
+            
+                <button mat-icon-button color="warn" (click)="onDelete(row._id)">
+                    <mat-icon>delete_outline</mat-icon>
+                </button>
+              </mat-cell>
+          </ng-container>
+  
+
+        </mat-table>
+  
+        <mat-paginator 
+            [pageSizeOptions]="[10, 15, 20]" >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  
+  

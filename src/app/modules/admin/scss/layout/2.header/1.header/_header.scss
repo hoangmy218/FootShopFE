@@ -1,0 +1,159 @@
+.header{
+    background-image: url('/img/slide_product_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 630px;
+    max-height: 700px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    padding:0 2rem;
+    @include setMaxwidth($lg){
+        height: 530px;
+    }
+    @include setMaxwidth($lg){
+        height: 480px;
+    }
+    @include setMaxwidth($sm){
+        height: 400px;
+    }
+    @include setMaxwidth($sm540){
+        height: 600px;
+    }
+    @include setMaxwidth($xsm){
+        height: 560px;
+    }
+    .container{
+        @include flex($justify:flex-start,$align:left);
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+        @include setMaxwidth($sm540){
+            @include flex($direction:column,$wrap:wrap);
+        }
+    }
+
+    &__avada{
+        width: auto;
+        color:white;
+        line-height: 6rem;
+        text-align: center;
+        @include flexitem($basis:60%);
+        transform: translateY(200px);
+        @include setMaxwidth($xl){
+            transform: translateY(150px);
+            @include flexitem($basis:50%);
+        }
+        @include setMaxwidth($lg){
+            transform: translateY(100px);
+        }
+        @include setMaxwidth($md){
+            transform: translateY(70px);
+        }
+        @include setMaxwidth($sm540){
+            transform: translateY(30px);
+        }
+        &-title{
+            font-size:7rem;
+            font-weight: 900;
+            @include setMaxwidth($lg){
+                font-size: 6rem;
+            }
+            @include setMaxwidth($md){
+                font-size: 5rem;
+                margin-bottom: 1.5rem;
+            }
+            @include setMaxwidth($sm){
+                font-size: 4rem;
+                margin-bottom: 1rem;
+            }
+            @include setMaxwidth($sm540){
+                font-size: 6rem;
+            }
+            @include setMaxwidth($xsm){
+                font-size: 4rem;
+            }
+            
+        }
+        &-text{
+            font-size:2.2rem;
+            font-family: $title-font;
+            font-weight: 100;
+            @include setMaxwidth($md){
+                font-size: 2rem;
+                line-height: 3rem;
+                margin-bottom:1.5rem;
+            }
+            @include setMaxwidth($sm){
+                font-size: 1.5rem;
+                line-height: 2rem;
+                margin-bottom:0.6rem;
+            }
+        }
+        .btn{
+            color:white;
+            background:$bluesky;
+            padding:1rem 2rem;
+            font-size: 1.6rem;
+            @include setMaxwidth($sm){
+                font-size: 1.5rem;
+                padding:0.5rem 1.5rem;
+        }
+    }
+    }
+    &__img{
+        @include flexitem($basis:60%);
+        @include setMaxwidth($xl){
+            @include flexitem($basis:70%);
+        }
+    }
+    .shape-img{
+        position: absolute;
+        transition: .5s;
+        z-index: -1;
+        @include flex($direction:column);
+        @include setMaxwidth($sm540){
+            img{
+                width: 80%;
+            }
+            top:-3rem;
+        }
+        @include setMaxwidth($xsm){
+            img{
+                width: 90%;
+            }
+            top:-1rem;
+        }
+    }
+    .shape3{
+        margin-top: -5rem;
+        margin-left: -10rem;
+        @include setMaxwidth($sm540){
+            //margin: 0;
+        }
+    }
+    .shape2{
+        margin-top: -10rem;
+        margin-left: 22rem;
+        @include setMaxwidth($sm540){
+            margin-top:1rem;
+        }
+        
+    }
+    .shape1{
+        margin-top: -10rem;
+        margin-left: -30rem;
+        @include setMaxwidth($sm540){
+            margin-top: -20rem;
+        }
+    }
+    .watch{
+        z-index: 10;
+        width: 850px;
+        transform: translate(50px,-90px);
+        @include setMaxwidth($sm540){
+            transform: translate(150px,-50px);
+        }
+    }
+}

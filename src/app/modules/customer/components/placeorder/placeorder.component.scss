@@ -1,0 +1,444 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+@import '../../scss/helpers/shared';
+
+
+.title_page{
+    background-color: $bgsimple;
+    color: white;
+    width: 100%;
+    @extend %title-list;
+    font-size: 1.5rem;
+    a{
+        color: $grey0;
+        &:hover{
+            color: white;
+        }
+    }
+
+}
+
+
+//PROCESSBAR
+//stepwizard
+.progressbar {
+    counter-reset: step;
+    margin-top: 1rem;
+    li {
+        list-style-type: none;
+        width: 25%;
+        float: left;
+        font-size: 12px;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+        padding-bottom: 1rem;
+        &:before {
+            width: 30px;
+            height: 30px;
+            content: counter(step);
+            counter-increment: step;
+            line-height: 30px;
+            border: 2px solid #7d7d7d;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            background-color: white;
+        }
+        &:after {
+            width: 100%;
+            height: 2px;
+            content: '';
+            position: absolute;
+            background-color: #7d7d7d;
+            top: 15px;
+            left: -50%;
+            z-index: -1;
+        }
+        &:first-child{
+            &:after {
+                content: none;
+            }
+        }
+        .active{
+            color: green;
+            border-color: #55b776;
+            &:before{
+                border-color: #55b776;
+            }
+            
+        }
+        .done{
+            &:before{
+                border-color: #55b776;
+                background-color: #55b776;
+                color: white;
+                content: url('../../../../../assets/img/done-white-24dp.svg');
+            }
+        }
+    }
+}
+.progressbar li.active {
+    color: green;
+}
+.progressbar li.active:before {
+    border-color: #55b776;
+}
+.progressbar li.active + li:after {
+    border-color: #55b776;
+    background-color: #55b776;
+}
+.progressbar li.done:before{
+    background-color: #55b776;
+    color: white;
+    content: url('../../../../../assets/img/done-white-24dp.svg');
+   
+}
+
+
+.checkout{
+    color:$greyx1;
+    padding:4rem 2rem;
+    text-align: center;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+
+    &__top{
+        padding-left: 10rem;
+        padding-right: 10rem;
+        margin-top: 2rem;
+        text-align: left;
+        @include grid($columns:repeat(2,1fr));
+        margin-bottom: 1rem;
+        @include setMaxwidth($xl){
+            margin-bottom:5rem;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+        }
+        &-form{
+            
+            margin-top: 2rem;
+            text-align: left;
+            line-height: 3rem;
+            word-spacing: 3px;
+            color:$greyx4;
+            font-size:1.2rem;
+            border-color: $grey0 !important;
+            border: 1px solid;
+            padding: 1rem 1rem 1rem 1rem;
+            margin-bottom: 2rem;
+            
+            @include setMaxwidth($md){
+                padding:0 4rem;
+            }
+            @include setMaxwidth($sm){
+                padding:0;
+            }
+            &-link{
+                color: $greyx3;
+                font-family: $title-font;
+                text-align: left;
+                // a{
+                //     color: $greyx2;
+                //     font-family: $title-font;
+                //     text-align: left;
+                    
+                // }
+                a{
+                    color: $greyx3;
+                    font-weight: 200;
+                    &:hover{
+                        color: $bglink;
+                        font-weight: 100;
+                    }
+                }
+                
+            }
+            &-title {
+                @extend %title-list;
+                border-bottom: 1px solid $grey0;
+                font-weight: 400;
+
+                
+            }
+            &-label{
+                color: $greyx2;
+                    font-family: $title-font;
+                    text-align: left;
+                    margin-top: 1rem;
+                .title{
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+            .btn-add-address{
+                float: right;
+                padding: 0.5rem 1rem;
+            }
+            
+            
+    
+            &-text{
+                color: $bggrey1;
+                font-family: $title-font;
+                text-align: left;
+                @include setMaxwidth($lg){
+                    padding:0 2rem;
+                }
+                @include setMaxwidth($sm){
+                    padding:0;
+                }
+            }
+            &-btn{           
+                color:white;
+                // background:$bluesky;
+                font-family: $boldfont;
+                font-weight: 200;
+                // chuyen mau tu trai sang phai
+                background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+                border: snow 2px;
+                border-radius: 2px;
+                border: none !important;
+                padding:1rem 2rem;
+                font-size: 1rem;
+                background-size: 200%;
+                
+                transition: .5s ease-out;
+                &:hover {
+                    background-position: left;
+                }   
+                &:disabled,
+                button[disabled]{
+                    background: $grey;
+                }
+            }
+            
+        }
+    
+    }
+}
+.btn-placeorder{
+    width: 100%;
+    margin-top: 2rem;
+}
+
+
+//RADIO
+.radio-container {
+    display: block;
+    position: relative;
+    font-size: 1.2rem;
+    color: $greyx3;
+    font-family: $title-font;
+    padding-left: 35px;
+    margin-left: 1rem;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .radio-container input {
+    font-size: 1.2rem;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+.checkmark {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0.8rem;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .radio-container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .radio-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .radio-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .radio-container .checkmark:after {
+      top: 7px;
+      left: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: white;
+  }
+.radio{
+    display: block;
+}
+//CARD
+
+.card{
+    float: right;
+    width: 100%;
+    padding-top: 1rem;
+    &__title{
+        @extend %title-list;
+        text-align: left;
+        font-size: 1.8rem;
+        font-weight: 700;
+        
+        border-bottom: 1px solid $grey0;
+        color: black;
+        
+    }
+    &__content{
+        font-family: $boldfont;
+        font-size: 1.5rem;
+    }
+    &__item{
+        display: flex;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $grey0;
+        @include grid($columns:repeat(2,1fr));
+    }
+    &__footer{
+        
+        
+    }
+    &__product{
+        
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $grey0;
+       
+        &-item{
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr;
+            //@include grid($columns:repeat(4,1fr));
+            
+            &-image{
+                img{
+                    height: auto;
+                    min-width: 50px!important;
+                    max-width: 80px;
+                }
+            }
+            &-name{
+               
+                font-size: 1rem;
+            }
+            &-quantity{
+                color: black;
+            }
+        }
+    }
+    .card_name{
+        text-align: left;
+        color: black;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+    .card_value{
+        text-align: right;
+        color: black;
+    }
+    .total{
+        color: $greyx4;
+        font-weight: bold;
+        line-height: 1.2rem;
+        font-size: 1.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: none!important;
+        .card_name{
+            font-size: 1.5rem;
+        }
+    }
+    &__btn{
+        .btn-placeorder{
+            margin-top: 1rem;
+            color:white;
+            width: 100%;
+            height: 50%;
+            font-family: $boldfont;
+            font-weight: 200;
+            // chuyen mau tu trai sang phai
+            background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+            border: snow 2px;
+            border-radius: 2px;
+            border: none !important;
+            padding:1rem 2rem;
+            font-size: 1.5rem;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: left;
+            }
+        }
+        
+    }
+
+}
+
+.product{
+    
+    &-image{
+        img{
+            height: auto;
+            min-width: 50px!important;
+            max-width: 80px;
+        }
+    }
+}
+.form-control{
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 1rem;
+    
+    border: 1px solid $grey0;
+    border-radius: 0.2rem 0 0 0.2rem;
+    
+    &:focus{
+        outline: 0 !important;
+        border: 1px solid $grey0;
+        border-radius: 0.2rem 0 0 0.2rem!important;
+    }
+    &:hover{
+        border: 1px solid $greyx2;
+    }
+}
+form{
+    font-family: $title-font;
+}

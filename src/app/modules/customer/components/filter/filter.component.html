@@ -1,0 +1,35 @@
+<section class="filter">
+    <div class="container">
+        <div class="filter__item">
+            <div class="input-group">
+                
+                <input type="text" class="form-control" placeholder="Tìm kiếm" name="q">
+                <button class="btn btn-default input-group-btn" type="submit"><i class="fas fa-search"></i></button>
+                
+            </div>
+            
+        </div>
+        <div class="filter__item">
+            <div class="filter__item-title">
+                DANH MỤC
+            </div>
+            <div *ngFor = "let cate of CategoryList">
+                <p class="filter__item-link">
+                    <a routerLink="cate/{{cate._id}}" 
+                        routerLinkActive="a-active" class="category">{{cate.ten}}</a> 
+                </p>
+            </div>
+            
+            
+            <div class="filter__item-title">
+                THƯƠNG HIỆU
+            </div>
+            <div  *ngFor = "let brand of BrandList">
+                <p class="filter__item-link">
+                    <a routerLink="brand/{{brand._id}}" routerLinkActive="a-active" class="category">{{brand.ten}}</a> 
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
