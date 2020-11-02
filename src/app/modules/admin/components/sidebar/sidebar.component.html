@@ -6,9 +6,20 @@
             <div class="sidebar-btn">
                 <i class="fas fa-bars"></i>
             </div>
-            <ul>
-                <li><a href=""><i class="fas fa-home"></i></a></li>
-                <li><a (click)="onLogout()"><i class="far fa-user"></i></a></li>
+            <ul class="menu"> 
+                <li><a href="" class="menu-icon"><i class="fas fa-home"></i></a></li>
+                <li class=" menu-item has-menu">
+                    <a (click)="onLogout()" class="menu-icon"><i class="far fa-user"></i></a>
+                    <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
+                    <ul class="sub-menu" id="sub-menu">
+                        <li class="sub-menu-item">
+                            <a href="#" class="sub-link">Tài khoản</a>
+                        </li>
+                        <li class="sub-menu-item">
+                            <a (click)="onLogout()" class="sub-link">Đăng xuất</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -18,7 +29,7 @@
         <div class="sidebar-menu">
             
             <li class="item" id="dashboard">
-                <a href="" class="menu-btn">
+                <a routerLink="/admin/dashboard" class="menu-btn">
                     <i class="fas fa-tachometer-alt"></i><span>Dashboard</span>
                 </a>
             </li>
@@ -27,17 +38,13 @@
                 <i class="fas fa-tag"></i><span>Thương hiệu</span>
             </a></li>
             <li class="item" id="category"><a routerLink="/admin/category" class="menu-btn">
-                <span class="material-icons">
-                    apps
-                    </span><span>Danh mục</span>
+                <i class="fas fa-clipboard-list"></i><span>Danh mục</span>
             </a></li>
             <li class="item" id="color"><a routerLink="/admin/color" class="menu-btn">
                 <i class="fas fa-palette"></i><span>Màu sắc</span>
             </a></li>
             <li class="item" id="size"><a routerLink="/admin/size" class="menu-btn">
-                <span class="material-icons">
-                    straighten
-                    </span>
+                <i class="fas fa-expand-alt"></i>
                 <span>Kích cỡ</span>
             </a></li>
 
@@ -53,6 +60,9 @@
             <li class="item" id="stock"><a routerLink="/admin/stock" class="menu-btn">
                 <i class="fas fa-file-invoice"></i><span>Phiếu nhập</span>
             </a></li>
+            <li class="item" id="comment"><a routerLink="/admin/comment" class="menu-btn">
+                <i class="fas fa-comments"></i><span>Bình luận</span>
+            </a></li>
             <li class="item" id="chart">
                 <a  class="menu-btn" (click)="clickEvent()"  >
                     <i class="fas fa-chart-bar"></i>
@@ -62,8 +72,8 @@
                     </span>
                 </a>
                 <div class="sub-menu" [ngClass]="status ? 'show-submenu' : 'unshow'" >
-                    <a name="chart" href=""><i class="fas fa-chart-line"></i><span>Thống kê sản phẩm</span></a>
-                    <a href=""><i class="fas fa-chart-pie"></i><span>Thống kê doanh thu</span></a>
+                    <a class="sub-btn"   routerLink="/admin/pro-chart"><i class="fas fa-chart-line"></i><span>Thống kê sản phẩm</span></a>
+                    <a class="sub-btn"  routerLink="/admin/revenue-chart" ><i class="fas fa-chart-pie"></i><span>Thống kê doanh thu</span></a>
                 </div>
             </li>
         </div>

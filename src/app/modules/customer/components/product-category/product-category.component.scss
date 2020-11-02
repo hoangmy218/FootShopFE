@@ -1,0 +1,340 @@
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/variables';
+@import '../../scss/helpers/colors';
+@import '../../scss/helpers/shared';
+
+.shopping{
+    padding:4rem 2rem;
+    text-align: center;
+    &-container{
+        display: flex;
+    }
+    
+    &__item{
+        display: flex;
+        text-align: center;
+        line-height: 3rem;
+        word-spacing: 3px;
+        color:$greyx2;
+        font-size:1.2rem;
+        
+        @include setMaxwidth($md){
+            padding:0 1rem;
+        }
+        @include setMaxwidth($sm){
+            padding:0;
+        }
+    }
+    .filter{
+        @include setMaxwidth($md){
+            display: none;
+        }
+       
+    }
+}
+.title_page{
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
+    a{
+       @extend %title-page-a;
+    }
+
+}
+
+
+
+.products{
+    // text-align: center;
+    // vertical-align: center;
+    // align-items: center;
+    padding:4rem 2rem;
+    @include setMaxwidth($sm){
+        padding:4rem 2rem;
+    }
+    .container{
+        width: 100%;
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &__top{
+        margin-bottom: 6rem;
+        text-align: center;
+        &-title{
+            @extend %title-list;
+            margin-bottom: 2rem;
+            text-align: center;
+            margin: 0 auto 80px;
+            position: relative;
+            line-height: 60px;
+            color: #555;
+            &::after{
+                content: '';
+                background: $bluesky;
+                width: 80px;
+                height: 5px;
+                border-radius: 5px;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        &-text{
+            @extend %text;
+            padding:0 20rem;
+            @include setMaxwidth($xl){
+                padding:0 14rem;
+            }
+            @include setMaxwidth($md){
+                padding:0 1rem;
+            }
+        }
+    }
+    .message-error{
+        width: 400px;
+        @include grid($columns:repeat(1,1fr));
+        font-family: $opensanfont;
+        background-color: rgba(255, 0, 0, 0.2);
+        // opacity: 30%;
+        text-align: left;
+        padding: 2rem 2rem;
+        border-radius: 5px;
+        color: $greyx3;
+        font-weight: 800;
+    }
+    &__menu{
+        @include grid($columns:repeat(3,1fr));
+        @include setMaxwidth($xl){
+            @include grid($columns:repeat(2,1fr));
+        }
+        @include setMaxwidth($md1){
+            @include grid($columns:repeat(2,1fr));
+        }
+        @include setMaxwidth($sm540){
+            @include grid($columns:repeat(1,1fr));
+        }
+    }
+    .item{
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        @include setMaxwidth($sm540){
+            padding:1rem 3rem;
+        }
+        transition: all 1s ease;
+        &:hover{
+            // transform: translateY(-10px);
+            .item__img{
+                img{
+                transform: scale(1.2);
+                }
+            }
+        }
+        &__img{
+            a{
+                transition: .3s all ease;
+                color: #dbcc8f;
+            }
+            .img-prod{
+                position: relative;
+                display: block;
+                overflow: hidden;
+                -webkit-box-shadow: inset 0px 0px 101px 21px rgba(0, 0, 0, 0.09);
+                -moz-box-shadow: inset 0px 0px 101px 21px rgba(0, 0, 0, 0.09);
+                box-shadow: inset 0px 0px 101px 21px rgba(0, 0, 0, 0.09);
+                background: #fff;
+                z-index: 1;
+                img{
+                    vertical-align: middle;
+                    border-style: none;
+                    -webkit-transform: scale(1);
+                    -moz-transform: scale(1);
+                    -ms-transform: scale(1);
+                    -o-transform: scale(1);
+                    transform: scale(1);
+                    -moz-transition: all 1s ease;
+                    -o-transition: all 1s ease;
+                    -webkit-transition: all 1s ease;
+                    -ms-transition: all 1s ease;
+                    transition: all 1s ease;
+                }
+                .img-fluid{
+                    width: 100%;
+                    // width: auto;
+                    height: 300px;
+                    object-fit: cover;
+                    @include setMaxwidth($sm){
+                        height: 200px;
+                    }
+                }
+            }
+            .badge{
+                display: inline;
+            }
+            .discount-badge {
+                font-size: 12px;
+                line-height: 34px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                font-weight: 700;
+                color: $bggrey;
+                background: $discountbg;
+                // border-radius: 7px;
+                padding: 0 10px;
+                height: 34px;
+
+            }
+            .favorite{
+                font-size: 12px;
+                line-height: 34px;
+                letter-spacing: 1px;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-weight: 700;
+                color: $greyx4;
+                background: hsla(0,0%,100%,.8);
+                // border-radius: 7px;
+                padding: 0 10px;
+                height: 34px;
+                float: right;
+                border-radius: 50%;
+                a{
+                    color: $greyx4;
+                }
+
+
+            }
+            
+        }
+        &__name{
+            
+            font-size: 1rem;
+            color:$greyx1;
+            margin-bottom: 0;
+            font-family: $opensanfont;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+           
+            align-items: center;
+            &-text{
+                
+                //Add ... if text too long
+                width: 1fr;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            a{
+                
+                color: $grey;
+               
+                &:hover{
+                    color: $greyx4;
+                }
+            }
+            .favorite{
+                float: right;
+                margin-right: 1rem;
+                transition: transform .2s;
+                &:hover{
+                    transform: scale(1.2);
+                }
+            }
+        }
+        &__colors{
+            display: inline-block;
+            img{
+                padding: 0.1rem 0.1rem 0.1rem 0.1rem ;
+                margin: 0rem 0.5rem 0rem 0.5rem;
+                border-radius: 50%;
+                height: 25px !important;
+                width: 25px !important;
+                &:hover{
+                    border: $bluesky 2px solid;
+                }
+            }
+            a{
+                
+            }
+            &-img{
+               
+            }
+        }
+        &__price{
+            font-family: $opensanfont;
+            font-size: 1.3rem;
+            color:$greyx4;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .old-price{
+            color: $grey;
+            font-size: 1.1rem;
+            font-weight: 50;
+            text-decoration-line: line-through;
+        }
+        .line{
+            color:$grey;
+            margin: 0 0.2rem;
+        }
+        .btn{
+            @extend %btn-ltr;
+            font-size: 1rem;
+            
+        }
+        &__btn{
+            display: flex;
+            justify-content: space-between;
+            button{
+                color:white;
+                font-family: $opensanfont;
+                font-weight: 800;
+                border: snow 2px;
+                border-radius: 2px;
+                border: none !important;
+                padding:0.5rem 1rem;
+                font-size: 0.8rem;
+                background-size: 200%;
+                
+                transition: .5s ease-out;
+                &:hover {
+                    background-position: right;
+                }
+            }
+        }
+        .btn-add-to-cart{
+            // // chuyen mau tu trai sang phai
+            background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: left;
+            }
+            
+        }
+        .btn-detail{
+            // // chuyen mau tu phai sang trai
+            background: linear-gradient(to right, $grey 50%, #4f5c6d 50%)left;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: right;
+            }
+            
+        }
+        
+    
+    }
+
+}

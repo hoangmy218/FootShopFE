@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+@import './app/modules/customer/scss/helpers/mixins';
+// @import '/src/app/modules/customer/scss/helpers/variables';
 @import './app/modules/customer/scss/helpers/reset';
 
 @import './app/modules/customer/scss/helpers/variables';
@@ -12,5 +10,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import './app/modules/customer/scss/helpers/shared';
+
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    @include setMaxwidth($sm){
+        padding: 0;
+        width: 100%;
+    }
+}
+
 
 

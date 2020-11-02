@@ -1,10 +1,22 @@
-<h4>PAY WITH STRIPE</h4>
-<br>
+<h4>THANH TOÁN BẰNG THẺ TÍN DỤNG QUA STRIPE</h4>
+<form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+  <input type="text" formControlName="name" 
+   class="form-control"   placeholder="Tên">
+  <mat-error *ngFor="let validation of form_validation_messages.name">
+    <mat-error class="error-message" 
+        *ngIf="stripeTest.get('name').hasError(validation.type) 
+            && (stripeTest.get('name').dirty 
+            || stripeTest.get('name').touched)"
+    >{{validation.message}}</mat-error>
+</mat-error>   
 <ngx-stripe-card
   [options]="cardOptions"
   [elementsOptions]="elementsOptions"
 ></ngx-stripe-card>
 <br>
-<button class="btn-danger" type="submit" (click)="createToken()">
+<button class="btn-danger" type="submit"
+  [disabled] = "!stripeTest.valid" name="submit"
+ >
   THANH TOÁN
 </button>
+</form>

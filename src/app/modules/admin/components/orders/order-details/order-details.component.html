@@ -1,82 +1,163 @@
 
 
-<!-- <div class="row mt-5 mb-5">
-    <div class="col">
-      <div  class="site-section"> -->
+<div class="grid-container">
+  <div class="dashboard-card">
+   <h1 class="mat-h1">Chi tiết đơn hàng</h1>
+
         <div class="container">
-            <div class="row mt-5 mb-5">
-              <div class="col-lg-8 col-12">
-               
-                  <h3 class="text-center table-title"><a routerLink="/admin/order">MY ORDER </a>/ MY DETAILS ORDER #{{order._id}}</h3>
-                  <table  class="table table-striped" >
-                    <thead >
-                      <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">SubTotal</th>         
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr  *ngFor="let orderItem of orderItems; let i = index">
-                          <th scope="row">{{i+1}}</th>
-                          <td> 
-                            <div *ngFor="let dl of imageList | keyvalue">   
-                                <div *ngIf="dl.key == orderItem.ctsp_id._id" >
-                                    <img src="{{dl.value}}" alt="Image" class="img-cart">
-                                </div>
-                            </div></td>
-                          <td>{{orderItem.ctsp_id._id}}</td>
-                          <td>{{orderItem.dongia }}</td>
-                          <td> 
-                              {{orderItem.soluongdat}}
-                          </td>
-                          <td>{{orderItem.soluongdat * orderItem.dongia }}</td>
-                        </tr>
+          <mat-card>
+            
+                <div class="cart__top"> 
+                  <div class="cart__top-info" >
+                    
+                    <div class="cart__top-info-header order">      
+                        <span class="order-id">Mã đơn hàng: {{order['_id']}}</span>
+                        <span class="order-date">Ngày mua: {{order['ngaydat'] | date:'d/M/yyyy, h:mm a'}}</span>
+                    </div>
+                    <div class="cart__top-info-body">
+                        
+                            <div class="invoice">
+                                <span class="invoice-title">Người nhận</span> 
+                                <span class="">Họ và tên: {{order['diachi_id']['ten']}}</span>
+                                <span class="">Địa chỉ: {{order['diachi_id']['diachi']}}</span>
+                                <span class="">Số điện thoại: {{order['diachi_id']['dienthoai']}}</span>
+                            </div>
+                            <div class="invoice">
+                                <span class="invoice-title">Hình thức giao hàng</span>
+                                <span>{{order['vanchuyen_id']['ten']}}</span>
+                                <span>Phí vận chuyển: {{order['vanchuyen_id']['phi'] | currency:'VND'}}</span>
+                            </div>
+                            <div class=" invoice">
+                                <span class="invoice-title">Hình thức thanh toán</span>
+                              <span>{{order['thanhtoan_id']['ten']}}</span>
+                              <span class="invoice-title">Trạng thái đơn hàng</span>
+                              <div *ngFor="let dl of stageList | keyvalue"> 
+                                <span class="status" 
+                                    [ngClass]="order['trangthai'] == '1' ? 'process' : 
+                                    (  order['trangthai'] == '2' ? 'confirm' : 
+                                    (  order['trangthai'] == '3' ? 'ship' : 
+                                    (  order['trangthai'] == '4' ? 'complete' : 'cancel'  ) ))"
+                                    *ngIf="dl.key == order['trangthai']"
+                                    >{{dl.value}}</span>
+                            </div>
+                            </div>
+                    </div>
+                  
+                  </div>
+                  <div class="cart__top-list cart-list" >
+                    <table id="cart" class="table">
+                      <thead class="thead-primary">
+                          <tr class="text-center">
+                              <th >&nbsp;</th>
+                              <th >Sản Phẩm</th>
+                              <th >Đơn Giá</th>
+                              <th >Số Lượng</th>
+                              <th >Tổng Cộng</th>
+                              <!-- <th >&nbsp;</th> -->
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let item of productList; let i = index"
+                              class="text-center">
+                              <!-- {{item}} -->
+                              <td class="table__image">
+                              
+                                  <div *ngFor="let dl of imageList | keyvalue">   
+                                      <div *ngIf="dl.key == item.ctsp_id._id" >
+                                          <img src="{{dl.value}}" alt="Image" class="img-cart">
+                                      </div>
+                                  </div>
+                                  
+                              </td>
+                              <td class="table__product product-name">
+                                  
+                                  <h3>
+                                      <a href="" class="name">
+                                          {{item['ctsp_id']['mausanpham_id']['sanpham_id']['ten']}}
+                                      </a>
+                                  </h3>                                        
+                                  <br>
+                                  <button class="color-size">
+                                      {{item['ctsp_id']['mausanpham_id']['mausac_id']['ten']}} / 
+                                      {{item['ctsp_id']['kichco_id']['ten']}}</button>
+                              </td>
+                              <td class="table__price">
+                                  <!-- <span class="old-price">$249 </span> &nbsp;  -->
+                                  <!-- {{priceList}}    -->
+                                  <div *ngFor="let price of priceList">
+                                      <!-- <span>{{price}} </span>    -->
+                                      <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']"
+                                      >{{item['dongia'] | currency: 'VND'}}</div>
+                                  </div>
+                              </td>
+                              <td class="table__quantity">
+                                  <span class="amount">{{item['soluongdat']}}</span>                    
+                              </td>
+                              <td class="table__price">
+                                  
+                                  <span class="amount">
+                                      
+                                      {{item['dongia']* item['soluongdat'] | currency: 'VND'}}
+                                      
+                                  </span>
+                              </td>
+                              <!-- <td class="table__btn product-remove">
+                                  <a class="btn-delete " (click)="onDelete(item['_id'])">X</a>
+                              </td> -->
+                          </tr>
+                      
                       </tbody>
-                  </table>
+                  </table> 
+                  </div>
+                  <div class="cart__top-total">
+                    <div class="card">
+                        <div class="card__title">
+                            TÓM TẮT ĐƠN HÀNG
+                        </div>
+                        <div class="card__content">
+                            <div class="card__item">
+                                <div class="card_name">
+                                    Tổng tiền
+                                </div>
+                                <div class="card_value">
+                                    {{order['tongtien'] | currency: 'VND'}}
+                                </div>
+                            </div>
+                            <div class="card__item">
+                                <div class="card_name">
+                                    Giảm giá
+                                </div>
+                                <div class="card_value">
+                                    {{discount | currency: 'VND'}}
+                                </div>
+                            </div>
+                            <div class="card__item">
+                                <div class="card_name">
+                                    Phí vận chuyển
+                                </div>
+                                <div class="card_value">
+                                    {{order['vanchuyen_id']['phi'] | currency: 'VND'}}
+                                </div>
+                            </div>
+                            <div class="card__item total">
+                                <div class="card_name ">
+                                    Thành tiền
+                                </div>
+                                <div class="card_value ">
+                                    {{order['tongtien'] + order['vanchuyen_id']['phi'] - discount  | currency: 'VND'}}
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
                  
                
               </div>
-              <div class="col-md-4 col-12">
-                  <div class="card bg-light" >
-                      <div class="card-header text-center">
-                        <h5 class="card-title h4 font-weight-bold">Order Info</h5>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item"><b>Date</b> <p class="price">{{order.ngaydat | date}}</p></li>
-                          <li class="list-group-item row-color"><b>Name</b> <p class="price">{{address.ten}}</p></li>
-                          <li class="list-group-item"><b>Phone</b> <p class="price">{{address.dienthoai}}</p></li>
-                          <li class="list-group-item row-color"><b>Address</b> <p class="price">{{address.diachi}}</p></li>
-                          <li class="list-group-item">
-                             <b>Payment</b> <p class="price" >{{order.thanhtoan_id['ten'] }}</p>
-                            
-                          </li>
-                          <!-- <div *ngFor = "let pm of paymentList">
-                              <li class="list-group-item" *ngIf="pm.pm_id == order.pm_id">Payment <p class="price" >{{pm.pm_name}}</p></li>
-                          </div>  -->
-                          <!-- <div *ngFor = "let st of stateList | keyvalue">
-                              <li class="list-group-item"  *ngIf="st.key == order.st_id" ><b>State order <p class="price" >{{st.value}}</p></b></li>
-                          </div>                       -->
-                          <li class="list-group-item row-color">
-                            <div *ngFor="let dl of stageList | keyvalue">   
-                                <div *ngIf="dl.key == order.trangthai" >
-                              <b >State order <p class="price" >{{dl.value}}</p></b></div>
-                            </div>   
-                          </li>
-  
-                          <li class="list-group-item"><b>Note</b><p class="price">{{order.ghichu}}</p></li>
-                      </ul>
-                      <div class="card-body">
-                          <span class="total"><b> Total <p class="price ">{{order.tongtien |currency}}</p></b></span>                                                             
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        <!-- </div>
-      </div>
+            
+            
+          </mat-card>
     </div>
-     -->
+  </div>
+
+    

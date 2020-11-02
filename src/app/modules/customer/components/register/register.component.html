@@ -1,5 +1,12 @@
+<div id="register">
+    <div class="title_page" >
+        <a href="">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        Đăng ký
+    </div>
+</div>
 <section class="register">
-    <div class="title_page" ><a href="">Trang chủ</a> \ Đăng ký</div>
+   
     <div class="container">
         <div class="register__item">
             
@@ -49,19 +56,19 @@
 
 
                     <div class="form-group register__item-form-group">
-                        <span class="register__item-form-label">Email *</span>
-                        <input type="email" class="form-control"  required
-                            formControlName="email" id="inputEmail" >
-                        <mat-error *ngFor="let validation of account_validation_messages.email">
-                            <mat-error class="error-message" *ngIf="RegisterForm.get('email').hasError(validation.type) 
-                                && (RegisterForm.get('email').dirty 
-                                || RegisterForm.get('email').touched)"
+                        <span class="register__item-form-label">Số điện thoại *</span>
+                        <input type="text" class="form-control"  required
+                            formControlName="phone" id="inputEmail" >
+                        <mat-error *ngFor="let validation of account_validation_messages.phone">
+                            <mat-error class="error-message" *ngIf="RegisterForm.get('phone').hasError(validation.type) 
+                                && (RegisterForm.get('phone').dirty 
+                                || RegisterForm.get('phone').touched)"
                                 >{{validation.message}}
                             </mat-error>
                         </mat-error>       
                     </div>
                     
-                    <div class="form-group register__item-form-group">
+                    <!-- <div class="form-group register__item-form-group">
                         <span class="register__item-form-label">Mật khẩu *</span>
                         <input type="password" class="form-control" required
                             formControlName="password" id="inputPassword" >
@@ -72,7 +79,7 @@
                                 >{{validation.message}}
                             </mat-error>
                         </mat-error> 
-                    </div>
+                    </div> -->
                     <div class="forgot register__item-link">
                         Đã có tài khoản? <a routerLink="/login">Đăng nhập</a>
                     </div>

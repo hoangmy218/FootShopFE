@@ -1,0 +1,158 @@
+<div id="cart">
+    <div class="title_page">
+        <a href="">Trang chủ</a> 
+        <i class="fas fa-chevron-right"></i><a routerLink="/orders">Đơn hàng</a>
+        <i class="fas fa-chevron-right"></i>Chi tiết đơn hàng
+    </div>
+
+    <section class="cart">
+        <div  *ngIf = "(order | json) != ({} |json)" class="cart-content">
+            <div class="container">          
+                <div class="cart__top">    
+                    <div class="cart__top-info" >
+                        <div class="cart__top-info-header order">      
+                            <span class="order-id">Mã đơn hàng: {{order['_id']}}</span>
+                            <span class="order-date">Ngày mua: {{order['ngaydat'] | date:'d/M/yyyy, h:mm a'}}</span>
+                        </div>
+                        <div class="cart__top-info-body">
+                            
+                                <div class="invoice">
+                                    <span class="invoice-title">Người nhận</span> 
+                                    <span class="">Họ và tên: {{order['diachi_id']['ten']}}</span>
+                                    <span class="">Địa chỉ: {{order['diachi_id']['diachi']}}</span>
+                                    <span class="">Số điện thoại: {{order['diachi_id']['dienthoai']}}</span>
+                                </div>
+                                <div class="invoice">
+                                    <span class="invoice-title">Hình thức giao hàng</span>
+                                    <span>{{order['vanchuyen_id']['ten']}}</span>
+                                    <span>Phí vận chuyển: {{order['vanchuyen_id']['phi'] | currency:'VND'}}</span>
+                                </div>
+                                <div class=" invoice">
+                                    <span class="invoice-title">Hình thức thanh toán</span>
+                                   <span>{{order['thanhtoan_id']['ten']}}</span>
+                                   <span class="invoice-title">Trạng thái đơn hàng</span>
+                                   <div *ngFor="let dl of stageList | keyvalue"> 
+                                    <span class="status" 
+                                        [ngClass]="order['trangthai'] == '1' ? 'process' : 
+                                        (  order['trangthai'] == '2' ? 'confirm' : 
+                                        (  order['trangthai'] == '3' ? 'ship' : 
+                                        (  order['trangthai'] == '4' ? 'complete' : 'cancel'  ) ))"
+                                        *ngIf="dl.key == order['trangthai']"
+                                        >{{dl.value}}</span>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="cart__top-list cart-list" >
+                        <table id="cart" class="table">
+                            <thead class="thead-primary">
+                                <tr class="text-center">
+                                    <th >&nbsp;</th>
+                                    <th >Sản Phẩm</th>
+                                    <th >Đơn Giá</th>
+                                    <th >Số Lượng</th>
+                                    <th >Tổng Cộng</th>
+                                    <!-- <th >&nbsp;</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of productList; let i = index"
+                                    class="text-center">
+                                    <!-- {{item}} -->
+                                    <td class="table__image">
+                                    
+                                        <div *ngFor="let dl of imageList | keyvalue">   
+                                            <div *ngIf="dl.key == item.ctsp_id._id" >
+                                                <img src="{{dl.value}}" alt="Image" class="img-cart">
+                                            </div>
+                                        </div>
+                                        
+                                    </td>
+                                    <td class="table__product product-name">
+                                        
+                                        <h3>
+                                            <a href="" class="name">
+                                                {{item['ctsp_id']['mausanpham_id']['sanpham_id']['ten']}}
+                                            </a>
+                                        </h3>                                        
+                                        <br>
+                                        <button class="color-size">
+                                            {{item['ctsp_id']['mausanpham_id']['mausac_id']['ten']}} / 
+                                            {{item['ctsp_id']['kichco_id']['ten']}}</button>
+                                    </td>
+                                    <td class="table__price">
+                                        <!-- <span class="old-price">$249 </span> &nbsp;  -->
+                                        <!-- {{priceList}}    -->
+                                        <div *ngFor="let price of priceList">
+                                            <!-- <span>{{price}} </span>    -->
+                                            <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']"
+                                            >{{item['dongia'] | currency: 'VND'}}</div>
+                                        </div>
+                                    </td>
+                                    <td class="table__quantity">
+                                        <span class="amount">{{item['soluongdat']}}</span>                    
+                                    </td>
+                                    <td class="table__price">
+                                        
+                                        <span class="amount">
+                                            
+                                            {{item['dongia']* item['soluongdat'] | currency: 'VND'}}
+                                            
+                                        </span>
+                                    </td>
+                                    <!-- <td class="table__btn product-remove">
+                                        <a class="btn-delete " (click)="onDelete(item['_id'])">X</a>
+                                    </td> -->
+                                </tr>
+                            
+                            </tbody>
+                        </table> 
+                    </div>
+                   
+                    <div class="cart__top-total">
+                        <div class="card">
+                            <div class="card__title">
+                                TÓM TẮT ĐƠN HÀNG
+                            </div>
+                            <div class="card__content">
+                                <div class="card__item">
+                                    <div class="card_name">
+                                        Tổng tiền
+                                    </div>
+                                    <div class="card_value">
+                                        {{order['tongtien'] | currency: 'VND'}}
+                                    </div>
+                                </div>
+                                <div class="card__item">
+                                    <div class="card_name">
+                                        Giảm giá
+                                    </div>
+                                    <div class="card_value">
+                                        {{discount | currency: 'VND'}}
+                                    </div>
+                                </div>
+                                <div class="card__item">
+                                    <div class="card_name">
+                                        Phí vận chuyển
+                                    </div>
+                                    <div class="card_value">
+                                        {{order['vanchuyen_id']['phi'] | currency: 'VND'}}
+                                    </div>
+                                </div>
+                                <div class="card__item total">
+                                    <div class="card_name ">
+                                        Thành tiền
+                                    </div>
+                                    <div class="card_value ">
+                                        {{order['tongtien'] + order['vanchuyen_id']['phi'] - discount  | currency: 'VND'}}
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

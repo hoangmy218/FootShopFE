@@ -36,6 +36,15 @@ nav{
     &__nav {
         @include flex($justify: space-between, $wrap: wrap);
         &-img {
+            .img-logo{
+                
+
+                width: 80px;
+                height: auto;
+                filter: 
+                /* black to white */
+                invert(100%)
+            }
             @include setMaxwidth($xl) {
                 padding: 1rem 2rem;
             }
@@ -76,10 +85,13 @@ nav{
                 .link-item:not(.home) {
                     color: white;
                     display: block;
+                    font-family: $opensanfont;
+                    font-weight: 800;
+                    letter-spacing: 2px;
                     // padding-left: rem;
                     @include setMaxwidth($xl) {
                         font-size: 1rem !important;
-                        font-family: $primary-font;
+                        
                         display: block;
                         &:hover {
                             background: $orange;
@@ -164,6 +176,7 @@ nav{
             &:hover {
                 .sub-menu {
                     display: block;
+                    font-family: $opensanfont;
                     @include setMaxwidth($xl){
                         display: none;
                     }

@@ -1,37 +1,403 @@
-.img-cart{
-    width: 130px; /* width of container */
-    height: 130px; /* height of container */
-    object-fit: cover;
-    border: none;
-    border-radius: 10%;
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+.grid-container {
+    margin: 20px;
+  }
+  
+  
+  .btn-add{
+      float: right;
+  }
+  mat-header-cell{
+      text-align: center!important;
+  }
+  .break { 
+    word-break: break-all;
+    white-space: pre-wrap!important;      /* CSS3 */   
+    white-space: -moz-pre-wrap!important; /* Firefox */    
+    white-space: -pre-wrap!important;     /* Opera <7 */   
+    white-space: -o-pre-wrap!important;   /* Opera 7 */    
+    word-wrap: break-word!important;      /* IE */
+ }
+  
+ .table{
+    &__image{
+        img{
+            height: auto;
+            min-width: 50px!important;
+            max-width: 80px;
+        }
+    }
+    &__product{
+        h3{
+            margin-bottom: 0;
+        }
+        a{
+            // padding: 0.5rem 0rem 0.5rem 0.5rem;
+            color: $grey;
+            padding-left: 0.5rem;
+            font-family: $opensanfont;
+            &:hover{
+                color: $greyx4;
+            }
+        }
+        .color-size{
+            background-color: $orange;
+            color: white;
+            font-weight: bold;
+            line-height: 2rem;
+            border-radius: 2px;
+            border: none;
+            transition: .4s ease-in-out;
+            &:hover {
+                background: $orangesd;
+            }
+        }
+            
+    }
+    &__price{
+        font-family: $opensanfont;
+        font-size: 1.4rem;
+        color:$greyx4;
+        .old-price{
+            color: $grey;
+            padding-top: 0rem;
+            font-size: 1rem;
+            font-weight: 50;
+            text-decoration-line: line-through;
+        }
+    }
+    &__quantity{
+        // color: $discount!important;
+
+    }
 }
-.price{
+
+.cart{
+    color:$greyx1;
+    padding:4rem 2rem;
+    text-align: center;
+    // display: block;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &-content{
+      display: block;
+    }
+
+    &__top{
+        padding-left: 10rem;
+        padding-right: 10rem;
+        margin-top: 2rem;
+        text-align: left;
+        @include grid($columns:repeat(1,1fr));
+        margin-bottom: 1rem;
+        @include setMaxwidth($xl){
+            margin-bottom:5rem;
+            // padding: 0;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+            padding: 0;
+        }
+        &-list{
+            // width: 50rem;
+        }
+        &-info{
+            .order{
+                padding: 2rem 1rem;
+                // padding-top: 2rem;
+                // padding-bottom: 2rem;
+                background: black;
+                line-height: 2rem;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.5rem; 
+                @include setMaxwidth($sm){
+                    font-size: 1.2rem;
+                    display: block;
+                    span{
+                        display: block;
+                    }
+                }        
+            }
+            &-body{
+                font-family: $opensanfont;
+                margin-top: 1rem;
+                color: $greyx3;
+                
+                @include grid($columns:repeat(3,1fr));
+                margin-bottom: 1rem;
+                @include setMaxwidth($xl){
+                    margin-bottom:5rem;
+                }
+                @include setMaxwidth($md){
+                    @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+                }
+                .invoice{
+                    span{
+                        display: block;
+                        margin-bottom: 0.5rem;
+                    }
+                    &-title{
+                        font-weight: 800;
+                        color: $greyx4;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+
+.card{
     float: right;
-}
-.btn-checkout{
-    align-items: center;
-    float: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.total{
-    font-size: 20px;
-}
-.card-header{
-    background-color: #28A745;
-    color: white;
-}
+    width: 50%;
+    padding-top: 1rem;
+    @include setMaxwidth($md){
+        width: 100%;
+        float: left;
+    }
+    &__title{
+        @extend %title-list;
+        text-align: left;
+        font-size: 1.8rem;
+        font-weight: 700;
+        
+        border-bottom: 1px solid $grey0;
+        color: black;
+        
+    }
+    &__content{
+        font-family: $opensanfont;
+        font-size: 1.5rem;
+    }
+    &__item{
+        display: flex;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $grey0;
+        @include grid($columns:repeat(2,1fr));
+    }
+    &__footer{
+        
+        
+    }
+    .card_name{
+        text-align: left;
+        color: black;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+    .card_value{
+        text-align: right;
+        color: black;
+    }
+    .total{
+        color: $greyx4;
+        font-weight: bold;
+        line-height: 1.2rem;
+        font-size: 1.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: none!important;
+        .card_name{
+            font-size: 1.5rem;
+        }
+    }
+    &__btn{
+        .btn-checkout{
+            color:white;
+            width: 100%;
+            height: 50%;
+            font-family: $opensanfont;
+            font-weight: 200;
+            // chuyen mau tu trai sang phai
+            background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+            border: snow 2px;
+            border-radius: 2px;
+            border: none !important;
+            padding:1rem 2rem;
+            font-size: 1.5rem;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: left;
+            }
+        }
+        
+    }
 
 
-.list-group-item.row-color{
-    background-color: #F9F9F9!important;
 }
 
-.card.bg-light{
-    background-color: #dfe0e1!important;
-}
+//TABLE
 
-.table-title{
-    color: #28A745;
-}
+.table {
+    width: 100%;
+    margin-bottom: $spacer;
+    color: $table-color;
+    background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+  
+    th,
+    td {
+      padding: $table-cell-padding;
+      vertical-align: top;
+      border-top: $table-border-width solid $table-border-color;
+    }
+  
+    thead th {
+      vertical-align: bottom;
+      border-bottom: (2 * $table-border-width) solid $table-border-color;
+    }
+  
+    tbody + tbody {
+      border-top: (2 * $table-border-width) solid $table-border-color;
+    }
+  }
+  
+  
+  //
+  // Condensed table w/ half padding
+  //
+  
+  .table-sm {
+    th,
+    td {
+      padding: $table-cell-padding-sm;
+    }
+  }
+  
+  
+  // Border versions
+  //
+  // Add or remove borders all around the table and between all the columns.
+  
+  .table-bordered {
+    border: $table-border-width solid $table-border-color;
+  
+    th,
+    td {
+      border: $table-border-width solid $table-border-color;
+    }
+  
+    thead {
+      th,
+      td {
+        border-bottom-width: 2 * $table-border-width;
+      }
+    }
+  }
+  
+  .table-borderless {
+    th,
+    td,
+    thead th,
+    tbody + tbody {
+      border: 0;
+    }
+  }
+  
+  // Zebra-striping
+  //
+  // Default zebra-stripe styles (alternating gray and transparent backgrounds)
+  
+  .table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+      background-color: $table-accent-bg;
+    }
+  }
+  
+  
+  // Hover effect
+  //
+  // Placed here since it has to come after the potential zebra striping
+  
+  .table-hover {
+    tbody tr {
+      &:hover {
+        color: $table-hover-color;
+        background-color: $table-hover-bg;
+      }
+    }
+  }
+  
+  
+  // Table backgrounds
+  //
+  // Exact selectors below required to override `.table-striped` and prevent
+  // inheritance to nested tables.
+  
+//   @each $color, $value in $theme-colors {
+//     @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
+//   }
+  
+//   @include table-row-variant(active, $table-active-bg);
+  
+  
+  // Dark styles
+  //
+  // Same table markup, but inverted color scheme: dark background and light text.
+  
+  // stylelint-disable-next-line no-duplicate-selectors
+  .table {
+    .thead-dark {
+      th {
+        color: $table-dark-color;
+        background-color: $table-dark-bg;
+        border-color: $table-dark-border-color;
+      }
+    }
+  
+    .thead-light {
+      th {
+        color: $table-head-color;
+        background-color: $table-head-bg;
+        border-color: $table-border-color;
+      }
+    }
+  }
+  
+  .table-dark {
+    color: $table-dark-color;
+    background-color: $table-dark-bg;
+  
+    th,
+    td,
+    thead th {
+      border-color: $table-dark-border-color;
+    }
+  
+    &.table-bordered {
+      border: 0;
+    }
+  
+    &.table-striped {
+      tbody tr:nth-of-type(odd) {
+        background-color: $table-dark-accent-bg;
+      }
+    }
+  
+    &.table-hover {
+      tbody tr {
+        // @include hover {
+        //   color: $table-dark-hover-color;
+        //   background-color: $table-dark-hover-bg;
+        // }
+      }
+    }
+  }
+  
+  

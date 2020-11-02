@@ -1,4 +1,5 @@
 export class StockItem{
+    _id: string;
     sanpham_id: string;
     mausac_id: string;
     kichco_id: string;
@@ -7,6 +8,7 @@ export class StockItem{
 
 
     constructor(){
+        this._id = '';
         this.sanpham_id='';
         this.mausac_id = '';
         this.kichco_id = '';

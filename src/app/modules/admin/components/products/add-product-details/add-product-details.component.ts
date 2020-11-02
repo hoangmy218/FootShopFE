@@ -181,7 +181,7 @@ export class AddProductDetailsComponent implements OnInit {
             this.renderer.addClass(img, 'product-image');
 
             const a: HTMLAnchorElement = this.renderer.createElement('a');
-            a.innerText = 'Delete';
+            a.innerText = 'Xóa';
             this.renderer.addClass(a, 'delete-btn');
             a.addEventListener('click', this.deleteProductImage.bind(this, res['hinhanh']['_id'], a));
 
@@ -225,8 +225,16 @@ export class AddProductDetailsComponent implements OnInit {
       const mausanpham_id = res['data']['_id'];
       let sizeList : any = {};
       sizeList.kichco = form.value.kichco_id;
+      console.log(mausanpham_id)
       this.service.addProductListSize(mausanpham_id, sizeList).subscribe(res=>{
-        console.log(res)
+        console.log('res pls',res)
+        this.snackBar.open(res['message'].toString(), '', {
+          duration: 3000,
+          verticalPosition:'bottom'
+        })
+        if (res['success']){
+          window.location.replace('/admin/product/'+this.productID);
+        }
       }, error=>{
         console.log(error)
       })

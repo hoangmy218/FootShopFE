@@ -1,12 +1,14 @@
 <div id="details">
+    <div class="title_page">
+        <a href="">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>Chi tiết sản phẩm
+    </div>
     <section class="details">
-        <div class="title_page">
-            <a href="">Trang chủ</a> \ Chi tiết sản phẩm
-        </div>
+       
         <div class="container">
             
-            <div class="details__top">
-                <div class="details__top-gallery">
+            <div class="details__top" *ngIf = "(productcolor | json) != ({} | json)">
+                <div class="details__top-gallery" >
                     
                     <div class="product-gallery__featured">
                         <owl-carousel-o [options]="{items: 1, dots:false, margin:8}" #owlCar>
@@ -16,6 +18,12 @@
                               <lib-ngx-image-zoom
                                     [thumbImage]=image.url
                                     [fullImage]=image.full
+                                    [magnification]="1"
+                                    [enableScrollZoom]="true"
+                                    [enableLens]="true"
+                                    [lensWidth]="200"
+                                    [lensHeight]="200"
+                                    [circularLens] = "true"
                                 ></lib-ngx-image-zoom>
                             </ng-template>
                           </ng-container>
@@ -40,22 +48,24 @@
                 <div class="details__top-content">
                     <div class="details__top-title">
                         {{product['ten']}}
-                        <p class="sku">SKU: {{productcolor._id}}</p>
+                        <p class="sku">SKU: {{productDetailsID}}</p>
                     </div>
                     
                     <div class="details__top-price">
                         <!-- <span class="old-price">$249 </span> &nbsp; -->
-                         {{dongia.dongia}}
+                         {{dongia.dongia | currency:'VND'}}
                     </div>
                     <div class="details__top-text">
                         Màu sắc: <a href="">{{productcolor.mausac_id.ten}}</a>
                     </div>                   
                     <div class="details__top-color" >
-                        <div *ngFor = "let img of colorList; let i = index"> 
-                        <img class="details__top-color-img active" 
-                            src="{{img['mausac_id']['hinh']}}" alt=""> 
-    
-                        </div>
+                       
+                            <a *ngFor = "let img of colorList; let i = index" routerLink="/details/{{product['_id']}}/{{img['mausac_id']['_id']}}">
+                                <img class="details__top-color-img" 
+                                    id="{{img['mausac_id']['_id']}}"
+                                    src="{{img['mausac_id']['hinh']}}" alt=""> 
+                            </a>
+                        
                         <!-- <img class="details__top-color-img" src="../../../../../assets/img/red.png" alt=""> -->
                     </div>
                     <div class="details__top-text">
@@ -69,7 +79,7 @@
                                 *ngFor = "let size of sizeList; let i = index" [(NgModel)]="selected" 
                                 value="{{size['_id']}}">{{size['kichco_id']['ten']}}</option>
                         </select>
-                        <a href=""> Hướng dẫn kích thước</a>
+                        <!-- <a href=""> Hướng dẫn kích thước</a> -->
 
                     </div>
                     <div class="details__top-text">
@@ -105,7 +115,7 @@
             <div class="details__item">
             
                 <div class="details__item-more">
-                    <mat-tab-group color="accent" backgroundColor="primary">
+                    <mat-tab-group color="warn" >
                         <mat-tab label="Mô Tả"> 
                             <div class="details__item-content">
                                 <p class="text">
@@ -118,61 +128,45 @@
                             <div class="details__item-content">
                             <div class="details__rating">
                                 <span class="title">Đánh giá trung bình</span>
-                                <div class="rating">
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star" aria-hidden="true"></i>
-                                    <span class="avg"> 3.5</span>
+                                <div class="rating" *ngIf="(commentList | json) == {}">
+                                    <i class="far fa-star" aria-hidden="true" *ngFor="let star of arrayStar(5)"></i>
+                                    <span class="avg">Chưa có đánh giá</span>
+                                </div>
+                                <div class="rating" *ngIf="(commentList | json) != {}">
+                                    <i class="fas fa-star" aria-hidden="true" *ngFor="let star of arrayStar(ratingAvg)"></i>
+                                        
+                                    <i class="fas fa-star-half-alt" *ngIf="!isMiddle(ratingAvg)"></i>
+                                    <i class="far fa-star" aria-hidden="true" *ngFor="let star of arrayStar(5-ratingAvg)"></i>
+                                    <span class="avg"> {{ratingAvg}}</span>
                                 </div>
                                 
                             </div>
 
                             <!-- LIST COMMENTS -->
-                            
-                            <div class="details__comment">
+                            <div *ngIf="(commentList | json) != {}">
+                            <div class="details__comment" *ngFor="let comment of commentList">
                                 <div class="details__comment-info">
-                                    <img src="../../../../../assets/img/5_collection1.jpg" alt="" class="avatar">
-                                    <span class="name">Quỳnh Anh</span>
+                                    <img src="../../../../../assets/img/user_none.png" alt="" class="avatar">
+                                    <span class="name">{{comment['nguoidung_id']['ten']}}</span>
                                 </div>
                                 <div class="details__comment-content">
-                                    <p>Ngày 10/09/2020</p>
-                                    <div class="rating">
-                                        <i class="fas fa-star" aria-hidden="true"></i>
-                                        <i class="fas fa-star" aria-hidden="true"></i>
-                                        <i class="fas fa-star" aria-hidden="true"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star" aria-hidden="true"></i>
+                                    <p>Ngày: {{comment['ngaybl'] | date: 'd/M/yyyy'}}</p>
+                                    <div class="rating" >
+                                        <i class="fas fa-star" aria-hidden="true" *ngFor="let star of arrayOne(comment['danhgia'])"></i>
+                                        
+                                        <!-- <i class="fas fa-star-half-alt"></i> -->
+                                        <i class="far fa-star" aria-hidden="true" *ngFor="let star of arrayOne(5-comment['danhgia'])"></i>
                                     </div>
-                                    <p class="text">
-                                    Sed non mauris vitae erat consequat auctor eu in elit. Class aptent tasociosqu ad litora torquent peer inpet mauris in erat justo. Nullam ac urna eu felis. Cras eleifend aliquam turpis, vitae aliquam eros blandit vel. Praesent id dolor id esteod maximus
-                                    id vitae eros. Nullam vehicula mattis sapien.
+                                    <p class="text" >
+                                    {{comment['noidung']}}
                                     </p> 
                                 </div>
                                 
                             </div>
-                            <div class="details__comment">
-                                <div class="details__comment-info">
-                                    <img src="../../../../../assets/img/5_collection1.jpg" alt="" class="avatar">
-                                    <span class="name">Quỳnh Anh</span>
-                                </div>
-                                <div class="details__comment-content">
-                                    <p>Ngày 10/09/2020</p>
-                                    <div class="rating">
-                                        <i class="fas fa-star" aria-hidden="true"></i>
-                                        <i class="fas fa-star" aria-hidden="true"></i>
-                                        <i class="fas fa-star" aria-hidden="true"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <p class="text">
-                                    Sed non mauris vitae erat consequat auctor eu in elit. Class aptent tasociosqu ad litora torquent peer inpet mauris in erat justo. Nullam ac urna eu felis. Cras eleifend aliquam turpis, vitae aliquam eros blandit vel. Praesent id dolor id esteod maximus
-                                    id vitae eros. Nullam vehicula mattis sapien.
-                                    </p> 
-                                </div>
                             </div>
-                            <div class="comment">
+                            <div *ngIf="!_authService.loggedIn()"  class="info-error"> <a routerLink="/login">Đăng nhập</a> để bình luận</div>
+                           
+                            <div class="comment" *ngIf="_authService.loggedIn()">
                                 <span class="title">Viết bình luận </span>
                                 <form [formGroup]="CommentForm" id="comment__form" class="comment__form">
                     

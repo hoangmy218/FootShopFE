@@ -46,7 +46,7 @@
             ul{
                 display: flex;
                 li{
-                    a{
+                    .menu-icon{
                         // color: $orange;
                         color: white;
                         display: block;
@@ -65,6 +65,114 @@
                             background-color: $orangesd;
                         }
                     }
+
+                }
+            }
+            .menu {
+                @include flex();
+                @include setMaxwidth($xl) {
+                    // max-height: 0;
+                    // transition: .5s ease-in-out;
+                    // background: $bgfantastic;
+                    // @include flex($direction: column);
+                    // overflow: hidden;
+                    flex-direction: column !important;
+                    width: 100%;
+                    max-height: 0;
+                        overflow: hidden;
+                        background: $greyx4;
+                        -webkit-transition: all 0.4s ease-in-out;
+                            -moz-transition: all 0.4s ease-in-out;
+                            -o-transition: all 0.4s ease-in-out;
+                            transition: all 0.4s ease-in-out;
+                }
+                &-item {
+                    // margin-left: 3rem;
+                    text-transform: uppercase;
+                    @include setMaxwidth($xl) {
+                        display: block!important;
+                        width: 100%;
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+                .has-menu {
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    position: relative;
+                    @include setMaxwidth($xl){
+                        @include flex($justify:space-between,$wrap: wrap);
+                    }
+                    
+                    &:hover {
+                        .sub-menu {
+                            display: block;
+                            font-family: $opensanfont;
+                            @include setMaxwidth($xl){
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                .icon-dropdown{
+                    margin-right: 3rem;
+                    color:white;
+                    display: none;
+                    @include setMaxwidth($xl){
+                        display: inline;
+                    }    
+                }
+                .sub-menu {
+                    z-index: 1;
+                    width: 160px;
+                    position: absolute;
+                    display: none;
+                    border-top: 4px solid $orange;
+                    // text-transform: ;
+                    margin-top: 1rem;
+                    transform:translateX(-100px)!important;
+                    background:  $greyx4;
+                    cursor: pointer;
+                    @include setMaxwidth($xl){
+                        position: relative;
+                        @include flexitem($basis:100%);
+                        background:inherit;
+                        border-top:none;
+                        display: block!important;
+                        max-height: 0;
+                        -webkit-transition: all 0.4s ease-in-out;
+                        -moz-transition: all 0.4s ease-in-out;
+                        -o-transition: all 0.4s ease-in-out;
+                        transition: all 0.4s ease-in-out;
+                        overflow: hidden;
+                    }
+                    &-item {
+                        line-height: 4rem;
+                        // border-bottom: 1px solid white;
+                        @include setMaxwidth($xl){
+                            // border-top:1px solid white;
+                            border-bottom: none;
+                        }
+                    }
+                }
+                .sub-link {
+                    color: white;
+                    font-size: 1rem;
+                    display: block;
+                    padding: 0 2rem;
+                    line-height: 3rem!important;
+                    @include setMaxwidth($xl){
+                        padding:0 4rem;
+                        &::before{
+                            content: ' -';
+                        }
+                    }
+                    &:hover {
+                        color: $orange!important;
+                        
+                        background: $greyx4;
+                        transition: 0.4s all;
+                    }
                 }
                 
             }
@@ -77,7 +185,7 @@
         position: fixed;
         padding-bottom: 1rem;
         top: 70px;
-        width: 35vh;
+        width: 200px;
         height: calc(100% - 9%);
         transition: 0.3s;
         transition-property: width;
@@ -105,7 +213,7 @@
             list-style-type: none;
         }
         .item{
-            width: 35vh;
+            width: 200px;
             overflow: hidden;
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
@@ -171,10 +279,10 @@
         
     }
     .main-container{
-        width: calc(100% - 35vh);
+        width: calc(100% - 200px);
         margin-top: 70px;
         padding-top: 5px;
-        margin-left: 35vh;
+        margin-left: 200px;
         padding-bottom: 2vh;
         min-height: 100vh; //set cho bg vừa khung mh
         margin-right: 0;
@@ -213,6 +321,7 @@
                 .sub-menu{
                     a{
                         padding-left: 1rem!important;
+                        // font-family: $opensanfont;
                     }
                     i{
                         font-size: 1.8rem;

@@ -52,6 +52,11 @@ import { ShowAddressComponent } from './components/address/show-address/show-add
 import { OrderComponent } from './components/order/order.component';
 import { StripeComponent } from './components/stripe/stripe.component';
 import { StripeService, NgxStripeModule } from 'ngx-stripe';
+import { OrderdetailsComponent } from './components/order/orderdetails/orderdetails.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
+import { ProductBrandComponent } from './components/product-brand/product-brand.component';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
 @NgModule({
   declarations: [
     HeaderComponent, 
@@ -71,7 +76,7 @@ import { StripeService, NgxStripeModule } from 'ngx-stripe';
     VerifyComponent, 
     GetstartedComponent, 
     CartComponent, 
-    ProductDetailsComponent, CheckoutComponent, PlaceorderComponent, AddAddressComponent, EditAddressComponent, CompleteComponent, ShowAddressComponent, OrderComponent, StripeComponent
+    ProductDetailsComponent, CheckoutComponent, PlaceorderComponent, AddAddressComponent, EditAddressComponent, CompleteComponent, ShowAddressComponent, OrderComponent, StripeComponent, OrderdetailsComponent, ProductCategoryComponent, ProductBrandComponent, ProductSearchComponent
   ],
   imports: [
     CommonModule,
@@ -99,6 +104,7 @@ import { StripeService, NgxStripeModule } from 'ngx-stripe';
     NgxImageZoomModule,
     MatTabsModule,
     StarRatingModule,
+    MatChipsModule,
     // NgxPaginationModule,
     NgxStripeModule.forRoot('pk_test_51HHmGZJ6o6GkwUDliVfWqhwDWsVaIkBIeld8MRRPdKzeq6wTJ2eSh9tq3bHOiHH2HpVgVpmzuv0UQeby22PH9jGD00L6Kc0LHm'),
     // NgxDatatableModule,

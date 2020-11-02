@@ -1,16 +1,21 @@
 <div id="checkout">
-    <section class="checkout">
-        <div class="title_page">
-            <a routerLink="">Trang chủ</a> \ 
-            <a routerLink="/cart">Giỏ hàng</a> \ 
-            Đặt hàng
-        </div>
+    <div class="title_page">
+        <a routerLink="">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i> 
+        <a routerLink="/cart">Giỏ hàng</a>
+        <i class="fas fa-chevron-right"></i> 
+        Đặt hàng
+    </div>
+    <div class="progress-bar" > 
         <ul class="progressbar">
-            <li  class="active done">Giỏ hàng</li>
+            <li  class="active done" routerLink="/cart">Giỏ hàng</li>
             <li  class="active">Đặt hàng</li>
             <li  class="">Thanh toán</li>
             <li>Thành công</li>
         </ul>
+    </div>
+    <section class="checkout">
+        
         <div class="container">
             <div class="checkout__top">
                 <div class="checkout__top-form">
@@ -81,7 +86,11 @@
                                     <div class="card__product-item" 
                                         *ngFor="let item of cartList; let i = index">
                                         <div class="card__product-item-image">
-                                            <img src="../../../../../assets/img/5_collection1.jpg" alt="">
+                                            <div *ngFor="let dl of imageList | keyvalue">   
+                                                <div *ngIf="dl.key == item.ctsp_id._id" >
+                                                    <img src="{{dl.value}}" alt="Image" class="img-cart">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="card__product-item-name">
                                             {{item['ctsp_id']['mausanpham_id']['sanpham_id']['ten']}} 

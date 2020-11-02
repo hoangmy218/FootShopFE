@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
   subTotal : number = 0;
   total : number = 0;
   discount: number = 0;
+  public imageList: { [id: string]:any;} = {};
 
   
 
@@ -61,6 +62,13 @@ export class CartComponent implements OnInit {
       this.cartList = res['data'];
       console.log(res);
       console.log('data', res['data']);
+      res['data'].forEach(element => {
+        console.log('hinh', element['ctsp_id']['mausanpham_id']['hinh'][0])
+        this.service.getImage(element['ctsp_id']['mausanpham_id']['hinh'][0]).subscribe(result=>{
+          console.log(result['data'].hinh)
+          this.imageList[element['ctsp_id']._id] = result['data'].hinh;
+        })
+      });
       this.priceList = res['result']['dongia'];
       var newArr = [];
       this.priceList.forEach((item, i)=> {

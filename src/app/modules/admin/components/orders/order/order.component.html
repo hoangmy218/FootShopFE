@@ -43,7 +43,13 @@
             <mat-cell  *matCellDef=" let row" >
                 <div *ngFor="let dl of stageList | keyvalue">   
                     <div *ngIf="dl.key == row.trangthai" >
-                       <button mat-button (click)="OnStage(row._id, row.trangthai)">{{dl.value}} </button>
+                      <mat-chip-list>
+                        <mat-chip (click)="OnStage(row._id, row.trangthai)"
+                          color="{{  row.trangthai == '1' ? 'primary' : (  row.trangthai == '2' ? 'accent' : 'warn' ) }}" selected>
+                          {{dl.value}}
+                        </mat-chip>
+                      </mat-chip-list>
+                       <!-- <button mat-button >{{dl.value}} </button> -->
                     </div>
                 </div>
                 </mat-cell>

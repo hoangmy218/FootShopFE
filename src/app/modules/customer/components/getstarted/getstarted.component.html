@@ -1,5 +1,12 @@
+<div id="getstarted">
+    <div class="title_page" >
+        <a href="">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        Bắt đầu
+    </div>
+</div>
 <section class="getstarted">
-    <div class="title_page" ><a href="">Trang chủ</a> \ Bắt đầu</div>
+    
     <div class="container">
         <div class="getstarted__item">
             
@@ -7,18 +14,44 @@
                     Bắt đầu
                 </div>
                 <form [formGroup]="GetStartedForm" id="getstarted__item-form" class="getstarted__item-form">
-                    
+                    <div class="form-group register__item-form-group">
+                        <span class="register__item-form-label">Họ và tên *</span>
+                        <input type="text" class="form-control"  required
+                            formControlName="name" id="inputName" >   
+                        <mat-error *ngFor="let validation of account_validation_messages.name">
+                            <mat-error class="error-message" *ngIf="GetStartedForm.get('name').hasError(validation.type) 
+                                && (GetStartedForm.get('name').dirty 
+                                || GetStartedForm.get('name').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error>   
+                    </div>
                     <div class="form-group getstarted__item-form-group">
-                        <span class="getstarted__item-form-label">Số điện thoại *</span>
+                        <!-- <span class="getstarted__item-form-label">Số điện thoại *</span>
                         <input type="text" class="form-control" 
-                            formControlName="phone" id="inputPhone" >   
-                        <mat-error *ngFor="let validation of account_validation_messages.phone">
+                            formControlName="phone" id="inputPhone" >    -->
+                        <span class="register__item-form-label">Email *</span>
+                        <input type="email" class="form-control"  required
+                            formControlName="email" id="inputEmail" >
+                        <mat-error *ngFor="let validation of account_validation_messages.email">
                             <mat-error class="error-message" 
-                                *ngIf="GetStartedForm.get('phone').hasError(validation.type) 
-                                    && (GetStartedForm.get('phone').dirty 
-                                    || GetStartedForm.get('phone').touched)"
+                                *ngIf="GetStartedForm.get('email').hasError(validation.type) 
+                                    && (GetStartedForm.get('email').dirty 
+                                    || GetStartedForm.get('email').touched)"
                             >{{validation.message}}</mat-error>   
                         </mat-error>
+                    </div>
+                    <div class="form-group getstarted__item-form-group">
+                        <span class="register__item-form-label">Mật khẩu *</span>
+                        <input type="password" class="form-control" required
+                            formControlName="password" id="inputPassword" >
+                        <mat-error *ngFor="let validation of account_validation_messages.password">
+                            <mat-error class="error-message" *ngIf="GetStartedForm.get('password').hasError(validation.type) 
+                                && (GetStartedForm.get('password').dirty 
+                                || GetStartedForm.get('password').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error> 
                     </div>
                     <button type="submit" class="btn getstarted__item-btn"
                         [disabled] = "!GetStartedForm.valid"

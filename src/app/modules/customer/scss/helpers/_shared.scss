@@ -34,7 +34,7 @@
 }
 
 %title-list{
-    font-family: $boldfont;
+    font-family: $opensanfont;
     font-size: 2.5rem;
     color: $greyx4;
     line-height: 4.5rem;
@@ -66,4 +66,40 @@
         background-position: left;
     }
     
+}
+
+%message-error{
+    font-family: $opensanfont;
+    background-color: rgba(255, 0, 0, 0.2);
+    // opacity: 30%;
+    text-align: left;
+    padding: 2rem 2rem;
+    border-radius: 5px;
+    color: $greyx3;
+    font-weight: 800;
+}
+
+%title-page{
+    background-color: $greytitlebg;
+    color: white;
+    // line-height: 1.4;
+    padding-left: 1rem;
+    width: 100%;
+    font-family: $addressfont2;
+    font-size: 1.2rem;
+    // letter-spacing: 2px;
+    // text-transform: uppercase;
+    font-weight: 800;
+    padding: 2rem 2rem;
+}
+%title-page-i{
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+%title-page-a{
+    color: $grey0;
+    &:hover{
+        color: white;
+    }
 }

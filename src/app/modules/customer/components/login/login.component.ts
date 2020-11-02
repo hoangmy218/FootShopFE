@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       { type: 'maxlength', message: 'Mật khẩu phải từ 8-16 ký tự' }
     ]
   }
+  public payload: any;
 
   resetForm(form ?: NgForm){
     if (form != null){
@@ -67,11 +68,13 @@ export class LoginComponent implements OnInit {
     login.email = this.LoginForm.controls['email'].value;
     login.matkhau = this.LoginForm.controls['password'].value;
     console.log(login)
-    this.service.login(login).subscribe(res=>{
+    this.service.login(login.email,login.matkhau ).subscribe(res=>{
       this.resetLoginForm();
-      localStorage.setItem('token', res['token'])
-      localStorage.setItem('role', res['user'].role)
-      localStorage.setItem('name', res['user'].ten)
+      console.log(res)
+      console.log(res['accessToken'])
+      localStorage.setItem('token', res['accessToken']['jwtToken'])
+      // localStorage.setItem('role', res['user'].role)
+      localStorage.setItem('name', res['accessToken']['payload']['username'])
       console.log(res['token'])
       let token = localStorage.getItem('token');  
 
@@ -79,16 +82,30 @@ export class LoginComponent implements OnInit {
       // console.log(decoded); 
       // localStorage.setItem('user_name',decoded['user_name']);
 
-      this.snackBar.open('Login successfully', '',{
+      this.snackBar.open('Đăng nhập thành công!', '',{
         duration: 3000,
         verticalPosition: 'bottom',
       });
-      if (this.service.isAdmin()){
-        window.location.replace('/admin');
-      }
-      if (this.service.isUser()){
-        window.location.replace('/');
-      }
+      this.service.getPayload().subscribe(res=>{
+        this.payload = res["custom:is_admin"];
+        console.log(this.payload)
+        if (this.payload == 'true'){
+          localStorage.setItem('role', 'admin')
+          window.location.replace('/admin/dashboard');
+        }else{
+          localStorage.setItem('role', 'customer')
+          window.location.replace('/');
+        }
+      }, err=>{
+        console.log(err)
+        
+      }  )
+      // if (this.service.isAdmin()){
+      //   window.location.replace('/admin');
+      // }
+      // if (this.service.isUser()){
+      //   window.location.replace('/');
+      // }
       // window.location.replace('');
 
       // this.service.getProfile().subscribe(res=>{
@@ -112,11 +129,15 @@ export class LoginComponent implements OnInit {
       
     },
     error =>{
-      this.snackBar.open('Something was wrong', '',{
-        duration: 3000,
-        verticalPosition: 'bottom'
-      });
+      
       console.log('err',error);
+      if (error['message']="Incorrect username or password."){
+        this.snackBar.open('Email hoặc Mật khẩu không đúng', '',{
+          duration: 3000,
+          verticalPosition: 'bottom'
+        });
+      }
+      
      
     })
   

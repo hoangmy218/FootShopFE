@@ -108,9 +108,12 @@ export class ProductComponent implements OnInit {
     this.dialog.open(AddProductComponent, dialogConfig);
   }
 
-  onEdit(product: Product){
+  onEdit(product: any){
     this.service.formProduct = product;
+    this.service.formProduct.danhmuc_id = product.danhmuc_id._id;
+    this.service.formProduct.thuonghieu_id = product.thuonghieu_id._id;
     console.log('product', product)
+    console.log('form pro', this.service.formProduct)
     this.service.getNewPrice(product._id).subscribe(pr=>{
       // console.log('pr',pr)
       this.service.formProduct.dongia = pr['data'][0].dongia;

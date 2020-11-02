@@ -21,7 +21,7 @@ export class SlidersComponent implements OnInit {
        items: 1,
        nav: true
      },
-      480: {
+      450: {
        items: 1,
        nav: true
      },
@@ -40,8 +40,8 @@ export class SlidersComponent implements OnInit {
       image: "../../../../../assets/img/home_slider_2-2.jpg"
     },
     {
-      text: "FDSFBDsdgsg fgdsfds",
-      image: "../../../../../assets/img/home_slider_2-2.jpg"
+      text: "TUẦN LỄ THỜI TRANG THU ĐÔNG",
+      image: "../../../../../assets/img/home_slider.png"
     }
   ]
 

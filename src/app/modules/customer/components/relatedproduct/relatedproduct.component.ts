@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class RelatedproductComponent implements OnInit {
     items: 2,
     navText: [ '', '' ],
     responsive: {
-      0: {
-       items: 2,
+      480: {
+       items: 1,
        nav: true
      },
-      480: {
+      768: {
        items: 2,
        nav: true
      },
@@ -34,42 +34,54 @@ export class RelatedproductComponent implements OnInit {
      }
     }
   }
+  images =  [];
 
-  images = [
-    {
-      text: "Avada Fashion 1",
-      // image: "../../../../../assets/img/home_slider_one.jpg"
-      image: "../../../../../assets/img/home_slider_2-2.jpg"
-    },
-    {
-      text: "Avada Fashion 2",
-      image: "../../../../../assets/img/home_slider_2-2.jpg"
-    },
-    {
-      text: "Avada Fashion 3",
-      image: "../../../../../assets/img/home_slider_2-2.jpg"
-    },
-    {
-      text: "Avada Fashion 4",
-      image: "../../../../../assets/img/home_slider_2-2.jpg"
-    }
-  ]
+  // images = [
+  //   {
+  //     text: "Avada Fashion 1",
+  //     // image: "../../../../../assets/img/home_slider_one.jpg"
+  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
+  //   },
+  //   {
+  //     text: "Avada Fashion 2",
+  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
+  //   },
+  //   {
+  //     text: "Avada Fashion 3",
+  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
+  //   },
+  //   {
+  //     text: "Avada Fashion 4",
+  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
+  //   }
+  // ]
 
   constructor(
     private service: CustomerService,
-    private router: Router
+    private router: Router,
+    private actRoute: ActivatedRoute
   ) { }
 
-  product : any;
+  product : any = [];
+  productID: any;
   ngOnInit(): void {
     this.refreshProductList();
+    this.productID = this.actRoute.snapshot.params['pro_id'];
   }
 
   refreshProductList(){
     this.service.getProductList().subscribe(res=>{
       this.product = res['result'];
-      console.log(res['result'])
+      console.log('prolist',res['result'])
+      res['result'].forEach(element => {
+        let image : any = {};
+        image.text = element['sanpham']['ten'];
+        image.image = element['mausanpham'][0]['hinh']['hinh'];
+        this.images.push(image);
+        console.log(this.images)
+      });
     })
   }
+  
 
 }

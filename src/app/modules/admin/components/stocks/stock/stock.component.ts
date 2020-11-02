@@ -70,13 +70,8 @@ export class StockComponent implements OnInit {
     ])
   }
 
-  onEdit(brand: Stock){
-    this.service.formStock = brand;
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose=true;
-    dialogConfig.autoFocus =true;
-    dialogConfig.width="30%";
-    this.dialog.open(EditStockComponent,dialogConfig);
+  onEdit(stock: Stock){
+    this._router.navigate(['/admin/stock/edit/'+stock._id])
   }
 
   onDelete(id: number){

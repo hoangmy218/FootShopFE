@@ -1,47 +1,54 @@
-<section class="login">
-    <div class="title_page" ><a href="">Trang chủ</a> \ Đăng nhập</div>
-    <div class="container">
-        <div class="login__item">
-            
-                <div class="login__item-title">
-                    Đăng nhập
-                </div>
-                <form [formGroup]="LoginForm" id="login__item-form" class="login__item-form">
-                    
-                    <div class="form-group login__item-form-group">
-                        <span class="login__item-form-label">Tên tài khoản *</span>
-                        <input type="email" class="form-control" 
-                            id="email" formControlName="email" >  
-                        <mat-error *ngFor="let validation of account_validation_messages.email">
-                            <mat-error class="error-message" 
-                                *ngIf="LoginForm.get('email').hasError(validation.type) 
-                                    && (LoginForm.get('email').dirty 
-                                    || LoginForm.get('email').touched)"
-                            >{{validation.message}}</mat-error>
-                        </mat-error>    
-                    </div>
-                    
-            
-                    <div class="form-group login__item-form-group">
-                        <span class="login__item-form-label">Mật khẩu *</span>
-                        <input type="password" class="form-control" 
-                            id="password" formControlName="password" >
-                        <mat-error *ngFor="let validation of account_validation_messages.password">
-                            <mat-error class="error-message" 
-                                *ngIf="LoginForm.get('password').hasError(validation.type) 
-                                && (LoginForm.get('password').dirty 
-                                || LoginForm.get('password').touched)"
-                            >{{validation.message}}</mat-error>
-                        </mat-error>
-                    </div>
-                    <div class="forgot login__item-link">
-                        <a href="#">Quên mật khẩu?</a>
-                    </div>
-                    <button type="submit" class="btn login__item-btn"
-                        [disabled] = "!LoginForm.valid" name="submit"
-                        (click)="onLogin()">ĐĂNG NHẬP</button>
-            
-                </form> 
-        </div>     
+<div id='login'>
+    <div class="title_page" >
+        <a href="">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>Đăng nhập
     </div>
-</section>
+
+    <section class="login">
+        
+        <div class="container">
+            <div class="login__item">
+                
+                    <div class="login__item-title">
+                        Đăng nhập
+                    </div>
+                    <form [formGroup]="LoginForm" id="login__item-form" class="login__item-form">
+                        
+                        <div class="form-group login__item-form-group">
+                            <span class="login__item-form-label">Email *</span>
+                            <input type="email" class="form-control" 
+                                id="email" formControlName="email" >  
+                            <mat-error *ngFor="let validation of account_validation_messages.email">
+                                <mat-error class="error-message" 
+                                    *ngIf="LoginForm.get('email').hasError(validation.type) 
+                                        && (LoginForm.get('email').dirty 
+                                        || LoginForm.get('email').touched)"
+                                >{{validation.message}}</mat-error>
+                            </mat-error>    
+                        </div>
+                        
+                
+                        <div class="form-group login__item-form-group">
+                            <span class="login__item-form-label">Mật khẩu *</span>
+                            <input type="password" class="form-control" 
+                                id="password" formControlName="password" >
+                            <mat-error *ngFor="let validation of account_validation_messages.password">
+                                <mat-error class="error-message" 
+                                    *ngIf="LoginForm.get('password').hasError(validation.type) 
+                                    && (LoginForm.get('password').dirty 
+                                    || LoginForm.get('password').touched)"
+                                >{{validation.message}}</mat-error>
+                            </mat-error>
+                        </div>
+                        <div class="forgot login__item-link">
+                            <a href="#">Quên mật khẩu?</a>
+                        </div>
+                        <button type="submit" class="btn login__item-btn"
+                            [disabled] = "!LoginForm.valid" name="submit"
+                            (click)="onLogin()">ĐĂNG NHẬP</button>
+                
+                    </form> 
+            </div>     
+        </div>
+    </section>
+</div>

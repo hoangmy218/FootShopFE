@@ -52,6 +52,11 @@ import { EditSupplierComponent } from './components/suppliers/edit-supplier/edit
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ChartsModule } from 'ng2-charts';
+import { MatChipsModule } from '@angular/material/chips';
+import { CommentComponent } from './components/comment/comment.component';
+import { ProductChartComponent } from './components/charts/product-chart/product-chart.component';
+import { RevenueChartComponent } from './components/charts/revenue-chart/revenue-chart.component';
 
 
 @NgModule({
@@ -84,7 +89,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     EditProductDetailsComponent,
     SupplierComponent,
     AddSupplierComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CommentComponent,
+    ProductChartComponent,
+    RevenueChartComponent
 
   ],
   imports: [
@@ -112,7 +120,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatFormFieldModule,
     MatDialogModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ChartsModule,
+    MatChipsModule
   ]
 })
 export class AdminModule { }

@@ -55,6 +55,15 @@
         &-img{
             text-align: left;
             margin-bottom: 1rem;
+            .img-logo{
+                
+
+                width: 80px;
+                height: auto;
+                filter: 
+                /* black to white */
+                invert(100%)
+            }
         }
         &-text{
             color: $bggrey1;

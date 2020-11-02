@@ -1,0 +1,84 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+.grid-container {
+    margin: 20px;
+  }
+
+.card{
+    @include grid($columns:repeat(3,1fr));
+    @include setMaxwidth($lg){
+        padding:0 2rem;
+        max-width: none;
+    }
+    @include setMaxwidth($md){
+        padding:0;
+    }
+    @include setMaxwidth($md){
+        @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+    }
+    .customers{
+        background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;
+    }
+    .orders{
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%) !important;
+    }
+    .revenue{
+        background-image:   linear-gradient(to top, #ff0844 0%, #ffb199 100%) !important;
+    }
+    color: white;
+}
+.dashboard{
+    
+    &__item{
+        i{
+            position: absolute;
+            left: 15px;
+            font-size: 3rem;
+            line-height: 3rem;
+        }
+        color: white;
+        &-title{
+            text-align: right;
+        }
+        &-content{
+            float: right;
+            font-weight: 800;
+            line-height: 2rem;
+            font-size: 2rem;
+        }
+    }
+}
+
+.chart{
+    @include grid($columns:repeat(2,1fr));
+    @include setMaxwidth($lg){
+        padding:0 2rem;
+        max-width: none;
+    }
+    @include setMaxwidth($md){
+        padding:0;
+    }
+    @include setMaxwidth($md){
+        @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+    }
+    mat-card{
+        margin-top: 2rem;
+    }
+    .mat-elevation-z8{
+        border: none;
+        box-shadow: none!important;
+    }
+    &-title{
+        font-family: $primary-font !important;
+        // text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.5rem;
+        border-bottom: 1px solid #F4F5F7;
+        color: $greyx3;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        background-color: white;
+    }
+}

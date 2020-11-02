@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
   refreshProductList(){
     this.service.getProductList().subscribe(res=>{
       this.product = res['result'];
-      console.log(res['result'])
+      console.log('result',res['result'])
     })
   }
 

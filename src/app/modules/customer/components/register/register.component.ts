@@ -29,18 +29,14 @@ export class RegisterComponent implements OnInit {
       { type: 'required', message: 'Nhập họ và tên' },
       { type: 'pattern', message: 'Họ và tên không hợp lệ' }
     ],
-    'email': [
-      { type: 'required', message: 'Nhập email' },
-      { type: 'pattern', message: 'Email không hợp lệ' }
+    'phone': [
+      { type: 'required', message: 'Nhập số điện thoại' },
+      { type: 'pattern', message: 'Số điện thoại không hợp lệ' }
     ],
     'dob': [
       { type: 'required', message: 'Nhập ngày sinh' }
-    ],
-    'password': [
-      { type: 'required', message: 'Nhập mật khẩu' },
-      { type: 'minlength', message: 'Mật khẩu phải từ 8-16 ký tự' },
-      { type: 'maxlength', message: 'Mật khẩu phải từ 8-16 ký tự' }
     ]
+    
   }
 
   onRegister(){
@@ -54,15 +50,18 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('[A-Za-z]{5,50}')
       ])),
       
-      email: new FormControl('', Validators.compose([
+      phone: new FormControl('', Validators.compose([
+        
         Validators.required,
-        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')
+        Validators.maxLength(12),
+        Validators.minLength(10),
+        Validators.pattern('[0-9]{10,12}')
       ])),
-      password: new FormControl('', Validators.compose([
-        Validators.maxLength(16),
-        Validators.minLength(5),
-        Validators.required
-      ])),
+      // password: new FormControl('', Validators.compose([
+      //   Validators.maxLength(16),
+      //   Validators.minLength(5),
+      //   Validators.required
+      // ])),
       check_date: new FormGroup({
         dob: new FormControl('')
       }, {validators: this.dateLessThan('dob')}),

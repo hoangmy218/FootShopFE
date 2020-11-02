@@ -15,7 +15,7 @@
 %title{
     font-size: 3.7rem;
     color:$greyx2;
-    font-family: $title-font;
+    font-family: $opensanfont;
     line-height: 4.5rem;
 }
 
@@ -34,7 +34,7 @@
 }
 
 %title-list{
-    font-family: $boldfont;
+    font-family: $opensanfont;
     font-size: 2.5rem;
     color: $greyx4;
     line-height: 4.5rem;
@@ -50,7 +50,7 @@
 %btn-ltr{
     color:white;
         // background:$bluesky;
-        font-family: $boldfont;
+        font-family: $opensanfont;
         font-weight: 200;
         // chuyen mau tu trai sang phai
         background: linear-gradient(to left, $bluesky 50%, #2a94c1 50%)right;

@@ -14,7 +14,7 @@
         }
     }
     .item {
-        height: 100vh;
+        height: 450px;
         
         background-position: center;
         background-size: cover;
@@ -66,8 +66,8 @@
     .btn {
         color:white;
             // background:$bluesky;
-            font-family: $boldfont;
-            font-weight: 200;
+            font-family: $opensanfont;
+            font-weight: 800;
             // chuyen mau tu trai sang phai
             background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
             border: snow 2px;

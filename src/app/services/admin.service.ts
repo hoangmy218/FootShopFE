@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -29,7 +29,8 @@ export class AdminService {
   readonly APIUrl = environment.admin_apiUrl;
 
   token : string = localStorage.getItem('token');
-  headers :  {}= { 'Authorization': 'Bearer '+ this.token };
+  // headers :  {}= { 'Authorization': 'Bearer '+ this.token };
+  headers = new HttpHeaders().set('Authorization', this.token);
 
   //BRAND
   getBrandList(): Observable<Brand[]>{
@@ -135,7 +136,22 @@ export class AdminService {
     return this.http.post(this.APIUrl + "/mausanpham/create", productcolor, {headers: this.headers});
   }
 
-  
+  updateProductColor(productcolor: any){
+    return this.http.put(this.APIUrl + "/mausanpham/update/"+productcolor.mausanpham_id, productcolor, {headers: this.headers});
+  }
+
+  getProductColorList(product_id: string){
+    return  this.http.get(this.APIUrl + "/mausanpham/"+product_id + "/list",  {headers :this.headers});
+  }
+
+  deleteProductColor(productcolor_id: string){
+    return  this.http.delete(this.APIUrl + "/mausanpham/del/"+productcolor_id ,  {headers :this.headers});
+  }
+
+  getProductColorDetails(productcolor_id: string){
+    return  this.http.get(this.APIUrl + "/mausanpham/get/"+productcolor_id ,  {headers :this.headers});
+  }
+
 
   //PRICE
   getNewPrice(product_id: string): Observable<any>{
@@ -204,9 +220,21 @@ export class AdminService {
     return this.http.post(this.APIUrl + "/phieunhap/"+ stock_id +"/add-list-pro", list,  {headers :this.headers});
   }
 
+  updateProductStockList(stock_id: string, list: any){
+    return this.http.post(this.APIUrl + "/phieunhap/"+ stock_id +"/update-list-pro", list,  {headers :this.headers});
+  }
+
   saveStock(stock_id: string){
     // return this.http.put(this.APIUrl+"/phieunhap/"+ stock_id + "/save", {headers :this.headers});
     return this.http.put(this.APIUrl + "/phieunhap/" + stock_id + "/save", null,  {headers :this.headers});
+  }
+
+  getStockDetails(stock_id: string):Observable<any>{
+    return this.http.get<any>(this.APIUrl+"/phieunhap/get/"+ stock_id, {headers :this.headers});
+  }
+
+  getStockDetailsList(stock_id: string): Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl+"/phieunhap/"+ stock_id+'/list', {headers :this.headers});
   }
 
    //PRODUCT DETAILS
@@ -231,8 +259,17 @@ export class AdminService {
      return this.http.get<Color[]>(this.APIUrl+"/mausac/"+product_id+"/list", {headers: this.headers});
    }
 
-   addProductListSize(product_id: string, list:any){
+   //list color E product edit
+   getColorEditProduct(productColor_id: string): Observable<Color[]>{
+    return this.http.get<Color[]>(this.APIUrl+"/mausac/"+productColor_id+"/edit-list/", {headers: this.headers});
+  }
+
+   addProductListSize(product_id: any, list:any){
      return this.http.post(this.APIUrl + "/chitietsanpham/"+product_id+"/add-list-size", list, {headers: this.headers});
+   }
+
+   updateProductListSize(mausanpham_id: any, list: any){
+    return this.http.post(this.APIUrl + "/chitietsanpham/"+mausanpham_id+"/update-list-size", list, {headers: this.headers});
    }
 
 
@@ -257,6 +294,48 @@ export class AdminService {
   getSupplier(Supplier_id: number){
     return this.http.get(this.APIUrl+"/nhacungcap/get/"+ Supplier_id, {headers :this.headers});
   }
+
+
+  //DASHBOARD
+  getLowStock():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "/overview/low-stocks", {headers :this.headers});
+  }
+  getOutOfStock():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "/overview/out-of-stocks", {headers :this.headers});
+  }
+
+  getTotalCustomers():Observable<number>{
+    return this.http.get<number>(this.APIUrl + "/overview/customers", {headers :this.headers});
+  }
+  getTotalOrders():Observable<number>{
+    return this.http.get<number>(this.APIUrl + "/overview/orders", {headers :this.headers});
+  }
+  getRevenue():Observable<number>{
+    return this.http.get<number>(this.APIUrl + "/overview/revenue", {headers :this.headers});
+  }
+
+  getRevenueChart():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "/overview/revenue-graph", {headers :this.headers});
+  }
+  
+  getOrderChart():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "/overview/order-graph", {headers :this.headers});
+  }
+
+  getStockChart():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "/overview/stock-graph", {headers :this.headers});
+  }
+
+  getRecentlyOrder():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "/overview/recently-sold", {headers :this.headers});
+  }
+
+  //Comment 
+  readonly cus_APIUrl = environment.customer_apiUrl;
+  getCommentList(): Observable<any[]>{
+    return this.http.get<any[]>(this.cus_APIUrl + "/binhluan/list");
+  }
+
 
 
 

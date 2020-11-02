@@ -1,9 +1,10 @@
-    <span class="top-page" id="top-page"><i class="fas fa-chevron-up"></i></span>
+<span class="top-page" id="top-page"><i class="fas fa-chevron-up"></i></span>
     <!--TOP BAR-->
     <section class="top-bar">
         <nav class="top-bar__nav">
             <div class="top-bar__nav-img">
-                <a href=""><img src="../../../../../assets/img/logo.png" alt=""></a>
+                <a href=""><img class="img-logo"
+                     src="../../../../../assets/img/Foot-Shop-Logo.png" alt=""></a>
             </div>
             <span class="icon-res">
                 <button class="icon-cart"><i class="fas fa-shopping-cart"></i></button>
@@ -12,29 +13,29 @@
             <div class="top-bar__nav-menu">
                 <ul class="menu" id="menu">
                     <li class="menu-item has-menu">
-                        <a href="#overview" class="link-item">DANH MỤC</a>
+                        <a class="link-item">DANH MỤC</a>
                         <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
                         <ul class="sub-menu" id="sub-menu">
                             <div *ngFor="let cate of categoryList">
                                 <li class="sub-menu-item" >
-                                    <a href="#" class="sub-link">{{cate.ten}}</a>
+                                    <a routerLink="/cate/{{cate._id}}" class="sub-link">{{cate.ten}}</a>
                                 </li>
                             </div>
                         </ul>
                     </li>
                     <li class="menu-item has-menu">
-                        <a href="#features" class="link-item">THƯƠNG HIỆU</a>
+                        <a  class="link-item">THƯƠNG HIỆU</a>
                         <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
                         <ul class="sub-menu" id="sub-menu">
                             <div *ngFor="let brand of brandList">
                                 <li class="sub-menu-item" >
-                                    <a href="#" class="sub-link">{{brand.ten}}</a>
+                                    <a routerLink="/brand/{{brand._id}}" class="sub-link">{{brand.ten}}</a>
                                 </li>
                             </div>
                         </ul>
                     </li>
                     <li class="menu-item technology">
-                        <a href="#technology" class="link-item">LIÊN HỆ</a>
+                        <a class="link-item">LIÊN HỆ</a>
                     </li>
                     <li class="menu-item" *ngIf="!service.loggedIn()">
                         <a routerLink="/login" class="link-item">ĐĂNG NHẬP</a>
@@ -45,17 +46,23 @@
                         </a>
                     </li>
                     <li class="menu-item has-menu" *ngIf="service.loggedIn()">
-                        <a href="" class="link-item">{{username}}</a>
+                        <a href="" class="link-item">{{username | async}}</a>
                         <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
                         <ul class="sub-menu" id="sub-menu">
                             <li class="sub-menu-item">
                                 <a href="#" class="sub-link">Tài khoản</a>
                             </li>
                             <li class="sub-menu-item">
+                                <a routerLink="/orders" 
+                                *ngIf="service.isUser()"
+                                class="sub-link">Đơn hàng</a>
+                            </li>
+                            <li class="sub-menu-item">
                                 <a routerLink="/address" 
                                 *ngIf="service.isUser()"
                                 class="sub-link">Địa chỉ</a>
                             </li>
+                           
                             <li class="sub-menu-item">
                                 <a routerLink="/admin/dashboard" 
                                 *ngIf="service.isAdmin()"

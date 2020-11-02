@@ -1,0 +1,541 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+
+
+.title_page{
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
+    a{
+       @extend %title-page-a;
+    }
+
+}
+.message-error{
+    font-family: $opensanfont;
+    background-color: rgba(255, 0, 0, 0.2);
+    // opacity: 30%;
+    text-align: left;
+    padding: 2rem 2rem;
+    border-radius: 5px;
+    color: $greyx3;
+    font-weight: 800;
+}
+
+
+//TABLE
+
+.table {
+    width: 100%;
+    margin-bottom: $spacer;
+    color: $table-color;
+    background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+  
+    th,
+    td {
+      padding: $table-cell-padding;
+      vertical-align: top;
+      border-top: $table-border-width solid $table-border-color;
+    }
+  
+    thead th {
+      vertical-align: bottom;
+      border-bottom: (2 * $table-border-width) solid $table-border-color;
+    }
+  
+    tbody + tbody {
+      border-top: (2 * $table-border-width) solid $table-border-color;
+    }
+  }
+  
+  
+  //
+  // Condensed table w/ half padding
+  //
+  
+  .table-sm {
+    th,
+    td {
+      padding: $table-cell-padding-sm;
+    }
+  }
+  
+  
+  // Border versions
+  //
+  // Add or remove borders all around the table and between all the columns.
+  
+  .table-bordered {
+    border: $table-border-width solid $table-border-color;
+  
+    th,
+    td {
+      border: $table-border-width solid $table-border-color;
+    }
+  
+    thead {
+      th,
+      td {
+        border-bottom-width: 2 * $table-border-width;
+      }
+    }
+  }
+  
+  .table-borderless {
+    th,
+    td,
+    thead th,
+    tbody + tbody {
+      border: 0;
+    }
+  }
+  
+  // Zebra-striping
+  //
+  // Default zebra-stripe styles (alternating gray and transparent backgrounds)
+  
+  .table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+      background-color: $table-accent-bg;
+    }
+  }
+  
+  
+  // Hover effect
+  //
+  // Placed here since it has to come after the potential zebra striping
+  
+  .table-hover {
+    tbody tr {
+      &:hover {
+        color: $table-hover-color;
+        background-color: $table-hover-bg;
+      }
+    }
+  }
+  
+  
+  // Table backgrounds
+  //
+  // Exact selectors below required to override `.table-striped` and prevent
+  // inheritance to nested tables.
+  
+//   @each $color, $value in $theme-colors {
+//     @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
+//   }
+  
+//   @include table-row-variant(active, $table-active-bg);
+  
+  
+  // Dark styles
+  //
+  // Same table markup, but inverted color scheme: dark background and light text.
+  
+  // stylelint-disable-next-line no-duplicate-selectors
+  .table {
+    .thead-dark {
+      th {
+        color: $table-dark-color;
+        background-color: $table-dark-bg;
+        border-color: $table-dark-border-color;
+      }
+    }
+  
+    .thead-light {
+      th {
+        color: $table-head-color;
+        background-color: $table-head-bg;
+        border-color: $table-border-color;
+      }
+    }
+  }
+  
+  .table-dark {
+    color: $table-dark-color;
+    background-color: $table-dark-bg;
+  
+    th,
+    td,
+    thead th {
+      border-color: $table-dark-border-color;
+    }
+  
+    &.table-bordered {
+      border: 0;
+    }
+  
+    &.table-striped {
+      tbody tr:nth-of-type(odd) {
+        background-color: $table-dark-accent-bg;
+      }
+    }
+  
+    &.table-hover {
+      tbody tr {
+        // @include hover {
+        //   color: $table-dark-hover-color;
+        //   background-color: $table-dark-hover-bg;
+        // }
+      }
+    }
+  }
+  
+  
+//   .order{
+//     color:$greyx1;
+//     padding:4rem 2rem;
+//     text-align: center;
+//     @include setMaxwidth($sm540){
+//         padding:4rem 2rem;
+//     }
+//     .container{
+//         @include setMaxwidth($lg){
+//             padding:0;
+//             max-width: none;
+//         }
+//     }
+// }
+
+.cart-list {
+    margin-top: 2rem;
+  overflow-x: scroll; }
+
+.table {
+  min-width: 1000px !important;
+  width: 100%;
+  text-align: center; }
+  .table th {
+    font-weight: 500; }
+  .table .thead-primary {
+    background: black; }
+    .table .thead-primary tr th {
+      padding: 20px 10px;
+      color: #fff !important;
+      border: 1px solid transparent !important; }
+  .table tbody tr td {
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 40px 10px;
+    border: 1px solid transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; }
+    .table tbody tr td.product-remove a {
+      background: black;
+      padding: 4px 10px;
+      color: #000000;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      border-radius: 2px; }
+      .table tbody tr td.product-remove a:hover {
+        border: 1px solidblack;
+        background:black; }
+        .table tbody tr td.product-remove a:hover span {
+          color: #fff; }
+    .table tbody tr td.quantity {
+      width: 20%; }
+    .table tbody tr td.image-prod .img {
+      display: block;
+      width: 100px;
+      height: 150px;
+      margin: 0 auto; }
+    .table tbody tr td.product-name {
+      width: 30%; }
+      .table tbody tr td.product-name h3 {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700; }
+    .table tbody tr td.total, .table tbody tr td.price {
+      color: #000000; }
+
+.cart{
+    color:$greyx1;
+    padding:4rem 2rem;
+    text-align: center;
+    // display: block;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &-content{
+      display: block;
+    }
+
+    &__top{
+        padding-left: 10rem;
+        padding-right: 10rem;
+        margin-top: 2rem;
+        text-align: left;
+        @include grid($columns:repeat(1,1fr));
+        margin-bottom: 1rem;
+        @include setMaxwidth($xl){
+            margin-bottom:5rem;
+            // padding: 0;
+        }
+        @include setMaxwidth($md){
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+            padding: 0;
+        }
+        &-list{
+            // width: 50rem;
+        }
+        &-info{
+            .order{
+                padding: 2rem 1rem;
+                // padding-top: 2rem;
+                // padding-bottom: 2rem;
+                background: black;
+                line-height: 2rem;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.5rem; 
+                @include setMaxwidth($sm){
+                    font-size: 1.2rem;
+                    display: block;
+                    span{
+                        display: block;
+                    }
+                }        
+            }
+            &-body{
+                font-family: $opensanfont;
+                margin-top: 1rem;
+                color: $greyx3;
+                
+                @include grid($columns:repeat(3,1fr));
+                margin-bottom: 1rem;
+                @include setMaxwidth($xl){
+                    margin-bottom:5rem;
+                }
+                @include setMaxwidth($md){
+                    @include grid($columns:repeat(1,1fr),$rowGap:1rem);
+                }
+                .invoice{
+                    span{
+                        display: block;
+                        margin-bottom: 0.5rem;
+                    }
+                    &-title{
+                        font-weight: 800;
+                        color: $greyx4;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+.table{
+    &__image{
+        img{
+            height: auto;
+            min-width: 50px!important;
+            max-width: 80px;
+        }
+    }
+    &__product{
+        h3{
+            margin-bottom: 0;
+        }
+        a{
+            // padding: 0.5rem 0rem 0.5rem 0.5rem;
+            color: $grey;
+            padding-left: 0.5rem;
+            font-family: $opensanfont;
+            &:hover{
+                color: $greyx4;
+            }
+        }
+        .color-size{
+            background-color: $orange;
+            color: white;
+            font-weight: bold;
+            line-height: 2rem;
+            border-radius: 2px;
+            border: none;
+            transition: .4s ease-in-out;
+            &:hover {
+                background: $orangesd;
+            }
+        }
+            
+    }
+    &__price{
+        font-family: $opensanfont;
+        font-size: 1.4rem;
+        color:$greyx4;
+        .old-price{
+            color: $grey;
+            padding-top: 0rem;
+            font-size: 1rem;
+            font-weight: 50;
+            text-decoration-line: line-through;
+        }
+    }
+    &__quantity{
+        // color: $discount!important;
+
+    }
+}
+.btn-delete{
+    color: white!important;
+    background-color: black;
+    cursor: pointer;
+}
+
+.card{
+    float: right;
+    width: 50%;
+    padding-top: 1rem;
+    @include setMaxwidth($md){
+        width: 100%;
+        float: left;
+    }
+    &__title{
+        @extend %title-list;
+        text-align: left;
+        font-size: 1.8rem;
+        font-weight: 700;
+        
+        border-bottom: 1px solid $grey0;
+        color: black;
+        
+    }
+    &__content{
+        font-family: $opensanfont;
+        font-size: 1.5rem;
+    }
+    &__item{
+        display: flex;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $grey0;
+        @include grid($columns:repeat(2,1fr));
+    }
+    &__footer{
+        
+        
+    }
+    .card_name{
+        text-align: left;
+        color: black;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+    .card_value{
+        text-align: right;
+        color: black;
+    }
+    .total{
+        color: $greyx4;
+        font-weight: bold;
+        line-height: 1.2rem;
+        font-size: 1.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: none!important;
+        .card_name{
+            font-size: 1.5rem;
+        }
+    }
+    &__btn{
+        .btn-checkout{
+            color:white;
+            width: 100%;
+            height: 50%;
+            font-family: $opensanfont;
+            font-weight: 200;
+            // chuyen mau tu trai sang phai
+            background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+            border: snow 2px;
+            border-radius: 2px;
+            border: none !important;
+            padding:1rem 2rem;
+            font-size: 1.5rem;
+            background-size: 200%;
+            
+            transition: .5s ease-out;
+            &:hover {
+                background-position: left;
+            }
+        }
+        
+    }
+
+}
+
+.btn-update{
+    float: right;
+    color:white;
+    width: 30%;
+    height: 50%;
+    font-family: $opensanfont;
+    font-weight: 200;
+    // chuyen mau tu trai sang phai
+    background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+    border: snow 2px;
+    border-radius: 2px;
+    border: none !important;
+    padding:1rem 2rem;
+    font-size: 1.5rem;
+    background-size: 200%;
+    
+    transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }
+}
+
+input{
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 1rem;
+    
+    border: 1px solid $grey0;
+    border-radius: 0.2rem 0 0 0.2rem;
+    
+    &:focus{
+        outline: 0 !important;
+        border: 1px solid $grey0;
+        border-radius: 0.2rem 0 0 0.2rem!important;
+    }
+    &:hover{
+        border: 1px solid $greyx2;
+    }
+}
+
+.status{
+  color: white;
+  text-align: center;
+  width: 150px;
+  background-color: $discountbg;
+  border-radius: 15px;
+  padding: 0.5rem;
+}
+.complete{
+  background-color: $success;
+}
+.confirm{
+  background-color: $info;
+}
+.cancel{
+  background-color: $error;
+}
+.ship{
+  background-color: $warning;
+  color: black!important;
+}
+.process{
+  background-color: $disable;
+  color: black!important;
+}

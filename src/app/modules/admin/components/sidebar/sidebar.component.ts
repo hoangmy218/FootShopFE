@@ -69,6 +69,14 @@ export class SidebarComponent implements OnInit {
           $(this).removeClass('active');
         }
       })
+      $('.sub-btn').each(function(){
+        var key = $(this).attr('routerLink');
+        if (window.location.pathname.includes(key)){
+          $(this).addClass('active');
+        }else{
+          $(this).removeClass('active');
+        }
+      })
     }, 500)
 
   }
@@ -82,6 +90,7 @@ export class SidebarComponent implements OnInit {
 
   onLogout(){
     this.service.logout();
+    this._router.navigate(['/'])
   }
 
 }

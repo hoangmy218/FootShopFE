@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,9 +21,13 @@ export class CustomerService {
 
   readonly pb_APIUrl = environment.public_apiUrl;
 
+  readonly auth_APIUrl = environment.auth_apiUrl;
+
   token : string = localStorage.getItem('token');
-  headers: {}={'Authorization': 'Bearer '+this.token};
+  // headers: {}={'Authorization': 'Bearer '+this.token};
+  headers = new HttpHeaders().set('Authorization', this.token);
   public formOrder : OrderForm = new OrderForm();
+  public SearchForm : any;
 
 
 
@@ -44,6 +48,24 @@ export class CustomerService {
     return this.http.get<any>(this.pb_APIUrl +'/'+ pro_id +'/' + clr_id + "/details");
   }
 
+  getBrandDetails(id): Observable<any>{
+    return this.http.get<Brand[]>(this.pb_APIUrl+"/brand/"+id);
+  }
+  getCategoryDetails(id): Observable<any>{
+    return this.http.get<Brand[]>(this.pb_APIUrl+"/category/"+id);
+  }
+
+  getProductCategoryList(id): Observable<Product[]>{
+    return this.http.get<Product[]>(this.pb_APIUrl+"/product/cate/"+id);
+  }
+
+  getProductBrandList(id): Observable<Product[]>{
+    return this.http.get<Product[]>(this.pb_APIUrl+"/product/brand/"+id);
+  }
+
+  searchProduct(search){
+    return this.http.post(this.pb_APIUrl+"/search", search);
+  }
   //CART
 
   getCartList():Observable<any>{
@@ -119,4 +141,28 @@ export class CustomerService {
   saveOrder(orderForm: OrderForm){
     this.formOrder = orderForm;
   }
+
+  getOrderList(): Observable<any[]>{
+    return this.http.get<any[]>(this.cus_APIUrl+"/donhang/list", {headers :this.headers});
+  }
+
+  getOrderDetails(order_id: string): Observable<any>{
+    return this.http.get<any>(this.cus_APIUrl+"/donhang/details/"+order_id, {headers :this.headers});
+  }
+
+  readonly p_APIUrl = environment.public_apiUrl;
+  //IMAGE
+  getImage(image_id: number): Observable<any>{
+    return this.http.get(this.p_APIUrl + "/hinhanh/get/"+image_id);
+  }
+
+  addComment(product_id: string, comment: any){
+    return this.http.post(this.cus_APIUrl+"/binhluan/"+product_id+"/create", comment , {headers :this.headers});
+  }
+
+  getComment(product_id: string){
+    return this.http.get(this.cus_APIUrl+"/binhluan/"+product_id+"/list" , {headers :this.headers});
+  }
+
+
 }

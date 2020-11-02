@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address-model';
+import { CartItem } from 'src/app/models/cart-item-model';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -36,6 +37,7 @@ export class PlaceorderComponent implements OnInit {
   showCard: boolean = false;
 
   paymentList : any = [];
+  public imageList: { [id: string]:any;} = {};
 
   ngOnInit(): void {
     this.refreshPaymentList();
@@ -51,10 +53,57 @@ export class PlaceorderComponent implements OnInit {
   submitForm(form: NgForm){
     console.log('form value',form.value)
     localStorage.setItem('total', this.total.toString())
-
+    this.placeOrder();
+    console.log('formorder', this.service.formOrder);
+    this.service.addOrder().subscribe(res=>{
+      console.log('res add order', res)
+      localStorage.removeItem('vanchuyen_id')
+      localStorage.removeItem('diachi_id')
+      localStorage.removeItem('thanhtoan_id')
+      this._router.navigate(['/complete'])
+      // this.snackbar.open(res['message'].toString(), '', {
+      //   duration: 5000,
+      //   verticalPosition:'bottom'
+      // });
+    }, error=>{
+      console.log(error)
+    })
     // localStorage.setItem('diachi_id', form.value['htvc_id'] );
     // localStorage.setItem('vanchuyen_id', form.value['radio']);
-    this._router.navigate(['/placeorder']);
+    // this._router.navigate(['/complete']);
+  }
+
+  cartItem : CartItem[];
+  cart: CartItem[];
+
+  placeOrder(){
+    let order: any={};
+    order.thanhtoan_id = localStorage.getItem('thanhtoan_id');
+    order.vanchuyen_id = localStorage.getItem('vanchuyen_id');
+    order.diachi_id = localStorage.getItem('diachi_id');
+    order.ghichu = '';
+    this.cartItem = [];
+    this.service.getShortCartList().subscribe(res=>{
+      console.log(res)
+      this.cart = res['data'];
+      this.cart.forEach(data=>{
+        this.cartItem.push({
+          _id: data._id,
+          ctsp_id : data.ctsp_id,
+          soluongdat: data.soluongdat
+        })
+      })
+      console.log('cartItems', this.cartItem)
+      console.log('cart',this.cart)
+      order.sanpham = this.cartItem;
+      console.log('order', order)
+      this.service.saveOrder(order);
+    }, error=>{
+      console.log(error)
+    });
+
+  
+
   }
 
   refreshDeliveryList(){
@@ -122,6 +171,13 @@ export class PlaceorderComponent implements OnInit {
   refreshCartList(){
     this.service.getCartList().subscribe(res=>{
       this.cartList = res['data'];
+      res['data'].forEach(element => {
+        console.log('hinh', element['ctsp_id']['mausanpham_id']['hinh'][0])
+        this.service.getImage(element['ctsp_id']['mausanpham_id']['hinh'][0]).subscribe(result=>{
+          console.log(result['data'].hinh)
+          this.imageList[element['ctsp_id']._id] = result['data'].hinh;
+        })
+      });
       // console.log(res);
       // console.log('data', res['data']);
       this.priceList = res['result']['dongia'];

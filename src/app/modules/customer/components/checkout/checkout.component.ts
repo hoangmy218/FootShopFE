@@ -35,6 +35,8 @@ export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
   selectedObject: any;
   defaultChecked : any;
+  public imageList: { [id: string]:any;} = {};
+
   ngOnInit(): void {
     this.refreshDeliveryList();
     this.refreshAddressList();
@@ -114,6 +116,13 @@ export class CheckoutComponent implements OnInit {
       this.cartList = res['data'];
       console.log(res);
       console.log('data', res['data']);
+      res['data'].forEach(element => {
+        console.log('hinh', element['ctsp_id']['mausanpham_id']['hinh'][0])
+        this.service.getImage(element['ctsp_id']['mausanpham_id']['hinh'][0]).subscribe(result=>{
+          console.log(result['data'].hinh)
+          this.imageList[element['ctsp_id']._id] = result['data'].hinh;
+        })
+      });
       this.priceList = res['result']['dongia'];
       var newArr = [];
       this.priceList.forEach((item, i)=> {

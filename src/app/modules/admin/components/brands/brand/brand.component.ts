@@ -4,10 +4,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AddBrandComponent } from '../../brands/add-brand/add-brand.component';
-import { EditBrandComponent } from '../../brands/edit-brand/edit-brand.component';
+
 import { AdminService } from '../../../../../services/admin.service';
 import { Brand } from 'src/app/models/brand-model';
+import { AddBrandComponent } from '../../brands/add-brand/add-brand.component';
+import { EditBrandComponent } from '../../brands/edit-brand/edit-brand.component';
 
 
 @Component({

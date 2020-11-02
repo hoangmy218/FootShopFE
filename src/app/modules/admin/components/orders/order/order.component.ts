@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from 'src/app/services/admin.service';
-
+import {ThemePalette} from '@angular/material/core';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit {
   public stageList: { [id: number]:any;} = {
     [1]: 'Chờ xác nhận',
     [2]: 'Đã xác nhận',
-    [3]: 'Đã giao',
+    [3]: 'Đang giao',
     [4]: 'Đã hoàn tất',
     [5]: 'Đã hủy'    };
   // @ViewChild(MatSort) sort:MatSort;

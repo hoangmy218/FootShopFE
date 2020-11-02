@@ -54,14 +54,14 @@
             }
             &-label{
                 color: $greyx2;
-                font-family: $title-font;
+                font-family: $opensanfont;
                 text-align: left;
             }
         }
         &-link{
             a{
                 color: $greyx2;
-                font-family: $title-font;
+                font-family: $opensanfont;
                 text-align: left;
             }
             
@@ -69,7 +69,7 @@
 
         &-text{
             color: $bggrey1;
-            font-family: $title-font;
+            font-family: $opensanfont;
             text-align: left;
             @include setMaxwidth($lg){
                 padding:0 2rem;
@@ -106,7 +106,7 @@
 
 
 .input-group{
-    font-family: $title-font;
+    font-family: $opensanfont;
 }
 
 .form-control{
@@ -143,16 +143,12 @@
     }
 }
 .title_page{
-    background-color: $bgsimple;
-    color: white;
-    width: 100%;
-    @extend %title-list;
-    font-size: 1.5rem;
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
     a{
-        color: $grey0;
-        &:hover{
-            color: white;
-        }
+       @extend %title-page-a;
     }
 
 }

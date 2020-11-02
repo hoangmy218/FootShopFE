@@ -20,77 +20,52 @@ export class OrderDetailsComponent implements OnInit {
   ) {
 
    }
-  orderItems: OrderItem[] ;
-  order : Order = new Order();
-  OrderID : number = 0;
-  product: Product = new Product();
-  address: Address = new Address();
-  productList : Product[];
-
-  stateList : {[id:string]:any,} = {};
-  
-  // cartItems : CartItem[];
-  public stageList: { [id: number]:any;} = {
-    [1]: 'Chờ xác nhận',
-    [2]: 'Đã xác nhận',
-    [3]: 'Đã giao',
-    [4]: 'Đã hoàn tất',
-    [5]: 'Đã hủy'    };
-  //pagination
-  page = 1;
-  pageSize = 4;
-  collectionSize :number = 1;
-  public imageList: { [id: string]:any;} = {};
+   public cartList: any = [];
+   color: any;
+   product: any;
+   public priceList : any = [];
+   subTotal : number = 0;
+   total : number = 0;
+   discount: number = 0;
+   OrderID: string = '';
+   order: any = {};
+   productList: any = [];
+   public imageList: { [id: string]:any;} = {};
+ 
+   public stageList: { [id: number]:any;} = {
+     [1]: 'Chờ xác nhận',
+     [2]: 'Đã xác nhận',
+     [3]: 'Đang giao',
+     [4]: 'Đã hoàn tất',
+     [5]: 'Đã hủy'    
+   };
+ 
 
   ngOnInit(): void {
-    this.orderItems = [];
-    this.productList =[];
+
 
     this.OrderID = this.actRoute.snapshot.params['order_id'];
     console.log(this.OrderID);
 
-    this.loadOrder(this.OrderID);
+    // this.loadOrder(this.OrderID);
+    this.refreshOrderDetails(this.OrderID);
 
   }
 
-  loadOrder(OrderID){
-    this.orderItems = [];
-    this.productList =[];
-    // this.cartItems = [];
-    console.log('id',this.OrderID);
 
+  refreshOrderDetails(OrderID){
     this.service.getOrderDetails(OrderID).subscribe(res=>{
-      console.log(res)
+      console.log('res',res)
       this.order = res['data'];
-      this.address = res['data'].diachi_id;
-      console.log('dc', this.address)
-      console.log(res['data'])
+      this.productList = res['details'];
       res['details'].forEach(element => {
-        
-        this.orderItems.push(element);
-        console.log('elm', element)
         console.log('hinh', element['ctsp_id']['mausanpham_id']['hinh'][0])
         this.service.getImage(element['ctsp_id']['mausanpham_id']['hinh'][0]).subscribe(result=>{
           console.log(result['data'].hinh)
           this.imageList[element['ctsp_id']._id] = result['data'].hinh;
         })
-        // this._productService.getDetailsPro(element['pro_id']).subscribe(data=>{
-        //   this.productList.push(data);
-        //   this.cartItems.push({
-        //     pro_id: data['pro_id'],
-        //     pro_name: data['pro_name'],
-        //     pro_price: data['pro_price'],
-        //     pro_image : data['pro_image'],
-        //     pro_stock: data['pro_stock'],
-        //     cart_qty: element['qty']
-        //   });
-        // })
       });
-      
-    }, error =>{
-      console.log(error)
-    });
-   
+    })
   }
 
  

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Order } from 'src/app/models/order-model';
@@ -55,10 +55,18 @@ export class StripeComponent implements OnInit {
     private _router: Router,
     ) {}
 
+    form_validation_messages={
+      'name': [
+        {type: 'required', message: 'Nhập tên'}
+      ]
+    }
+
   ngOnInit(): void {
     this.getCartList();
     this.stripeTest = this.fb.group({
-      name: ['', [Validators.required]]
+      name: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
     });
   }
   data : {[id: string]: any,} = {};
@@ -100,6 +108,9 @@ export class StripeComponent implements OnInit {
             console.log('formorder', this.service.formOrder);
             this.service.addOrder().subscribe(res=>{
               console.log('res add order', res)
+              localStorage.removeItem('vanchuyen_id')
+              localStorage.removeItem('diachi_id')
+              localStorage.removeItem('thanhtoan_id')
               this._router.navigate(['/complete'])
               // this.snackbar.open(res['message'].toString(), '', {
               //   duration: 5000,
@@ -122,6 +133,10 @@ export class StripeComponent implements OnInit {
           console.log('mess', this.message);
         } else if (result.error) {
           // Error creating the token
+           this.snackbar.open(result.error.message.toString(), '', {
+                duration: 5000,
+                verticalPosition:'bottom'
+              });
           console.log(result.error.message);
         }
       });

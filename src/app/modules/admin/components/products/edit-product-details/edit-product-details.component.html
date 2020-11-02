@@ -1,1 +1,87 @@
-<p>edit-product-details works!</p>
+<div class="grid-container">
+    <section class="productattr">
+        <div class="container">
+            <div class="productattr__item">
+                <h1 class="mat-h1">Thông tin sản phẩm</h1>
+                <mat-card>
+                    <h2>Tên : {{product['ten']}}</h2>
+                    <h5>Mã: {{product['_id']}}</h5>
+                    <h5>Đơn giá: {{product['dongia'] | currency: 'VND'}}</h5>
+                    <h5>Thương hiệu: {{product['thuonghieu_id']['ten']}}</h5>
+                    <h5>Danh mục: {{product['danhmuc_id']['ten']}}</h5>
+                    <h5>Mô tả: {{product['mota']}}</h5>
+                </mat-card>
+            </div>
+            <div class="productattr__item">
+                <div class="dashboard-card">
+                    <h1 class="mat-h1">Cập nhật phân loại hàng</h1>
+                   </div>
+                   <mat-card>
+                   <div >
+                       <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                           <mat-form-field appearance="fill"  class="example-full-width">
+                               <mat-label>Màu sắc</mat-label>
+                               <mat-select name="mausac_id"
+                               #mausac_id="ngModel" required [compareWith]="compareColors"
+                               [(ngModel)]="service.formProductDetail.mausac_id" >
+                               <mat-option *ngFor="let dl of colorList | keyvalue " [value]="dl.key">
+                                   {{dl.value}}
+                               </mat-option>
+                               </mat-select>
+                           </mat-form-field>
+                           <div class="text-left text-danger"
+                               *ngIf="mausac_id.invalid && mausac_id.touched">
+                               Chọn danh mục
+                           </div>
+                           <div class="image">
+                              
+                               <div>Danh sách hình ảnh</div>
+                               <div *ngIf="uploadError">
+                                   <div [innerHTML]="uploadError" class="error"></div>
+                               </div>
+                               <div class="form-group">
+                                   <div class="upload-image">
+                                       <div #image class="image-wrapper"></div>
+                                       <div class="browse-btn">
+                                       <input type="file" name="cameraImg" id="cameraImg" (change)="onSelectedFile($event)" />
+                                       <div class="browse-image">
+                                           <img src="../../../../../../assets/img/plus_PNG115.png" width="60px" />
+                                           <p>Thêm ảnh</p>
+                                       </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="clearfix"></div>
+                               <div class="text-danger" *ngIf="imageList?.length == 0">Thêm hình ảnh</div>
+                           </div>
+                           
+               
+                           <mat-form-field appearance="fill"  class="example-full-width">
+                               <mat-label>Kích cỡ</mat-label>
+                               <mat-select name="kichco_id"
+                               #kichco_id="ngModel" required  [compareWith]="compareSizes"
+                               [(ngModel)]="service.formProductDetail.kichco_id" multiple>
+                               <mat-option *ngFor="let dl of sizeList | keyvalue" [value]="dl.key">
+                                   {{dl.value}}
+                               </mat-option>
+                               </mat-select>
+                           </mat-form-field>
+                           <div class="text-left text-danger" 
+                               *ngIf="kichco_id.invalid && kichco_id.touched">
+                               Chọn kích cỡ.
+                           </div>
+               
+                       
+               
+                           <button class="mt-4" mat-raised-button 
+                           color="primary" type="submit"
+                           [disabled]="form.invalid && (imageList?.length == 0)">Cập nhật</button>
+                       </form>
+                   </div>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    
+    
+</div>

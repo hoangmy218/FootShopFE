@@ -2,9 +2,14 @@
     <div class="container">
         <div class="filter__item">
             <div class="input-group">
-                
-                <input type="text" class="form-control" placeholder="Tìm kiếm" name="q">
-                <button class="btn btn-default input-group-btn" type="submit"><i class="fas fa-search"></i></button>
+                <form [formGroup]="SearchForm" id="login__item-form" class="login__item-form">
+                <input type="text" class="form-control" 
+                formControlName="search" id="search"
+                placeholder="Tìm kiếm" name="search">
+                <button class="btn btn-default input-group-btn" 
+                [disabled]="!SearchForm.valid" (click)="onSearch()"
+                type="submit" ><i class="fas fa-search"></i></button>
+                </form>
                 
             </div>
             
@@ -15,7 +20,7 @@
             </div>
             <div *ngFor = "let cate of CategoryList">
                 <p class="filter__item-link">
-                    <a routerLink="cate/{{cate._id}}" 
+                    <a routerLink="/cate/{{cate._id}}" 
                         routerLinkActive="a-active" class="category">{{cate.ten}}</a> 
                 </p>
             </div>
@@ -26,7 +31,7 @@
             </div>
             <div  *ngFor = "let brand of BrandList">
                 <p class="filter__item-link">
-                    <a routerLink="brand/{{brand._id}}" routerLinkActive="a-active" class="category">{{brand.ten}}</a> 
+                    <a routerLink="/brand/{{brand._id}}" routerLinkActive="a-active" class="category">{{brand.ten}}</a> 
                 </p>
             </div>
 

@@ -5,16 +5,12 @@
 
 
 .title_page{
-    background-color: $bgsimple;
-    color: white;
-    width: 100%;
-    @extend %title-list;
-    font-size: 1.5rem;
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
     a{
-        color: $grey0;
-        &:hover{
-            color: white;
-        }
+       @extend %title-page-a;
     }
 
 }
@@ -22,6 +18,11 @@
 
 //PROCESSBAR
 //stepwizard
+.progress-bar{
+    padding-top: 2rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
+}
 .progressbar {
     counter-reset: step;
     margin-top: 1rem;
@@ -29,19 +30,25 @@
         list-style-type: none;
         width: 25%;
         float: left;
-        font-size: 12px;
+        font-size: 14px;
+        font-weight: 1000;
         position: relative;
+        font-family: $opensanfont;
         text-align: center;
         text-transform: uppercase;
-        color: black;
+        color: $gray-600;
         padding-bottom: 1rem;
+        // background-color: #F2F2F2;
+        &:hover{
+            outline: none;
+        }
         &:before {
             width: 30px;
             height: 30px;
             content: counter(step);
             counter-increment: step;
             line-height: 30px;
-            border: 2px solid #7d7d7d;
+            border: 2px solid $gray-600;
             display: block;
             text-align: center;
             margin: 0 auto 10px auto;
@@ -53,7 +60,7 @@
             height: 2px;
             content: '';
             position: absolute;
-            background-color: #7d7d7d;
+            background-color: $gray-600;
             top: 15px;
             left: -50%;
             z-index: -1;
@@ -64,38 +71,50 @@
             }
         }
         .active{
-            color: green;
-            border-color: #55b776;
+        color: white;
+        font-weight: 800;
+        background: $success;
+        border-color: $success;
             &:before{
-                border-color: #55b776;
+                color: white;
+                background: $success;
+                border-color: $success;
             }
             
         }
         .done{
             &:before{
-                border-color: #55b776;
-                background-color: #55b776;
+                cursor: pointer;
+                border-color: $success;
+                background-color:$success;
                 color: white;
                 content: url('../../../../../assets/img/done-white-24dp.svg');
             }
         }
     }
 }
+
 .progressbar li.active {
-    color: green;
+    color: $success;
 }
 .progressbar li.active:before {
-    border-color: #55b776;
+font-weight: 1000;
+
+    border-color: $success;
+    color: white;
+    background: $success;
+    // border-color: $success;
 }
 .progressbar li.active + li:after {
-    border-color: #55b776;
-    background-color: #55b776;
+    border-color: $success;
+    background-color: $success;
 }
 .progressbar li.done:before{
-    background-color: #55b776;
+    cursor: pointer;
+    background-color: $success;
     color: white;
     content: url('../../../../../assets/img/done-white-24dp.svg');
-   
+    
 }
 
 

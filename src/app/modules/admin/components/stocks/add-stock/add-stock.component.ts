@@ -135,9 +135,13 @@ export class AddStockComponent implements OnInit {
         this.stockID = res['data']['_id'];
         this.sid = res['data']['id'];
         // this.addProduct();
-        this.addProductList();
-        this.saveStockList();
-        this._router.navigate(['/admin/stock']);
+         this.addProductList().then(()=>{
+           this.saveStockList().then(()=>{
+            this._router.navigate(['/admin/stock']);
+           })
+         })
+        // this.saveStockList();
+        
       })
       
 
@@ -159,6 +163,9 @@ export class AddStockComponent implements OnInit {
       console.log(res)
      
     })
+    return new Promise((resolve)=>{
+      resolve();
+    });
   }
 
   saveStockList(){
@@ -166,14 +173,18 @@ export class AddStockComponent implements OnInit {
     
     this.service.saveStock(this.stockID).subscribe(result=>{
       console.log('save', result)
-      // this.snackBar.open(result['message'].toString(), '', {
-      //   duration: 3000,
-      //   verticalPosition:'bottom'
-      // })
+      this.snackBar.open(result['message'].toString(), '', {
+        duration: 3000,
+        verticalPosition:'bottom'
+      })
     }, error=>{
       console.log(error)
     })
+    return new Promise((resolve)=>{
+      resolve();
+    });
   }
+
 
   
    addProduct(){

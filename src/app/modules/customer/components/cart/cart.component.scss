@@ -5,21 +5,186 @@
 
 
 .title_page{
-    background-color: $bgsimple;
-    color: white;
-    width: 100%;
-    @extend %title-list;
-    font-size: 1.5rem;
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
     a{
-        color: $grey0;
-        &:hover{
-            color: white;
-        }
+       @extend %title-page-a;
     }
 
 }
+.message-error{
+    font-family: $opensanfont;
+    background-color: rgba(255, 0, 0, 0.2);
+    // opacity: 30%;
+    text-align: left;
+    padding: 2rem 2rem;
+    border-radius: 5px;
+    color: $greyx3;
+    font-weight: 800;
+}
 
-.cart{
+
+//TABLE
+
+.table {
+    width: 100%;
+    margin-bottom: $spacer;
+    color: $table-color;
+    background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+  
+    th,
+    td {
+      padding: $table-cell-padding;
+      vertical-align: top;
+      border-top: $table-border-width solid $table-border-color;
+    }
+  
+    thead th {
+      vertical-align: bottom;
+      border-bottom: (2 * $table-border-width) solid $table-border-color;
+    }
+  
+    tbody + tbody {
+      border-top: (2 * $table-border-width) solid $table-border-color;
+    }
+  }
+  
+  
+  //
+  // Condensed table w/ half padding
+  //
+  
+  .table-sm {
+    th,
+    td {
+      padding: $table-cell-padding-sm;
+    }
+  }
+  
+  
+  // Border versions
+  //
+  // Add or remove borders all around the table and between all the columns.
+  
+  .table-bordered {
+    border: $table-border-width solid $table-border-color;
+  
+    th,
+    td {
+      border: $table-border-width solid $table-border-color;
+    }
+  
+    thead {
+      th,
+      td {
+        border-bottom-width: 2 * $table-border-width;
+      }
+    }
+  }
+  
+  .table-borderless {
+    th,
+    td,
+    thead th,
+    tbody + tbody {
+      border: 0;
+    }
+  }
+  
+  // Zebra-striping
+  //
+  // Default zebra-stripe styles (alternating gray and transparent backgrounds)
+  
+  .table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+      background-color: $table-accent-bg;
+    }
+  }
+  
+  
+  // Hover effect
+  //
+  // Placed here since it has to come after the potential zebra striping
+  
+  .table-hover {
+    tbody tr {
+      &:hover {
+        color: $table-hover-color;
+        background-color: $table-hover-bg;
+      }
+    }
+  }
+  
+  
+  // Table backgrounds
+  //
+  // Exact selectors below required to override `.table-striped` and prevent
+  // inheritance to nested tables.
+  
+//   @each $color, $value in $theme-colors {
+//     @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
+//   }
+  
+//   @include table-row-variant(active, $table-active-bg);
+  
+  
+  // Dark styles
+  //
+  // Same table markup, but inverted color scheme: dark background and light text.
+  
+  // stylelint-disable-next-line no-duplicate-selectors
+  .table {
+    .thead-dark {
+      th {
+        color: $table-dark-color;
+        background-color: $table-dark-bg;
+        border-color: $table-dark-border-color;
+      }
+    }
+  
+    .thead-light {
+      th {
+        color: $table-head-color;
+        background-color: $table-head-bg;
+        border-color: $table-border-color;
+      }
+    }
+  }
+  
+  .table-dark {
+    color: $table-dark-color;
+    background-color: $table-dark-bg;
+  
+    th,
+    td,
+    thead th {
+      border-color: $table-dark-border-color;
+    }
+  
+    &.table-bordered {
+      border: 0;
+    }
+  
+    &.table-striped {
+      tbody tr:nth-of-type(odd) {
+        background-color: $table-dark-accent-bg;
+      }
+    }
+  
+    &.table-hover {
+      tbody tr {
+        // @include hover {
+        //   color: $table-dark-hover-color;
+        //   background-color: $table-dark-hover-bg;
+        // }
+      }
+    }
+  }
+  
+  
+  .order{
     color:$greyx1;
     padding:4rem 2rem;
     text-align: center;
@@ -31,6 +196,77 @@
             padding:0;
             max-width: none;
         }
+    }
+}
+
+.cart-list {
+    margin-top: 2rem;
+  overflow-x: scroll; }
+
+.table {
+  min-width: 1000px !important;
+  width: 100%;
+  text-align: center; }
+  .table th {
+    font-weight: 500; }
+  .table .thead-primary {
+    background: black; }
+    .table .thead-primary tr th {
+      padding: 20px 10px;
+      color: #fff !important;
+      border: 1px solid transparent !important; }
+  .table tbody tr td {
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 40px 10px;
+    border: 1px solid transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; }
+    .table tbody tr td.product-remove a {
+      background: black;
+      padding: 4px 10px;
+      color: #000000;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      border-radius: 2px; }
+      .table tbody tr td.product-remove a:hover {
+        border: 1px solidblack;
+        background:black; }
+        .table tbody tr td.product-remove a:hover span {
+          color: #fff; }
+    .table tbody tr td.quantity {
+      width: 20%; }
+    .table tbody tr td.image-prod .img {
+      display: block;
+      width: 100px;
+      height: 150px;
+      margin: 0 auto; }
+    .table tbody tr td.product-name {
+      width: 30%; }
+      .table tbody tr td.product-name h3 {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700; }
+    .table tbody tr td.total, .table tbody tr td.price {
+      color: #000000; }
+
+.cart{
+    color:$greyx1;
+    padding:4rem 2rem;
+    text-align: center;
+    // display: block;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+    &-content{
+      display: block;
     }
 
     &__top{
@@ -51,56 +287,7 @@
         }
     }
 }
-table {
-    border-color: #f7f8f8!important;
-    border: 1px solid rgba(0,0,0,.1);
-    margin: 0 -1px 24px 0;
-    text-align: left;
-    width: 100%;
-    border-collapse: collapse;
-    vertical-align: middle!important;
-    thead{
-        border-color: #f7f8f8!important;
-        border: 1px solid rgba(0,0,0,.1);
-        text-align: center;
-        width: 100%;
-        border-collapse: separate;
-        th{
-            padding: 1rem 0.5rem 1rem 0.5rem;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            color: black;
-        }
-    }
-    tbody{
-        tr{
-        border-color: #f7f8f8!important;
-        border: solid thin;
-        margin: 0 -1px 24px 0;
-        padding: 1rem 0.5rem 1rem 0.5rem;
-        text-align: center;
-        width: 100%;
-        border-collapse: separate;
-        td{
-            padding: 0.5rem 0rem 0.5rem 0.5rem;
-            vertical-align: middle!important;
-        }
-        }
-    }
-}
-
 .table{
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    font-family: $boldfont;
-    font-size: 1.2rem;
-    
-
-    &__title{
-        font-family: $boldfont;
-    }
     &__image{
         img{
             height: auto;
@@ -109,6 +296,9 @@ table {
         }
     }
     &__product{
+        h3{
+            margin-bottom: 0;
+        }
         a{
             // padding: 0.5rem 0rem 0.5rem 0.5rem;
             color: $grey;
@@ -130,9 +320,8 @@ table {
                 background: $orangesd;
             }
         }
-        
+            
     }
-    
     &__price{
         font-family: $boldfont;
         font-size: 1.4rem;
@@ -149,37 +338,141 @@ table {
         color: $discount!important;
 
     }
-    &__amount{
+}
+.btn-delete{
+    color: white!important;
+    background-color: black;
+    cursor: pointer;
+}
+// table {
+//     // border-color: #f7f8f8!important;
+//     // border: 1px solid rgba(0,0,0,.1);
+//     // margin: 0 -1px 24px 0;
+//     // text-align: left;
+//     // width: 100%;
+//     // border-collapse: collapse;
+//     // vertical-align: middle!important;
+//     thead{
+//         // border-color: #f7f8f8!important;
+//         // border: 1px solid rgba(0,0,0,.1);
+//         // text-align: center;
+//         // width: 100%;
+//         // border-collapse: separate;
+//         // th{
+//         //     padding: 1rem 0.5rem 1rem 0.5rem;
+//         //     font-size: 1.3rem;
+//         //     text-transform: uppercase;
+//         //     color: black;
+//         // }
+//     }
+//     tbody{
+//         // tr{
+//         // border-color: #f7f8f8!important;
+//         // border: solid thin;
+//         // margin: 0 -1px 24px 0;
+//         // padding: 1rem 0.5rem 1rem 0.5rem;
+//         // text-align: center;
+//         // width: 100%;
+//         // border-collapse: separate;
+//         // td{
+//         //     padding: 0.5rem 0rem 0.5rem 0.5rem;
+//         //     vertical-align: middle!important;
+//         // }
+//         // }
+//     }
+// }
 
-    }
-    &__btn{
-        padding-right: 0.5rem!important;
-        .btn-delete{
+// .table{
+//     // text-align: center;
+//     // justify-content: center;
+//     // align-items: center;
+//     // width: 100%;
+//     font-family: $boldfont;
+//     font-size: 1.2rem;
+    
+
+//     &__title{
+//         font-family: $boldfont;
+//     }
+//     &__image{
+//         img{
+//             height: auto;
+//             min-width: 50px!important;
+//             max-width: 80px;
+//         }
+//     }
+//     &__product{
+//         a{
+//             // padding: 0.5rem 0rem 0.5rem 0.5rem;
+//             color: $grey;
+//             padding-left: 0.5rem;
+//             font-family: $title-font;
+//             &:hover{
+//                 color: $greyx4;
+//             }
+//         }
+//         .color-size{
+//             background-color: $orange;
+//             color: white;
+//             font-weight: bold;
+//             line-height: 2rem;
+//             border-radius: 2px;
+//             border: none;
+//             transition: .4s ease-in-out;
+//             &:hover {
+//                 background: $orangesd;
+//             }
+//         }
+        
+//     }
+    
+//     &__price{
+//         font-family: $boldfont;
+//         font-size: 1.4rem;
+//         color:$greyx4;
+//         .old-price{
+//             color: $grey;
+//             padding-top: 0rem;
+//             font-size: 1rem;
+//             font-weight: 50;
+//             text-decoration-line: line-through;
+//         }
+//     }
+//     &__quantity{
+//         color: $discount!important;
+
+//     }
+//     &__amount{
+
+//     }
+//     &__btn{
+//         padding-right: 0.5rem!important;
+//         .btn-delete{
            
-            background-color: $discount;
-            color: white;
-            font-weight: bold;
-            line-height: 2rem;
-            border-radius: 2px;
-            display: block;
-            border: none;
-            transition: .4s ease-in-out;
-            &:hover {
-                background:#c2220c;
-            }
-        }
-    }
+//             background-color: $discount;
+//             color: white;
+//             font-weight: bold;
+//             line-height: 2rem;
+//             border-radius: 2px;
+//             display: block;
+//             border: none;
+//             transition: .4s ease-in-out;
+//             &:hover {
+//                 background:#c2220c;
+//             }
+//         }
+//     }
 
-}
+// }
 
-table#cart tbody tr {
-    &:hover{
-        background: $bggrey ;
-    }  
-}
-table#cart tbody td:before {
-    display: inline-block;
-}
+// table#cart tbody tr {
+//     &:hover{
+//         background: $bggrey ;
+//     }  
+// }
+// table#cart tbody td:before {
+//     display: inline-block;
+// }
 
 .card{
     float: right;
@@ -298,7 +591,13 @@ input{
     }
 }
 
+
 //stepwizard
+.progress-bar{
+  padding-top: 2rem;
+  padding-left: 20rem;
+  padding-right: 20rem;
+}
 .progressbar {
     counter-reset: step;
     margin-top: 1rem;
@@ -306,19 +605,22 @@ input{
         list-style-type: none;
         width: 25%;
         float: left;
-        font-size: 12px;
+        font-size: 14px;
+        font-weight: 1000;
         position: relative;
+        font-family: $opensanfont;
         text-align: center;
         text-transform: uppercase;
-        color: black;
+        color: $gray-600;
         padding-bottom: 1rem;
+        // background-color: #F2F2F2;
         &:before {
             width: 30px;
             height: 30px;
             content: counter(step);
             counter-increment: step;
             line-height: 30px;
-            border: 2px solid #7d7d7d;
+            border: 2px solid $gray-600;
             display: block;
             text-align: center;
             margin: 0 auto 10px auto;
@@ -330,7 +632,7 @@ input{
             height: 2px;
             content: '';
             position: absolute;
-            background-color: #7d7d7d;
+            background-color: $gray-600;
             top: 15px;
             left: -50%;
             z-index: -1;
@@ -341,17 +643,21 @@ input{
             }
         }
         .active{
-            color: green;
-            border-color: #55b776;
+          color: white;
+          font-weight: 800;
+          background: $success;
+          border-color: $success;
             &:before{
-                border-color: #55b776;
+                color: white;
+                background: $success;
+                border-color: $success;
             }
             
         }
         .done{
             &:before{
-                border-color: #55b776;
-                background-color: #55b776;
+                border-color: $success;
+                background-color:$success;
                 color: white;
                 content: url('../../../../../assets/img/done-white-24dp.svg');
             }
@@ -360,17 +666,22 @@ input{
 }
 
 .progressbar li.active {
-    color: green;
+    color: $success;
 }
 .progressbar li.active:before {
-    border-color: #55b776;
+  font-weight: 1000;
+
+    border-color: $success;
+    color: white;
+    background: $success;
+    // border-color: $success;
 }
 .progressbar li.active + li:after {
-    border-color: #55b776;
-    background-color: #55b776;
+    border-color: $success;
+    background-color: $success;
 }
 .progressbar li.done:before{
-    background-color: #55b776;
+    background-color: $success;
     color: white;
     content: url('../../../../../assets/img/done-white-24dp.svg');
    

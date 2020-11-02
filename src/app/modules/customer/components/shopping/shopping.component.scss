@@ -19,24 +19,26 @@
         font-size:1.2rem;
         
         @include setMaxwidth($md){
-            padding:0 4rem;
+            padding:0 1rem;
         }
         @include setMaxwidth($sm){
             padding:0;
         }
     }
+    .filter{
+        @include setMaxwidth($md){
+            display: none;
+        }
+       
+    }
 }
 .title_page{
-    background-color: $bgsimple;
-    color: white;
-    width: 100%;
-    @extend %title-list;
-    font-size: 1.5rem;
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
     a{
-        color: $grey0;
-        &:hover{
-            color: white;
-        }
+       @extend %title-page-a;
     }
 
 }

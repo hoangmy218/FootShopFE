@@ -37,7 +37,9 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/owl.carousel/dist/owl.carousel.js"
+              "./node_modules/owl.carousel/dist/owl.carousel.js",
+              "./node_modules/chart.js/dist/Chart.min.js",
+              "./node_modules/patternomaly/dist/patternomaly.js"
             ]
           },
           "configurations": {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand-model';
 import { Category } from 'src/app/models/category-model';
 import { AdminService } from 'src/app/services/admin.service';
@@ -17,6 +18,7 @@ export class EditProductComponent implements OnInit {
 
   constructor(
     public dialogbox: MatDialogRef<EditProductComponent>,
+    private actRoute: ActivatedRoute,
     public service: AdminService,
     private snackBar: MatSnackBar,
     private http: HttpClient
@@ -26,8 +28,10 @@ export class EditProductComponent implements OnInit {
   token : string = localStorage.getItem('token');
   headers :  {}= { 'Authorization': 'Bearer '+ this.token };
   readonly APIUrl = environment.admin_apiUrl;
+  stockID: string="";
 
   ngOnInit(): void {
+
     this.refreshCateList();
     this.refreshBrandList();
   }
@@ -68,21 +72,34 @@ export class EditProductComponent implements OnInit {
     console.log(form.value);
     this.service.updateProduct(form.value).subscribe(res=>
       {
-        console.log(res)
-        this.snackBar.open(res['message'].toString(), '', {
-          duration: 3000,
-          verticalPosition:'bottom'
-        })
-        this.http.post(this.APIUrl + "/dongia/" + form.value._id + "/create", form.value, {headers: this.headers} )
-        .subscribe(data=>{
-          console.log(data)
-          if (data['success']){
-              this.dialogbox.close();
-              // window.location.replace('/admin/product');
-            }
-        }, error=>{
-          console.log(error)
-        })
+        console.log('res',res)
+        if (res['success']==true){
+          
+          this.snackBar.open(res['message'].toString(), '', {
+            duration: 3000,
+            verticalPosition:'bottom'
+          })
+          this.http.post(this.APIUrl + "/dongia/" + form.value._id + "/create", form.value, {headers: this.headers} )
+          .subscribe(data=>{
+            console.log(data)
+            if (data['success']){
+                this.dialogbox.close();
+                // window.location.replace('/admin/product');
+              }
+          }, error=>{
+            this.snackBar.open(error.error.msg.toString(), '', {
+              duration: 3000,
+              verticalPosition:'bottom'
+            })
+            console.log(error)
+          })
+        }else{
+          this.snackBar.open(res['error']['errors'][0].msg.toString(), '', {
+            duration: 3000,
+            verticalPosition:'bottom'
+          })
+        }
+        
         
       })
   }

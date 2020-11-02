@@ -1,1 +1,50 @@
-<p>order works!</p>
+
+<div id="order">
+    <div class="title_page">
+        <a href="">Trang chủ</a> 
+        <i class="fas fa-chevron-right"></i>Đơn hàng
+    </div>
+    <section class="order">
+        <div *ngIf = "orderList?.length == 0" class="message-error">Danh sách đơn hàng trống!</div>
+        <div class="container" *ngIf = "orderList?.length > 0">
+            <div class="cart-list">
+                <table class="table">
+                    <thead class="thead-primary">
+                    <tr class="text-center">
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày mua</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái đơn hàng</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center" *ngFor="let order of orderList">
+                        <td class="total">{{order['_id']}}</td>
+                        <td class="product-name">
+                            <h3>{{order['ngaydat'] | date:'d/M/yyyy, h:mm a'}}</h3>
+                            <p>Far far away, behind the word mountains, far from the countries</p>
+                        </td>
+                        <td class="price">
+                            <h3>{{order['tongtien'] | currency:'VND'}}</h3>
+                        </td>
+                        <td class="quantity">
+                            <div *ngFor="let dl of stageList | keyvalue"> 
+                                
+                                <span class="status" 
+                                    [ngClass]="order['trangthai'] == '1' ? 'process' : 
+                                    (  order['trangthai'] == '2' ? 'confirm' : 
+                                    (  order['trangthai'] == '3' ? 'ship' : 
+                                    (  order['trangthai'] == '4' ? 'complete' : 'cancel'  ) ))"
+                                    *ngIf="dl.key == order['trangthai']"
+                                    >{{dl.value}}</span>
+                            </div>
+                        </td>
+                        <td class="product-remove"><a class="btn-cancel-order">X</a> <a routerLink="/orders/{{order['_id']}}" class="btn-order-details"><i class="fas fa-info-circle"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+  </div>
+  </section>
+  </div>

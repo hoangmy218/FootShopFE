@@ -1,0 +1,56 @@
+<div class="grid-container">
+    <div class="dashboard-card">
+     <h1 class="mat-h1">Bình luận</h1>
+     
+     <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)"
+        placeholder="Lọc">
+      </mat-form-field>
+      
+
+      <div class="mat-elevation-z8" style="overflow: auto;">
+        <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <!-- Id Column -->
+          <ng-container matColumnDef="ngaybl">
+            <mat-header-cell  *matHeaderCellDef mat-sort-header>NGÀY BÌNH LUẬN</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ngaybl | date: 'd/M/yyyy, h:mm a'}}</mat-cell>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="sanpham_id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>SẢN PHẨM</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.sanpham_id.ten}}</mat-cell>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="nguoidung_id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>KHÁCH HÀNG</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.nguoidung_id.ten}}</mat-cell>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="noidung">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>NỘI DUNG</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.noidung}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Options">
+            <mat-header-cell *matHeaderCellDef>THAO TÁC</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button >
+                    <mat-icon>launch</mat-icon>
+                </button>
+              </mat-cell>
+          </ng-container>
+  
+
+        </mat-table>
+  
+        <mat-paginator 
+            [pageSizeOptions]="[10, 15, 20]" >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  
+  

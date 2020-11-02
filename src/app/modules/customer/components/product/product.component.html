@@ -11,22 +11,35 @@
                 
             </div>
             <div class="products__menu">
-                <div *ngFor = "let item of product; let i = index">
-                <div class="item">
+                <!-- <div *ngFor = "let item of product; let i = index"> -->
+                <div class="item" *ngFor = "let item of product; let i = index">
                     <div class="item__img">
-                        <img src="../../../../../assets/img/smartphone_section_bg.jpg" alt="">
-                        <div class="discount-badge">
-                            <span class="amount">Giảm 25%</span>
-                        </div>
+                        <a  class="img-prod"
+                        routerLink="/details/{{item.sanpham['_id']}}/{{item['mausanpham'][0].mau.mausac_id['_id']}}"> 
+                            <img class="img-fluid" *ngIf="item.mausanpham[0]['hinh']"
+                                src="{{item.mausanpham[0]['hinh']['hinh']}}" alt="Hình ảnh">
+                                <img class="img-fluid" *ngIf="!item.mausanpham[0]['hinh']"
+                                src="../../../../../assets/img/img_not_found.png" alt="Hình ảnh">
+                            <div class="badge">
+                                <!-- <div class="discount-badge">
+                                    <span class="amount">-25%</span>
+                                </div> -->
+                                <div class="favorite">
+                                    <a class=" active"><i class="fas fa-heart"></i></a>
+                                </div>
+                            </div>
+                            
+                        </a>
                     </div>
                     <h5 class="item__name">
-                        <a href="">{{item.sanpham['ten']}}</a>
-                        <a href="" class="favorite active"><i class="fas fa-heart"></i></a>
+                        <a class="item__name-text"
+                            routerLink="/details/{{item.sanpham['_id']}}/{{item['mausanpham'][0].mau.mausac_id['_id']}}"
+                            >{{item.sanpham['ten']}}</a>
                     </h5>
 
                     <p class="item__price">
                         <!-- <span class="old-price">$249 </span>  -->
-                        &nbsp; {{item.dongia | currency: 'VND'}}</p>
+                        {{item.dongia | currency: 'VND'}}</p>
                     <div class="item__colors">
                         <!-- <div >  -->
                             <!-- {{img.mau['mausac_id']['ten']}}  -->
@@ -37,12 +50,14 @@
                        
                         <!-- <img class="item_colors-img" src="../../../../../assets/img/red.png" alt=""> -->
                     </div>
-                    <div class="item__btn">
+                    <!-- <div class="item__btn">
                         <button class=" btn-add-to-cart">THÊM VÀO GIỎ</button>
-                        <button class="btn-detail" routerLink="/details/{{item.sanpham['_id']}}/{{item['mausanpham'][0].mau.mausac_id['_id']}}">XEM CHI TIÊT</button>
-                    </div>
+                        <button class="btn-detail" 
+                            routerLink="/details/{{item.sanpham['_id']}}/{{item['mausanpham'][0].mau.mausac_id['_id']}}"
+                            >XEM CHI TIÊT</button>
+                    </div> -->
                 </div>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </section>

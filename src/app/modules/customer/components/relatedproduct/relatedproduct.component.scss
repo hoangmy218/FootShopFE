@@ -86,7 +86,7 @@
             font-size: 1.5rem;
             color:$grey;
             margin-bottom: 1rem;
-            font-family: $primaryfont;
+            font-family: $opensanfont;
             display: flex;
             justify-content: space-between;
             a{
@@ -118,7 +118,7 @@
             }
         }
         &__price{
-            font-family: $primaryfont;
+            font-family: $opensanfont;
             font-size: 1.3rem;
             color:$greyx4;
             font-weight: bold;
@@ -146,7 +146,7 @@
         .btn-add-to-cart{
             color:white;
             // background:$bluesky;
-            font-family: $boldfont;
+            font-family: $opensanfont;
             font-weight: 200;
             // chuyen mau tu trai sang phai
             background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
@@ -166,7 +166,7 @@
         .btn-detail{
             color:white;
             // background:$bluesky;
-            font-family: $boldfont;
+            font-family: $opensanfont;
             font-weight: 200;
             // chuyen mau tu trai sang phai
             background: linear-gradient(to right, $grey 50%, #4f5c6d 50%)left;
@@ -187,7 +187,7 @@
 }
 
 .products {
-    font-family: $titlefont;
+    font-family: $opensanfont;
     color: white;
     position: relative;
     &:hover {
@@ -196,26 +196,35 @@
         }
     }
     .item {
-        height: 43vh;
+        height: 300px;
         margin-left: 1rem;
         margin-right: 1rem;
         
         @include setMaxwidth($xl){
-            height: 30vh;
+            height: 300px;
         }
         @include setMaxwidth($lg){
-            height: 27vh;
+            height: 250px;
         }
         @include setMaxwidth($md1){
-            height: 33vh;
+            height: 250px;
         }
         @include setMaxwidth($md){
-            height: 25vh;
+            height: 250px;
         }
         
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+        &__img{
+            img{
+                object-fit: cover;
+                height: 200px;
+                @include setMaxwidth($lg){
+                    height: 150px;
+                }
+            }
+        }
        
     }
     .slide{
@@ -240,17 +249,17 @@
     }
     &__title{
         color: white;
-        font-family: $yesevafont;
+        font-family: $opensanfont;
         font-size: 3rem;
         line-height: 4rem;
         margin-bottom: 2rem;
     }
     
     p{
-        font-family: $yesevafont !important;
+        font-family: $opensanfont !important;
     }
     &__text {
-        font-family: $yesevafont !important;
+        font-family: $opensanfont !important;
         color: white;
         font-size: 1.5rem;
         line-height: 3rem;

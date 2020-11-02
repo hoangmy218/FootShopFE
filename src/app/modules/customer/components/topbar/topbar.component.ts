@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Brand } from 'src/app/models/brand-model';
 import { Category } from 'src/app/models/category-model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,7 +16,8 @@ export class TopbarComponent implements OnInit {
     public service: AuthService,
     private _service: CustomerService
   ) { }
-  username: string = '';
+  username:Subject<string> = new BehaviorSubject('');
+  // public username: string = '';
   brandList: Brand[] = [];
   categoryList: Category[] = [];
 
@@ -43,7 +45,9 @@ export class TopbarComponent implements OnInit {
   }
 
   refreshUser(){
-    this.username = localStorage.getItem('name');
+    this.service.setProfile();
+    this.username.next(localStorage.getItem('user_name'));
+    console.log(this.username)
   }
 
   onLogout(){
@@ -51,6 +55,8 @@ export class TopbarComponent implements OnInit {
     this.service.logout();
     localStorage.clear();
   }
+
+
 
   
 

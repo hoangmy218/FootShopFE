@@ -42,7 +42,12 @@ export class VerifyComponent implements OnInit {
   }
 
   onVerify(){
-    this.__router.navigate(['/register'])
+    console.log(this._auth.cognitoUser)
+    this._auth.verifyCode(this.VerifyForm.controls['code'].value).subscribe(res=>{
+      console.log('res', res)
+      this.__router.navigate(['/login'])
+    })
+    
   }
 
 }

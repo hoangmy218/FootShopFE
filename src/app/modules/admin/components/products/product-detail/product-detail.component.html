@@ -1,9 +1,8 @@
 <div class="grid-container">
     <div class="dashboard-card">
      <h1 class="mat-h1">Chi tiết sản phẩm</h1>
-        <mat-tab-group  >
-            <mat-tab label="Thông tin"> 
-                <div class="content">
+       
+                <div class="content info">
                     
                         <h2>Tên : {{product['ten']}}</h2>
                         <h5>Mã: {{product['_id']}}</h5>
@@ -12,87 +11,75 @@
                         <h5>Danh mục: {{product['danhmuc_id']['ten']}}</h5>
                         <h5>Mô tả: {{product['mota']}}</h5>
                         
-                   
-                </div>
-                
-            </mat-tab>
-            <mat-tab label="Phân loại hàng"> 
-                <div class="content">
-                    <div class="grid-container">
-                    <div class="dashboard-card">
-                    <mat-form-field>
-                        <input matInput (keyup)="applyFilter($event.target.value)"
-                        placeholder="Lọc">
-                    </mat-form-field>
-                    <button class="mt-2 btn-add" mat-raised-button (click)="onAdd()"
+                        <button class="mt-2 btn-add" mat-raised-button (click)="onAdd()"
                         color="primary">
                         Thêm phân loại hàng
                     </button>
+                </div>
                 
-                    <div class="mat-elevation-z8" style="overflow: auto;">
-                        <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
-                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                 
+            
+                <div class="content">
                   
-                          <!-- Name Column -->
-                          <ng-container matColumnDef="chitietsanpham_id">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>MÃ</mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="break"
-                                >{{element._id}}</mat-cell>
-                          </ng-container>
-                  
-                          <!-- Description Column -->
-                          <ng-container matColumnDef="mausac_id">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>MÀU SẮC</mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.mausanpham_id.mausac_id.ten}}</mat-cell>
-                          </ng-container>
+                    <div class="grid-container">
+                      
+                    <div class="dashboard-card">
+                    
+                   
+
+                    <mat-card *ngFor="let procolor of productColorList">
+                      <div class="detail">
+                        <div class="detail-item">
+                          <h3>Màu sắc:</h3> 
+                          <div class="detail-item-color">
+                            <img src="{{procolor.mausanpham['mausac_id']['hinh']}}" alt="" class="color-image">
+                            <span>{{procolor['mausanpham']['mausac_id']['ten']}}</span>
+                          </div>
+                          
+                        </div>
+                        <div class="detail-item">
+                          <h3>Hình ảnh:</h3>
+                          <div class="detail-item-images" *ngIf="procolor['mausanpham']['hinh'] == null">
+                            Chưa thêm ảnh.
+                          </div>
+                          <div class="detail-item-images product-color-image">
+                              <img src="{{image['hinh']}}" *ngFor= "let image of procolor['mausanpham']['hinh']" alt="">
+                          </div>
+                        </div>
+                        <div class="detail-item">
+                          <h3>Kích cỡ:</h3>
+                          <div class="detail-item-sizes" *ngIf="procolor.kichco.length == 0">
+                            Chưa thêm kích cỡ.
+                          </div>
+                          <div class="detail-item-sizes " >
+                              <span *ngFor="let size of procolor.kichco" class="detail-item-size">
+                                {{size['kichco_id']['ten']}}: 
+                                <span class="detail-item-quantity">{{size['soluong']}} đôi</span>
+                              </span>
+                          </div>
+                        </div>
+                        <div class="detail-item">
+                          <h3>Thao tác</h3>
+                          <div class="detail-item-options">
+                            <button mat-icon-button (click)="onEdit(procolor['mausanpham']['_id'], procolor.kichco)">
+                              <mat-icon>launch</mat-icon>
+                          </button>
+                      
+                          <button mat-icon-button color="warn" (click)="onDelete(procolor['mausanpham']['_id'])">
+                              <mat-icon>delete_outline</mat-icon>
+                          </button>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card>
                 
-                          <!-- Price Column -->
-                          <ng-container matColumnDef="kichco_id">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>KÍCH CỠ</mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.kichco_id.ten}}</mat-cell>
-                            
-                          </ng-container>
-                
-                          <!-- Description Column -->
-                          <ng-container matColumnDef="soluong" class="text-center">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>SỐ LƯỢNG</mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.soluong}}</mat-cell>
-                            
-                          </ng-container>
-                
-                  
-                          <ng-container matColumnDef="Options">
-                            <mat-header-cell *matHeaderCellDef>THAO TÁC</mat-header-cell>
-                            <mat-cell *matCellDef="let row">
-                                <button mat-icon-button (click)="onEdit(row)">
-                                    <mat-icon>launch</mat-icon>
-                                </button>
-                            
-                                <button mat-icon-button color="warn" (click)="onDelete(row._id)">
-                                    <mat-icon>delete_outline</mat-icon>
-                                </button>
-                                <button mat-icon-button color="info" (click)="onDetails(row._id)" >
-                                  <i class="fas fa-info-circle"></i>
-                                </button>
-                              </mat-cell>
-                          </ng-container>
-                  
-                
-                        </mat-table>
-                  
-                        <mat-paginator 
-                            [pageSizeOptions]="[5, 10, 15]" >
-                        </mat-paginator>
-                    </div>
+                   
                     </div>
                  
                 
                 </div>
                 </div>
-            </mat-tab>
-        </mat-tab-group>
+         
      
 
 

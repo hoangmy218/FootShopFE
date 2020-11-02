@@ -3,6 +3,10 @@
 @import '../../scss/helpers/colors';
 @import '../../scss/helpers/shared';
 
+.a-active{
+    color: $orange !important;
+    font-weight: 800!important;
+}
 .filter{
     padding:4rem 2rem;
     max-width: 500px;
@@ -19,17 +23,21 @@
         font-size:1.2rem;
         
         @include setMaxwidth($md){
-            padding:0 4rem;
+            padding:0 2rem;
         }
         @include setMaxwidth($sm){
             padding:0;
+            display: none;
         }
         &-link{
             a{
+                font-family: $opensanfont;
+                text-transform: uppercase;
                 color: $greyx3;
-                font-weight: 200;
+                font-weight: 400;
+                line-height: 1.5;
                 &:hover{
-                    color: $bglink;
+                    color: $orange;
                     font-weight: 100;
                 }
             }
@@ -38,8 +46,9 @@
         &-title{
             margin-top: 2rem;
             margin-bottom: 1rem;
-            font-family: $boldfont;
-            font-weight: 200;
+            font-family: $opensanfont;
+            letter-spacing: 2px;
+            font-weight: 800;
             color: $greyx4;
 
         }
@@ -49,7 +58,7 @@
         }
         &-text{
             color: $bggrey1;
-            font-family: $title-font;
+            font-family: $opensanfont;
             text-align: left;
             @include setMaxwidth($lg){
                 padding:0 2rem;
@@ -61,51 +70,8 @@
     }
 }
 
-
-.footerav{
-    padding:2rem 2rem;
-    text-align: center;
-    line-height: 3rem;
-    word-spacing: 3px;
-    color:$greyx2;
-    font-size:1.2rem;
-    background-color: $greyx4;
-    .container{
-        @include grid($columns:repeat(2,1fr));
-        @include setMaxwidth($lg){
-            padding:0 2rem;
-            max-width: none;
-        }
-        @include setMaxwidth($md){
-            padding:0;
-        }
-        @include setMaxwidth($md){
-            @include grid($columns:repeat(1,1fr),$rowGap:6rem);
-        }
-    }
-    
-    &__copyright{
-        
-        text-align: left;
-    }
-    &__social{
-        @include flex($justify:center);
-        li{
-            margin-left: 2rem;
-        }
-        a{
-            color: $grey0;
-            font-size: 3rem;
-            transition: .5s ease-in-out;
-            &:hover{
-                color:$greyx1;
-            }
-        }
-    }
-}
-
 .input-group{
-    font-family: $title-font;
+    font-family: $opensanfont;
 }
 input{
     
