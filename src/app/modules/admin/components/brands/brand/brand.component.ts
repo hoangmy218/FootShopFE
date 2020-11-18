@@ -55,7 +55,7 @@ export class BrandComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus=true;
-    dialogConfig.width = "30%";
+    dialogConfig.width = "500px";
     this.dialog.open(AddBrandComponent, dialogConfig);
   }
 
@@ -64,7 +64,7 @@ export class BrandComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose=true;
     dialogConfig.autoFocus =true;
-    dialogConfig.width="30%";
+    dialogConfig.width="500px";
     this.dialog.open(EditBrandComponent,dialogConfig);
   }
 

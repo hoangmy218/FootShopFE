@@ -16,7 +16,7 @@ export class RelatedproductComponent implements OnInit {
     dots: true,
     responsiveClass: true,
     nav: true,
-    items: 2,
+    items: 1,
     navText: [ '', '' ],
     responsive: {
       480: {
@@ -36,25 +36,7 @@ export class RelatedproductComponent implements OnInit {
   }
   images =  [];
 
-  // images = [
-  //   {
-  //     text: "Avada Fashion 1",
-  //     // image: "../../../../../assets/img/home_slider_one.jpg"
-  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
-  //   },
-  //   {
-  //     text: "Avada Fashion 2",
-  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
-  //   },
-  //   {
-  //     text: "Avada Fashion 3",
-  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
-  //   },
-  //   {
-  //     text: "Avada Fashion 4",
-  //     image: "../../../../../assets/img/home_slider_2-2.jpg"
-  //   }
-  // ]
+
 
   constructor(
     private service: CustomerService,

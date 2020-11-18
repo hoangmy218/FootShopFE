@@ -1,0 +1,11 @@
+<div class="title">
+    <span>Hình ảnh 360 độ</span>
+    <button mat-button (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div class="menu">
+    <ul class="list">
+        <li *ngFor="let image of imageList"><img [src]="image" alt=""></li>
+    </ul>
+  </div>

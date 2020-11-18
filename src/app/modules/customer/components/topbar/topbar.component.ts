@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Brand } from 'src/app/models/brand-model';
 import { Category } from 'src/app/models/category-model';
@@ -14,7 +15,8 @@ export class TopbarComponent implements OnInit {
 
   constructor(
     public service: AuthService,
-    private _service: CustomerService
+    private _service: CustomerService,
+    private _router: Router
   ) { }
   username:Subject<string> = new BehaviorSubject('');
   // public username: string = '';
@@ -46,14 +48,37 @@ export class TopbarComponent implements OnInit {
 
   refreshUser(){
     this.service.setProfile();
-    this.username.next(localStorage.getItem('user_name'));
-    console.log(this.username)
+    this.username.next('');
+    console.log(localStorage.getItem('username'))
+    if (localStorage.getItem('username')!= null){
+      this.username.next(localStorage.getItem('username'));
+      console.log(this.username)
+    }
+  }
+  
+  isUser(){
+    // let user : any;
+    // localStorage.getItem('role');
+    if (localStorage.getItem('role') == null || localStorage.getItem('role') == 'admin'){
+      return false;
+    }else {
+      return true;
+    }
+  }
+  
+  isAdmin(){
+    if (localStorage.getItem('role') == null || localStorage.getItem('role') == 'customer'){
+      return false;
+    }else {
+      return true;
+    }
   }
 
   onLogout(){
     
     this.service.logout();
     localStorage.clear();
+    this._router.navigate(['/']);
   }
 
 

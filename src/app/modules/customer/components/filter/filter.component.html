@@ -4,12 +4,44 @@
             <div class="input-group">
                 <form [formGroup]="SearchForm" id="login__item-form" class="login__item-form">
                 <input type="text" class="form-control" 
-                formControlName="search" id="search"
+                formControlName="search" id="search" [voiceText]
                 placeholder="Tìm kiếm" name="search">
                 <button class="btn btn-default input-group-btn" 
                 [disabled]="!SearchForm.valid" (click)="onSearch()"
                 type="submit" ><i class="fas fa-search"></i></button>
                 </form>
+                <!-- <form  id="gSearch" method="GET" #gSearch action="https://google.com/search"
+                    class="login__item-form">
+                    <input type="hidden" #searchKey name="q">
+                    <div id="icon-mic" (click)="voiceSearch">MIC</div>
+                </form> -->
+
+                <div *ngIf="voiceActiveSectionDisabled; else voicesection;">
+                    <button type="button" (click)="startVoiceRecognition()"><i class="fas fa-microphone"></i></button>
+                  </div>
+                  <ng-template #voicesection>
+                    <ng-container *ngIf="!voiceActiveSectionError; else failure">
+                      <ng-container *ngIf="voiceText; else start">
+                          <span>{{voiceText}}</span>
+                      </ng-container>
+                      <ng-template #start>
+                        <ng-container
+                          *ngIf="voiceActiveSectionListening; else beginning">
+                          <span>Đang nghe...</span>
+                        </ng-container>
+                        <ng-template #beginning>
+                          <span>Bắt đầu nói...</span>
+                        </ng-template>
+                      </ng-template>
+                    </ng-container>
+                    <ng-template #failure>
+                      <span>Không nhận được tín hiệu!</span>
+                    </ng-template>
+                    <div>
+                      <button (click)="closeVoiceRecognition()"><i class="fas fa-microphone-slash"></i></button>
+                      <!-- <button (click)="startVoiceRecognition()"><i class="fas fa-microphone"></i></button> -->
+                    </div>
+                  </ng-template>
                 
             </div>
             

@@ -21,6 +21,8 @@ import { ProductBrandComponent } from './components/product-brand/product-brand.
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { ShowProfileComponent } from './components/profile/show-profile/show-profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { VerifyComponent } from './components/verify/verify.component';
@@ -46,6 +48,8 @@ const routes: Routes = [
       {path: 'address', component: ShowAddressComponent ,     canActivate: [CustomerGuard]},
       {path: 'address/add', component: AddAddressComponent ,     canActivate: [CustomerGuard]},
       {path: 'address/edit/:add_id', component: EditAddressComponent,     canActivate: [CustomerGuard]},
+      {path: 'profile', component: ShowProfileComponent, canActivate: [CustomerGuard]},
+      {path: 'profile/edit', component: EditProfileComponent, canActivate: [CustomerGuard]},
 
       {path: 'orders', component: OrderComponent,     canActivate: [CustomerGuard]},
       {path: 'orders/:id', component: OrderdetailsComponent,     canActivate: [CustomerGuard]},

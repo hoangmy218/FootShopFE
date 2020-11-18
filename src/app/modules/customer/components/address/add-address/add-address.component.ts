@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-add-address',
@@ -22,6 +23,7 @@ export class AddAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetAddressForm();
+    $(window).scrollTop(0);
   }
 
   AddressForm : FormGroup;
@@ -55,9 +57,10 @@ export class AddAddressComponent implements OnInit {
         duration: 3000,
         verticalPosition:'bottom'
       })
+      this._router.navigate(['/address'])
       
     })
-    this._router.navigate(['/address'])
+    
   }
 
   resetAddressForm(){

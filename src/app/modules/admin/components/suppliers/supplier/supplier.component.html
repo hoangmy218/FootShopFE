@@ -1,1 +1,71 @@
-<p>supplier works!</p>
+<div class="grid-container">
+    <div class="dashboard-card">
+     <h1 class="mat-h1">Nhà cung cấp</h1>
+     
+     <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)"
+        placeholder="Lọc">
+      </mat-form-field>
+      <button class="mt-2 btn-add" mat-raised-button (click)="onAdd()"
+        color="primary">
+        Thêm nhà cung cấp
+      </button>
+
+      <div class="mat-elevation-z8" style="overflow: auto;">
+        <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <!-- Id Column -->
+          <ng-container matColumnDef="_id">
+            <mat-header-cell  *matHeaderCellDef mat-sort-header>MÃ</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element._id}}</mat-cell>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="ten">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>TÊN</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ten}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="dienthoai">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ĐIỆN THOẠI</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.dienthoai}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>EMAIL</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="diachi">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ĐỊA CHỈ</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.diachi}}</mat-cell>
+          </ng-container>
+  
+          <!-- Description Column
+          <ng-container matColumnDef="brand_des">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.brand_des}}</mat-cell>
+          </ng-container> -->
+  
+          <ng-container matColumnDef="Options">
+            <mat-header-cell *matHeaderCellDef>THAO TÁC</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="onEdit(row)">
+                    <mat-icon>launch</mat-icon>
+                </button>
+            
+                <button mat-icon-button color="warn" (click)="onDelete(row._id)">
+                    <mat-icon>delete_outline</mat-icon>
+                </button>
+              </mat-cell>
+          </ng-container>
+  
+
+        </mat-table>
+  
+        <mat-paginator 
+            [pageSizeOptions]="[10, 15, 20]" >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  
+  

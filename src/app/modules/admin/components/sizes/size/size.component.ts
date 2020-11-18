@@ -54,7 +54,7 @@ export class SizeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus=true;
-    dialogConfig.width = "30%";
+    dialogConfig.width = "500px";
     this.dialog.open(AddSizeComponent, dialogConfig);
   }
 
@@ -63,7 +63,7 @@ export class SizeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose=true;
     dialogConfig.autoFocus =true;
-    dialogConfig.width="30%";
+    dialogConfig.width="500px";
     this.dialog.open(EditSizeComponent,dialogConfig);
   }
 

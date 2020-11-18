@@ -82,13 +82,14 @@
                                       {{item['ctsp_id']['kichco_id']['ten']}}</button>
                               </td>
                               <td class="table__price">
+                                {{item['dongia'] | currency: 'VND'}}
                                   <!-- <span class="old-price">$249 </span> &nbsp;  -->
                                   <!-- {{priceList}}    -->
-                                  <div *ngFor="let price of priceList">
+                                  <!-- <div *ngFor="let price of priceList"> -->
                                       <!-- <span>{{price}} </span>    -->
-                                      <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']"
-                                      >{{item['dongia'] | currency: 'VND'}}</div>
-                                  </div>
+                                      <!-- <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']" -->
+                                      <!-- >{{item['dongia'] | currency: 'VND'}}</div> -->
+                                  <!-- </div> -->
                               </td>
                               <td class="table__quantity">
                                   <span class="amount">{{item['soluongdat']}}</span>                    

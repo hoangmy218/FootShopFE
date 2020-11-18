@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address-model';
 import { CustomerService } from 'src/app/services/customer.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-show-address',
@@ -21,6 +22,7 @@ export class ShowAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshAddressList();
+    $(window).scrollTop(0);
   }
 
   refreshAddressList(){

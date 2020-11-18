@@ -32,7 +32,7 @@ export class EditSizeComponent implements OnInit {
           verticalPosition:'bottom'
         })
         if (res['success']){
-          this.dialogbox.close();
+         this.onClose();
         }
       })
   }

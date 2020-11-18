@@ -52,7 +52,7 @@
 }
 
 .chart{
-    @include grid($columns:repeat(2,1fr));
+    @include grid($columns:repeat(1,1fr));
     @include setMaxwidth($lg){
         padding:0 2rem;
         max-width: none;

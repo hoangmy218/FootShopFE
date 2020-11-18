@@ -12,11 +12,14 @@
             padding:0 2rem;
             max-width: none;
         }
+         
         @include setMaxwidth($md){
             padding:0;
+            @include grid($columns:repeat(2,1fr),$rowGap:6rem);
         }
-        @include setMaxwidth($md){
-            @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+        @include setMaxwidth($sm){
+            padding:0;
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
         }
     }
     
@@ -94,11 +97,13 @@
             padding:0 2rem;
             max-width: none;
         }
-        @include setMaxwidth($md){
+        @include setMaxwidth($sm){
             padding:0;
+            @include grid($columns:repeat(1,1fr),$rowGap:4rem);
         }
-        @include setMaxwidth($md){
-            @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+        @include setMaxwidth($sm){
+            padding:0;
+            @include grid($columns:repeat(1,1fr),$rowGap:1rem);
         }
     }
     

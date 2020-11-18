@@ -13,9 +13,11 @@
                     <div class="product-gallery__featured">
                         <owl-carousel-o [options]="{items: 1, dots:false, margin:8}" #owlCar>
                           <ng-container *ngFor="let image of productImages">
-                            <ng-template carouselSlide [id]="image.url" [width]="imageSize">
+                            <ng-template carouselSlide [id]="image.url" [width]="400"  
+                                style="height: 600px;">
                               <!-- <img [src]="image.url"> -->
-                              <lib-ngx-image-zoom
+                              <lib-ngx-image-zoom 
+                              [width]="imageSize"
                                     [thumbImage]=image.url
                                     [fullImage]=image.full
                                     [magnification]="1"
@@ -24,6 +26,7 @@
                                     [lensWidth]="200"
                                     [lensHeight]="200"
                                     [circularLens] = "true"
+                                    
                                 ></lib-ngx-image-zoom>
                             </ng-template>
                           </ng-container>
@@ -43,22 +46,34 @@
                         </owl-carousel-o>
                       </div>
 
+                      <button class="btn"   *ngIf="productImages?.length >= 8"
+                      (click)="onImage()"><img src="../../../../../assets/img/360-degree.png" alt=""></button>
                 </div>
                 <form [formGroup]="CartForm" id="cart-form" class="cart-form">
                 <div class="details__top-content">
                     <div class="details__top-title">
-                        {{product['ten']}}
+                        <p class="name">{{product['ten']}}</p>
                         <p class="sku">SKU: {{productDetailsID}}</p>
                     </div>
                     
-                    <div class="details__top-price">
-                        <!-- <span class="old-price">$249 </span> &nbsp; -->
-                         {{dongia.dongia | currency:'VND'}}
+                    
+
+                    <div class="details__top-price" 
+                        *ngIf="(product['khuyenmai_id'] == null  
+                        ||  ((product['khuyenmai_id'] != null) 
+                            && (!isExpirationExpired(product['khuyenmai_id'])))) ">
+                        {{dongia.dongia | currency: 'VND'}}
                     </div>
+                    <div class="details__top-price"
+                        *ngIf="(product['khuyenmai_id'] != null)  && (isExpirationExpired(product['khuyenmai_id'])) ">
+                        <span class="old-price">{{dongia.dongia | currency: 'VND'}} </span> 
+                        {{dongia.dongia*(100-product['khuyenmai_id']['giamgia'])/100 | currency: 'VND'}}
+                    </div>
+
                     <div class="details__top-text">
                         Màu sắc: <a href="">{{productcolor.mausac_id.ten}}</a>
                     </div>                   
-                    <div class="details__top-color" >
+                    <div class="details__top-color" *ngIf = "colorList?.length > 0">
                        
                             <a *ngFor = "let img of colorList; let i = index" routerLink="/details/{{product['_id']}}/{{img['mausac_id']['_id']}}">
                                 <img class="details__top-color-img" 
@@ -71,7 +86,7 @@
                     <div class="details__top-text">
                         Kích cỡ: 
                     </div>
-                    <div class="details__top-size">
+                    <div class="details__top-size" *ngIf = "sizeList?.length > 0">
                         <select formControlName="sku" class="form-control details__top-select" 
                             
                             (change)="selectOption($event.target.value)">
@@ -213,4 +228,6 @@
         </div>
     </section>
 </div>
+
 <app-relatedproduct></app-relatedproduct>
+

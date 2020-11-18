@@ -104,7 +104,7 @@ export class ProductComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus=true;
-    dialogConfig.width = "30%";
+    dialogConfig.width = "500px";
     this.dialog.open(AddProductComponent, dialogConfig);
   }
 
@@ -116,12 +116,16 @@ export class ProductComponent implements OnInit {
     console.log('form pro', this.service.formProduct)
     this.service.getNewPrice(product._id).subscribe(pr=>{
       // console.log('pr',pr)
-      this.service.formProduct.dongia = pr['data'][0].dongia;
+      if (pr['data'][0].dongia == undefined){
+        this.service.formProduct.dongia = 0;
+      }
+      else
+        this.service.formProduct.dongia = pr['data'][0].dongia;
     })
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose=true;
     dialogConfig.autoFocus =true;
-    dialogConfig.width="30%";
+    dialogConfig.width="500px";
     this.dialog.open(EditProductComponent,dialogConfig);
   }
 

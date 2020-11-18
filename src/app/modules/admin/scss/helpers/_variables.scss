@@ -1,7 +1,11 @@
 $fontsize:13px;
-$primary-font:'PT Sans', sans-serif;
-$title-font:'Source Sans Pro', sans-serif;
-$text-font: 'Yeseva One', cursive;
+// $primary-font:'PT Sans', sans-serif;
+// $title-font:'Source Sans Pro', sans-serif;
+// $text-font: 'Yeseva One', cursive;
+
+$primary-font:'Open Sans', sans-serif;
+$title-font:'Open Sans', sans-serif;
+$text-font: 'Open Sans', sans-serif;
 //Breakpoint
 $fold:280px;
 $xsm:420px;
@@ -14,14 +18,25 @@ $xl:1200px;
 
 //Owl Carousel
 //font-family
-$primaryfont: 'Roboto Slab', serif;
-$titlefont:'Abril Fatface',
-cursive;
-$yesevafont: 'Yeseva One', cursive;
-$boldfont: 'Josefin Sans', sans-serif;
+// $primaryfont: 'Roboto Slab', serif;
+// $titlefont:'Abril Fatface',
+// cursive;
+// $yesevafont: 'Yeseva One', cursive;
+// $boldfont: 'Josefin Sans', sans-serif;
+// $opensanfont: 'Open Sans', sans-serif;
+// $addressfont: 'Comfortaa', cursive;
+// $addressfont2: 'Raleway', sans-serif;
+
+$primaryfont: 'Open Sans', sans-serif;
+$titlefont:'Open Sans', sans-serif;
+$yesevafont: 'Open Sans', sans-serif;
+$boldfont: 'Open Sans', sans-serif;
 $opensanfont: 'Open Sans', sans-serif;
-$addressfont: 'Comfortaa', cursive;
-$addressfont2: 'Raleway', sans-serif;
+$addressfont: 'Open Sans', sans-serif;
+$addressfont2: 'Open Sans', sans-serif;
+
+
+
 //TABLE
 $spacer: 1rem !default;
 $spacers: () !default;

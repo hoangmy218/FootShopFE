@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'hammerjs';
-
+import * as moment from 'moment';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CartItem } from 'src/app/models/cart-item-model';
 import {ProductColor} from '../../../../models/product-color-model';
@@ -11,6 +11,9 @@ import { Product } from 'src/app/models/product-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import * as $ from 'jquery';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ProductImageComponent } from './product-image/product-image.component';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -18,10 +21,11 @@ import * as $ from 'jquery';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  productImages = []
+  productImages = [];
   // proImage : any = { url: ""};
   selectedImage: string;
   imageSize = 430;
+  imageHeight = 600;
   qty : number = 1;  
  
   CommentForm : FormGroup;
@@ -45,6 +49,9 @@ export class ProductDetailsComponent implements OnInit {
 
   productDetailsID: string = '';
   proID: string ='';
+  proColorID :string = '';
+  today : Date = new Date();
+
 
   constructor(
     private __router: Router,
@@ -54,7 +61,8 @@ export class ProductDetailsComponent implements OnInit {
     private service: CustomerService,
     private router: Router,
     private snackBar: MatSnackBar,
-    public _authService: AuthService
+    public _authService: AuthService,
+    private dialog:MatDialog,
   ) {
     // this.refreshProductDetail();
    }
@@ -75,7 +83,8 @@ export class ProductDetailsComponent implements OnInit {
       console.log('params', routeParams)
       this.refreshProductDetail(routeParams.pro_id, routeParams.clr_id);
       
-    })
+    });
+
     setInterval(()=>{
       $('.details__top-color-img').each(function(){
         var id = $(this).attr('id');
@@ -90,6 +99,7 @@ export class ProductDetailsComponent implements OnInit {
 
       })
     }, 200)
+
     this.refreshProductDetail(ProductID, ColorID);
     // this.loadUserDetail(routeParams.id);
  
@@ -117,6 +127,7 @@ export class ProductDetailsComponent implements OnInit {
       this.product = res['data'];
       this.imageList = res['hinh'];
       this.productImages = [];
+      // this.threeSixtyImages  = [];
       console.log('img', this.imageList);
       this.imageList.forEach(element => {
         let proImage : any = {};
@@ -127,6 +138,7 @@ export class ProductDetailsComponent implements OnInit {
       this.sizeList = res['list_size'];
       this.qty = res['list_size'][0].soluong;
       this.productcolor = res['procolor'];
+      this.proColorID = res['procolor']['_id'];
       this.CartForm.controls['sku'].setValue(this.sizeList[0]['_id']);
       console.log('id', this.sizeList[0]['_id'] )
       this.productDetailsID = this.sizeList[0]['_id'];
@@ -178,6 +190,13 @@ export class ProductDetailsComponent implements OnInit {
       ])),
       sku: new FormControl('')
     })
+  }
+
+  isExpirationExpired(discount) {
+    // your date logic here, recommendnpm install moment --save;
+    return ( moment(discount['ngaybd']).isBefore(moment(this.today)) 
+            && moment(this.today).isBefore(moment(discount['ngaykt']))
+            && discount['trangthai']==true) ;
   }
 
   onComment(){
@@ -259,6 +278,17 @@ export class ProductDetailsComponent implements OnInit {
       this.qty =  res['data'].soluong;
       // console.log('so qty', this.qty)
     })
+  }
+  
+  onImage(){
+    console.log(this.proColorID)
+    this.service.proColorID = this.proColorID;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width = "50%";
+    this.dialog.open(ProductImageComponent, dialogConfig);
+  
   }
 
 }

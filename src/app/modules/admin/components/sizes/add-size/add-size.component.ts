@@ -32,8 +32,8 @@ export class AddSizeComponent implements OnInit {
           verticalPosition:'bottom'
         })
         if (res['success']){
-          this.dialogbox.close();
-          window.location.replace('/admin/size');
+          this.onClose();
+         
         }
       })
   }

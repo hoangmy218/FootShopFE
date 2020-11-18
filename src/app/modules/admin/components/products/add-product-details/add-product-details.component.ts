@@ -262,14 +262,14 @@ export class AddProductDetailsComponent implements OnInit {
 
   refreshSizeList(){
     this.service.getSizeList().subscribe(res=>{
-      this.sizeList = res['data'];
+      this.sizeList = res['data'].sort((a, b) => (a?.ten ?? "").localeCompare(b?.ten ?? ""));
       console.log(this.sizeList)
     })
   }
 
   refreshColorList(){
     this.service.getColorEProduct(this.productID).subscribe(res=>{
-      this.colorList = res['data'];
+      this.colorList = res['data'].sort((a, b) => (a?.ten ?? "").localeCompare(b?.ten ?? ""));
       // console.log(this.colorList)
     })
   }

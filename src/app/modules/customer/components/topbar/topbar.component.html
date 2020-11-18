@@ -50,22 +50,22 @@
                         <span id="icon-dropdown" class="icon-dropdown"><i class="fas fa-chevron-down"></i></span>
                         <ul class="sub-menu" id="sub-menu">
                             <li class="sub-menu-item">
-                                <a href="#" class="sub-link">Tài khoản</a>
+                                <a routerLink="/profile" class="sub-link">Tài khoản</a>
                             </li>
                             <li class="sub-menu-item">
                                 <a routerLink="/orders" 
-                                *ngIf="service.isUser()"
+                                *ngIf="isUser()"
                                 class="sub-link">Đơn hàng</a>
                             </li>
                             <li class="sub-menu-item">
                                 <a routerLink="/address" 
-                                *ngIf="service.isUser()"
+                                *ngIf="isUser()"
                                 class="sub-link">Địa chỉ</a>
                             </li>
                            
                             <li class="sub-menu-item">
                                 <a routerLink="/admin/dashboard" 
-                                *ngIf="service.isAdmin()"
+                                *ngIf="isAdmin()"
                                 class="sub-link">Dashboard</a>
                             </li>
                             <li class="sub-menu-item">

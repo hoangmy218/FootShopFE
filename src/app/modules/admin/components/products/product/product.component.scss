@@ -11,3 +11,11 @@
 .text-center{
     text-align: center;
 }
+
+.discription{
+    display: inline;
+    width: 2rem!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+    white-space: nowrap!important;
+}

@@ -37,6 +37,7 @@ export class AddStockComponent implements OnInit {
   stockItem: StockItem = new StockItem();
   list: any;
   sid: number = 0;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -85,28 +86,29 @@ export class AddStockComponent implements OnInit {
 
   refreshProductList(){
     this.service.getProductList().subscribe(res=>{
-      this.productList = res['data'];
+      // this.productList = res['data'].sort((a,b) => a.ten.rendered.localeCompare(b.ten.rendered));
+      this.productList = res['data'].sort((a, b) => (a?.ten ?? "").localeCompare(b?.ten ?? ""));
       // console.log(this.productList)
     })
   }
 
   refreshSizeList(){
     this.service.getSizeList().subscribe(res=>{
-      this.sizeList = res['data'];
+      this.sizeList = res['data'].sort((a, b) => (a?.ten ?? "").localeCompare(b?.ten ?? ""));
       // console.log(this.sizeList)
     })
   }
 
   refreshColorList(){
     this.service.getColorList().subscribe(res=>{
-      this.colorList = res['data'];
+      this.colorList = res['data'].sort((a, b) => (a?.ten ?? "").localeCompare(b?.ten ?? ""));
       // console.log(this.colorList)
     })
   }
 
   refreshSupplierList(){
     this.service.getSupplierList().subscribe(res=>{
-      this.supplierList = res['data'];
+      this.supplierList = res['data'].sort((a, b) => (a?.ten ?? "").localeCompare(b?.ten ?? ""));
 
     })
   }

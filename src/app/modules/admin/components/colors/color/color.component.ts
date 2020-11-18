@@ -54,7 +54,7 @@ export class ColorComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus=true;
-    dialogConfig.width = "30%";
+    dialogConfig.width = "500px";
     this.dialog.open(AddColorComponent, dialogConfig);
   }
 
@@ -63,7 +63,7 @@ export class ColorComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose=true;
     dialogConfig.autoFocus =true;
-    dialogConfig.width="30%";
+    dialogConfig.width="500px";
     this.dialog.open(EditColorComponent,dialogConfig);
   }
 

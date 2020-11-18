@@ -94,8 +94,8 @@
     }
 
     &__top{
-        padding-left: 10rem;
-        padding-right: 10rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
         margin-top: 2rem;
         text-align: left;
         @include grid($columns:repeat(1,1fr));

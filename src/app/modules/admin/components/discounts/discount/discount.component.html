@@ -1,0 +1,98 @@
+<div class="grid-container">
+    <div class="dashboard-card">
+     <h1 class="mat-h1">Khuyến mãi</h1>
+     
+     <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)"
+        placeholder="Lọc">
+      </mat-form-field>
+      <button class="mt-2 btn-add" mat-raised-button routerLink="/admin/discount/add"
+      color="primary">
+      Thêm khuyến mãi
+    </button>
+
+
+      <div class="mat-elevation-z8" style="overflow: auto;">
+        <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <!-- Id Column -->
+            <!-- <ng-container matColumnDef="_id">
+                <mat-header-cell  *matHeaderCellDef mat-sort-header>MÃ</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="break">{{element._id}}</mat-cell>
+            </ng-container> -->
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="chude">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>CHỦ ĐỀ</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.chude}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="hinh">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>HÌNH ẢNH</mat-header-cell>
+            <mat-cell *matCellDef="let element"><img src="../../../../../../assets/img/home_slider.png" class="img"></mat-cell>
+          </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="mota">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>MÔ TẢ</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="discription">{{element.mota}}</mat-cell>
+            </ng-container>
+
+                    <!-- Name Column -->
+        <ng-container matColumnDef="ngaybd">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>NGÀY BẮT ĐẦU</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ngaybd | date:'d/M/yyyy, h:mm a' }}</mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="ngaykt">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>NGÀY KẾT THÚC</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ngaykt | date:'d/M/yyyy, h:mm a' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ngaydat">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>GIẢM GIÁ</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.giamgia | number }}%</mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="trangthai">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>TRẠNG THÁI</mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element">{{element.trangthai}}</mat-cell> -->
+            <mat-cell  *matCellDef=" let row" >
+                  <span class="status complete" *ngIf = "row.trangthai == true"
+                  (click)="OnStage(row._id, row.trangthai)"
+                  >Kích hoạt</span>
+                  <span class="status cancel" *ngIf = "row.trangthai == false"
+                  (click)="OnStage(row._id, row.trangthai)"
+                  >Vô hiệu hóa</span>
+                </mat-cell>
+            </ng-container>
+
+          <ng-container matColumnDef="Options">
+            <mat-header-cell *matHeaderCellDef>THAO TÁC</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button routerLink="/admin/discount/edit/{{row._id}}">
+                    <mat-icon>launch</mat-icon>
+                </button>
+                
+                <button mat-icon-button color="warn" (click)="onDelete(row._id)">
+                    <mat-icon>delete_outline</mat-icon>
+                </button>
+                <button mat-icon-button color="info" routerLink="/admin/discount/details/{{row._id}}">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+              </mat-cell>
+          </ng-container>
+  
+
+        </mat-table>
+  
+        <mat-paginator 
+            [pageSizeOptions]="[10, 15, 20]" >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  
+  

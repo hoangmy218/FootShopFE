@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'src/app/models/address-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import * as $ from 'jquery';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-address',
@@ -17,7 +19,8 @@ export class EditAddressComponent implements OnInit {
     private fb: FormBuilder,
     private _auth: AuthService,
     private actRoute: ActivatedRoute,
-    private service: CustomerService
+    private service: CustomerService,
+    private snackBar: MatSnackBar
   ) { }
   AddressID: string = '';
 
@@ -25,8 +28,10 @@ export class EditAddressComponent implements OnInit {
     
     this.AddressID = this.actRoute.snapshot.params['add_id'];
     console.log(this.AddressID)
+    this.resetAddressForm();
     this.refreshAddress();
     // this.resetAddressForm();
+    $(window).scrollTop(0);
   }
 
   AddressForm : FormGroup;
@@ -51,7 +56,19 @@ export class EditAddressComponent implements OnInit {
   }
 
   onAddress(){
-    this._router.navigate(['/address'])
+    let address : any ={};
+    address._id = this.AddressID;
+    address.ten = this.AddressForm.controls['ten'].value;
+    address.dienthoai = this.AddressForm.controls['dienthoai'].value;
+    address.diachi = this.AddressForm.controls['diachi'].value;
+    this.service.updateAddress(address).subscribe(res=>{
+      this.snackBar.open(res['message'].toString(), '', {
+        duration: 3000,
+        verticalPosition:'bottom'
+      })
+      this._router.navigate(['/address'])
+    })
+    
   }
 
   refreshAddress(){

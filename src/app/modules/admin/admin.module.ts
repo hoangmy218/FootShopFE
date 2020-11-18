@@ -57,6 +57,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { CommentComponent } from './components/comment/comment.component';
 import { ProductChartComponent } from './components/charts/product-chart/product-chart.component';
 import { RevenueChartComponent } from './components/charts/revenue-chart/revenue-chart.component';
+import { DiscountComponent } from './components/discounts/discount/discount.component';
+import { AddDiscountComponent } from './components/discounts/add-discount/add-discount.component';
+import { EditDiscountComponent } from './components/discounts/edit-discount/edit-discount.component';
+import { DetailsDiscountComponent } from './components/discounts/details-discount/details-discount.component';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -92,7 +98,12 @@ import { RevenueChartComponent } from './components/charts/revenue-chart/revenue
     ProductDetailComponent,
     CommentComponent,
     ProductChartComponent,
-    RevenueChartComponent
+    RevenueChartComponent,
+    EditSupplierComponent,
+    DiscountComponent,
+    AddDiscountComponent,
+    EditDiscountComponent,
+    DetailsDiscountComponent
 
   ],
   imports: [
@@ -122,7 +133,9 @@ import { RevenueChartComponent } from './components/charts/revenue-chart/revenue
     MatTabsModule,
     MatCheckboxModule,
     ChartsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class AdminModule { }

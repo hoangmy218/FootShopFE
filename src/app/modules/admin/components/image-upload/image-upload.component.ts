@@ -35,6 +35,7 @@ export class ImageUploadComponent implements OnInit {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     myFormData.append('file', this.filedata);
+    console.log('file', this.filedata )
     this.http.post(this.APIUrl + "/hinhanh/upload", myFormData, {headers: headers})
     .subscribe(data => {
       console.log(data['hinhanh']);

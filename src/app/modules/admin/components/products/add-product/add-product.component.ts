@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -33,7 +33,7 @@ export class AddProductComponent implements OnInit {
   str_gia : string = '';
   price: number = 0;
   token : string = localStorage.getItem('token');
-  headers :  {}= { 'Authorization': 'Bearer '+ this.token };
+  headers = new HttpHeaders().set('Authorization', this.token);
 
   onSubmit(form :NgForm){
     console.log(form.value);
@@ -41,6 +41,14 @@ export class AddProductComponent implements OnInit {
       {
         
         console.log(res)
+        if (res['error']){
+          this.snackBar.open(res['error']['errors'][0]['msg'].toString(), '', {
+            duration: 3000,
+            verticalPosition:'bottom'
+          })
+        }else{
+
+        
         this.product_id = res['data']._id;
         this.snackBar.open(res['message'].toString(), '', {
           duration: 3000,
@@ -65,6 +73,7 @@ export class AddProductComponent implements OnInit {
           }, error=>{
             console.log(error)
           })
+        }
           
       })
     

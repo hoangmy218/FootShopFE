@@ -1,0 +1,131 @@
+<div class="grid-container">
+    <section class="productattr">
+        <div class="container">
+            <div class="dashboard-card">
+                <h1 class="mat-h1">Thêm khuyến mãi</h1>
+            </div>
+            <mat-card>
+                <div class="discountform">
+                    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Chủ đề</mat-label>
+                            <input matInput required minlength="2" type="text" class="form-control"
+                            name="chude" #chude="ngModel" [(ngModel)]="service.formDiscount.chude">
+                        </mat-form-field>
+                
+                        <div class="text-left text-danger"
+                            *ngIf="chude.invalid && chude.touched">
+                            Nhập chủ đề khuyến mãi.
+                        </div>
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Giảm giá</mat-label>
+                            <input matInput required min="1" max="100" type="number" class="form-control"
+                            name="giamgia" #giamgia="ngModel" [(ngModel)]="service.formDiscount.giamgia">
+                        </mat-form-field>
+                
+                        <div class="text-left text-danger"
+                            *ngIf="giamgia.invalid && giamgia.touched">
+                            Nhập phần trăm giảm giá.
+                        </div>
+
+                        <div class="image">
+                            <span>Hình ảnh</span>
+                            <!-- <input matInput required minlength="2" type="text" class="form-control"
+                            name="ten" #ten="ngModel" [(ngModel)]="service.formDiscount.ten"> -->
+                            <input type="file" name="photo" class="choosefile"
+                                accept="image/*" #photo (change)="processFile(photo)"> 
+                            <!-- <app-image-upload></app-image-upload> -->
+                        </div>
+                        <img [(src)]="service.formDiscount.hinh" alt="">
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Mô tả</mat-label>
+                            <textarea matInput class="form-control" minlength="10" class="form-control"
+                            name="mota" required
+                            #mota="ngModel"
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="2"
+                            cdkAutosizeMaxRows="5"
+                            [(ngModel)]="service.formDiscount.mota"></textarea>
+                        </mat-form-field>
+                    
+                        <div class="text-left text-danger"
+                            *ngIf="mota.invalid && mota.touched">
+                            Nhập mô tả khuyến mãi.
+                        </div>
+
+                        <!-- <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Ngày bắt đầu</mat-label>
+                            <input matInput required  class="form-control"
+                             [min]="minDate" type="date"
+                            name="ngaybd" #ngaybd="ngModel" [(ngModel)]="service.formDiscount.ngaybd">
+                        </mat-form-field> -->
+
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Ngày bắt đầu</mat-label>
+                            <input matInput [min]="minDate" [matDatepicker]="ngaybd" 
+                            [(ngModel)]="service.formDiscount.ngaybd" name="ngaybd"
+                            (dateInput)="addEventBD('input', $event)" (dateChange)="addEventBD('change', $event)">
+                            <mat-datepicker-toggle matSuffix [for]="ngaybd"></mat-datepicker-toggle>
+                            <mat-datepicker #ngaybd></mat-datepicker>
+                          </mat-form-field>
+                
+                        <div class="text-left text-danger"
+                            *ngIf="ngaybd.invalid && ngaybd.touched">
+                            Nhập ngày bắt đầu.
+                        </div>
+                        <div class="text-left text-danger"
+                            *ngIf="datebd == false">
+                            Ngày bắt đầu phải trước ngày kết thúc.
+                        </div>
+
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Ngày kết thúc</mat-label>
+                            <input matInput [min]="minDate"  [matDatepicker]="ngaykt" 
+                            name="ngaykt"  
+                            [(ngModel)]="service.formDiscount.ngaykt"
+                            (dateInput)="addEventKT('input', $event)" (dateChange)="addEventKT('change', $event)">
+                            <mat-datepicker-toggle matSuffix [for]="ngaykt" ></mat-datepicker-toggle>
+                            <mat-datepicker #ngaykt></mat-datepicker>
+                          </mat-form-field>
+                
+                        <div class="text-left text-danger"
+                            *ngIf="ngaykt.invalid && ngaykt.touched">
+                            Nhập ngày kết thúc
+                        </div>
+                        <div class="text-left text-danger"
+                            *ngIf="datekt == false">
+                            Ngày kết thúc phải sau ngày bắt đầu.
+                        </div>
+            
+                        <mat-form-field appearance="fill"  class="example-full-width">
+                            <mat-label>Sản phẩm</mat-label>
+                            <mat-select name="sanpham_id"
+                            #sanpham_id="ngModel" required [compareWith]="compareProducts"
+                            [(ngModel)]="service.formDiscount.sanpham_id" multiple>
+                            <mat-option *ngFor="let dl of proListFull | keyvalue" [value]="dl.key">
+                                {{dl.value}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="text-left text-danger" 
+                            *ngIf="sanpham_id.invalid && sanpham_id.touched">
+                            Chọn kích cỡ.
+                        </div>
+            
+                    
+            
+                        <button class="mt-4" mat-raised-button 
+                        color="primary" type="submit"
+                        [disabled]="form.invalid">Cập nhật</button>
+                    </form>
+                </div>
+            </mat-card>
+            
+        </div>
+    </section>
+    
+    
+</div>

@@ -1,0 +1,131 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+
+.grid-container {
+    padding: 20px;
+  }
+
+.productattr{
+    .container{
+       
+        @include setMaxwidth($lg){
+            padding:0 2rem;
+            max-width: none;
+        }
+        @include setMaxwidth($md){
+            padding:0;
+        }
+       
+    }
+}
+  
+.discountform{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+mat-form-field{
+    margin-top: 1rem;
+}
+
+  
+  .example-form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 50%;
+    }
+    
+    .example-full-width {
+        display: block;
+      width: 100%;
+    }
+  
+    .form-control{
+        box-shadow: none!important;
+        display: block!important;
+    }
+    .text-danger{
+        color: red;
+    }
+  .title{
+      display: flex;
+      justify-content: space-between;
+      span{
+         font-size: 1.5rem;
+         font-weight: 800; 
+         font-family: $title-font;
+      }
+  }
+
+  .inputnumber{
+    max-width: 100px;
+}
+
+//Upload images
+
+.image-wrapper li {
+    list-style-type: none;
+    width: 150px;
+    // height: 150px;
+    margin: 10px;
+    float: left;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: none;
+    background: #fff;
+    margin-bottom: 25px;
+}
+.browse-btn {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0.5rem;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border:1px solid #ccc;
+    text-align: center;
+}
+.browse-image {
+    position: relative;
+    top: 25%;
+}
+.product-image{
+    width:100%;
+    height:125px;
+}
+a.delete-btn {
+    color: #f00;
+    cursor: pointer;
+}
+#cameraImg {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+    z-index: 3;
+}
+.error {
+    color: #ff0000;
+}
+
+//Size Checkbox
+.example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -26,7 +26,7 @@ export class EditProductComponent implements OnInit {
   public brandList: { [id: string]: any; } = {};    
   public cateList: { [id: string]: any; } = {};  
   token : string = localStorage.getItem('token');
-  headers :  {}= { 'Authorization': 'Bearer '+ this.token };
+  headers = new HttpHeaders().set('Authorization', this.token);
   readonly APIUrl = environment.admin_apiUrl;
   stockID: string="";
 
@@ -83,7 +83,8 @@ export class EditProductComponent implements OnInit {
           .subscribe(data=>{
             console.log(data)
             if (data['success']){
-                this.dialogbox.close();
+                // this.dialogbox.close();
+                this.onClose();
                 // window.location.replace('/admin/product');
               }
           }, error=>{

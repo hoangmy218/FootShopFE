@@ -1,3 +1,8 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+
 .grid-container {
     margin: 20px;
   }
@@ -18,3 +23,28 @@
     word-wrap: break-word!important;      /* IE */
  }
   
+ 
+.status{
+    color: white;
+    background-color: $discountbg;
+    border-radius: 15px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.complete{
+    background-color: $success;
+}
+.confirm{
+    background-color: $info;
+}
+.cancel{
+    background-color: $error;
+}
+.ship{
+    background-color: $warning;
+    color: black!important;
+}
+.process{
+    background-color: $disable;
+    color: black!important;
+}

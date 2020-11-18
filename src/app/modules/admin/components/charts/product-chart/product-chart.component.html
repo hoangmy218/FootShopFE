@@ -1,7 +1,7 @@
 <div class="grid-container">
     <div class="dashboard-card">
      <h1 class="mat-h1">Thống kê sản phẩm</h1>
-     <div class="card">
+     <!-- <div class="card">
          <mat-card class="customers">
              <div class="dashboard">
                  <div class="dashboard__item ">
@@ -41,10 +41,29 @@
                 </div>
             </div>
         </mat-card>
+     </div> -->
+     <div class="graph">
+      <mat-card>
+        <div class="baseChart">
+            <div class="chart-title">Thống kê sản phẩm nhập và bán</div>
+            <div style="width: 100%;">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartData"
+                    [labels]="chart_Labels"
+                    [colors]="barChartColors"
+                    [options]="chartOptions"
+                    [legend]="true"
+                    (chartClick)="onChartClick($event)">
+                </canvas>
+              </div>
+         </div>
+     </mat-card>
      </div>
      <div class="chart">
          
-         <mat-card>
+         <!-- <mat-card>
             <div class="baseChart">
                 <div class="chart-title">Thống kê abc</div>
                 <div style="width: 100%;">
@@ -61,24 +80,8 @@
                     </canvas>
                   </div>
              </div>
-         </mat-card>
-         <mat-card>
-            <div class="baseChart">
-                <div class="chart-title">Thống kê abc</div>
-                <div style="width: 100%;">
-                    <canvas
-                        baseChart
-                        [chartType]="'bar'"
-                        [datasets]="chartData"
-                        [labels]="chart_Labels"
-                        [colors]="barChartColors"
-                        [options]="chartOptions"
-                        [legend]="true"
-                        (chartClick)="onChartClick($event)">
-                    </canvas>
-                  </div>
-             </div>
-         </mat-card>
+         </mat-card> -->
+        
          
          <mat-card>
             <div class="mat-elevation-z8" style="overflow: auto;">

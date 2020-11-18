@@ -1,0 +1,166 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+
+
+.title_page{
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
+    a{
+       @extend %title-page-a;
+    }
+
+}
+
+//CARD
+
+.address{
+   
+    padding-top: 1rem;
+
+    color:$greyx1;
+    padding:4rem 2rem;
+    text-align: center;
+    @include setMaxwidth($sm540){
+        padding:4rem 2rem;
+    }
+    .container{
+        @include setMaxwidth($lg){
+            padding:0;
+            max-width: none;
+        }
+    }
+
+    &__top{
+        padding-left: 10rem;
+        padding-right: 10rem;
+        margin-top: 2rem;
+        text-align: left;
+        &-title{
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            border-bottom: 1px solid $grey0;
+            margin-bottom: 1rem;
+            .btn-add{
+                width: 100%;
+                height: 50% ;
+                padding: 0;
+            }
+        }
+        &-text{
+            @extend %title-list;
+            text-align: left;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: black;
+        }
+        
+        
+        
+        &-item{
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            //@include grid($columns:repeat(2,1fr));
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid $grey0;
+            @include setMaxwidth($xl){
+                margin-bottom:5rem;
+            }
+            @include setMaxwidth($md){
+                @include grid($columns:repeat(2,1fr),$rowGap:1rem);
+            }
+            
+            &-content{
+                display: grid;
+                grid-template-columns: 1fr 4fr;
+                //@include grid($columns:repeat(1,1fr));
+                row-gap: 0.5rem;
+            }
+            &-label{
+                text-align: right;
+            }
+            &-text{
+                color: $greyx4;
+                padding-left: 1rem;
+                text-align: left;
+            }
+            &-options{
+                
+                .btn-edit{
+                    float: left;
+                    background: linear-gradient(to left, $orange 50%, $orangesd 50%)right;
+                    background-size: 200%; 
+                    transition: .5s ease-out;
+                    &:hover {
+                        background-position: left;
+                    }  
+                    &:focus{
+                        border: none !important;
+                    }
+                }
+                .btn-delete{
+                    float: right;
+                    background: linear-gradient(to left, $red 50%, $redsd 50%)right;
+                    background-size: 200%; 
+                    transition: .5s ease-out;
+                    &:hover {
+                        background-position: left;
+                    } 
+                    &:focus{
+                        outline: none !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+button{
+    margin-top: 1rem;
+    color:white;
+    // width: 30%;
+    // height: 50%;
+    font-family: $opensanfont;
+    font-weight: 800;
+    // chuyen mau tu trai sang phai
+    background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+    border: snow 2px;
+    border-radius: 2px;
+    border: none !important;
+    padding:1rem 1rem;
+    font-size: 1.5rem;
+    background-size: 200%;
+    
+    transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }
+    &:focus{
+        border: none !important;
+    }
+}
+.btn-add{
+    float: left;
+    background: linear-gradient(to left, $orange 50%, $orangesd 50%)right;
+    background-size: 200%; 
+    transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }  
+    &:focus{
+        border: none !important;
+    }
+}
+
+.btn-delete{
+    font-weight: 100 !important;
+    padding: 0.5rem;
+}
+.btn-edit{
+    font-weight: 100 !important;
+    padding: 0.5rem;
+}

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-getstarted',
@@ -20,6 +21,7 @@ export class GetstartedComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetGetStartedForm();
+    $(window).scrollTop(0);
   }
 
   GetStartedForm: FormGroup;
@@ -60,7 +62,7 @@ export class GetstartedComponent implements OnInit {
 
   onGetStarted(){
     var userid : string ='';
-    this._auth.registerApi(this.GetStartedForm.controls['email'].value, this.GetStartedForm.controls['email'].value).subscribe(res=>{
+    this._auth.registerApi(this.GetStartedForm.controls['email'].value, this.GetStartedForm.controls['name'].value).subscribe(res=>{
       // console.log(res);
       if (res['success']==true){
         userid = res['data']._id;

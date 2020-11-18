@@ -22,8 +22,9 @@ export class CustomerService {
   readonly pb_APIUrl = environment.public_apiUrl;
 
   readonly auth_APIUrl = environment.auth_apiUrl;
+  proColorID: string ='';
 
-  token : string = localStorage.getItem('token');
+  token : string = localStorage.getItem('token')+'';
   // headers: {}={'Authorization': 'Bearer '+this.token};
   headers = new HttpHeaders().set('Authorization', this.token);
   public formOrder : OrderForm = new OrderForm();
@@ -156,6 +157,10 @@ export class CustomerService {
     return this.http.get(this.p_APIUrl + "/hinhanh/get/"+image_id);
   }
 
+  getImageDegree(proColorID): Observable<any>{
+    return this.http.get(this.p_APIUrl + "/list-image/"+proColorID);
+  }
+
   addComment(product_id: string, comment: any){
     return this.http.post(this.cus_APIUrl+"/binhluan/"+product_id+"/create", comment , {headers :this.headers});
   }
@@ -163,6 +168,16 @@ export class CustomerService {
   getComment(product_id: string){
     return this.http.get(this.cus_APIUrl+"/binhluan/"+product_id+"/list" , {headers :this.headers});
   }
+
+  getProfile(): Observable<any>{
+    return this.http.get<any>(this.auth_APIUrl+"/profile/me" , {headers :this.headers});
+  }
+
+  updateProfile(profile){
+    return this.http.post(this.auth_APIUrl+"/update" , profile, {headers :this.headers});
+  }
+
+  
 
 
 }

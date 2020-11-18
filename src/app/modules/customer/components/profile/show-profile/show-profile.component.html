@@ -1,0 +1,38 @@
+<div id="address">
+    <div class="title_page">
+        <a routerLink="/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        Tài khoản
+    </div>
+    <section class="address">
+       
+
+        <div class="container">
+            <div class="address__top">
+                    <div class="address__top-title">
+                        <span class="address__top-text">Thông tin tài khoản</span> 
+                        <button class="btn-add" (click)="onEdit()">Chỉnh sửa</button>
+                    </div>
+                    <div class="address__top-item" 
+                        >
+                        <div class="address__top-item-content">    
+                            <span class="address__top-item-label">Họ và tên</span>
+                            <span class="address__top-item-text">{{profile['ten']}}</span>
+                            <span class="address__top-item-label">Email</span>
+                            <span class="address__top-item-text">{{profile['email']}}</span>
+                            <span class="address__top-item-label">Số điện thoại</span>
+                            <span class="address__top-item-text">{{profile['dienthoai']}}</span>
+                            <span class="address__top-item-label">Giới tính</span>
+                            <span class="address__top-item-text">
+                                <span *ngIf="profile['gioitinh']== true">Nữ</span>
+                                <span *ngIf="profile['gioitinh']== false">Nam</span>
+                            </span>
+                            <span class="address__top-item-label">Ngày sinh</span>
+                            <span class="address__top-item-text">{{profile['ngaysinh'] | date:'d/M/yyyy'}}</span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+</div>
+

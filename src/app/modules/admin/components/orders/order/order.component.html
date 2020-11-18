@@ -42,15 +42,14 @@
             <!-- <mat-cell *matCellDef="let element">{{element.trangthai}}</mat-cell> -->
             <mat-cell  *matCellDef=" let row" >
                 <div *ngFor="let dl of stageList | keyvalue">   
-                    <div *ngIf="dl.key == row.trangthai" >
-                      <mat-chip-list>
-                        <mat-chip (click)="OnStage(row._id, row.trangthai)"
-                          color="{{  row.trangthai == '1' ? 'primary' : (  row.trangthai == '2' ? 'accent' : 'warn' ) }}" selected>
-                          {{dl.value}}
-                        </mat-chip>
-                      </mat-chip-list>
-                       <!-- <button mat-button >{{dl.value}} </button> -->
-                    </div>
+                  <span class="status" 
+                  [ngClass]="row.trangthai == '1' ? 'process' : 
+                  (  row.trangthai == '2' ? 'confirm' : 
+                  (  row.trangthai == '3' ? 'ship' : 
+                  (  row.trangthai == '4' ? 'complete' : 'cancel'  ) ))"
+                  *ngIf="dl.key == row.trangthai"
+                  (click)="OnStage(row._id, row.trangthai)"
+                  >{{dl.value}}</span>
                 </div>
                 </mat-cell>
             </ng-container>
@@ -58,7 +57,7 @@
                     <!-- Name Column -->
         <ng-container matColumnDef="tongtien">
             <mat-header-cell *matHeaderCellDef mat-sort-header>TỔNG TIỀN</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.tongtien}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element.tongtien | currency:'VND'}}</mat-cell>
             </ng-container>
  
   
@@ -67,9 +66,9 @@
             <mat-cell *matCellDef="let row">
                 
             
-                <button mat-icon-button color="warn" (click)="onDelete(row._id)">
+                <!-- <button mat-icon-button color="warn" (click)="onDelete(row._id)">
                     <mat-icon>delete_outline</mat-icon>
-                </button>
+                </button> -->
                 <button mat-icon-button color="info" routerLink="/admin/order/{{row._id}}">
                     <i class="fas fa-info-circle"></i>
                 </button>

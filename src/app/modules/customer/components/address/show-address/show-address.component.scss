@@ -122,10 +122,10 @@
 button{
     margin-top: 1rem;
     color:white;
-    width: 30%;
-    height: 50%;
-    font-family: $boldfont;
-    font-weight: 200;
+    // width: 30%;
+    // height: 50%;
+    font-family: $opensanfont;
+    font-weight: 800;
     // chuyen mau tu trai sang phai
     background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
     border: snow 2px;
@@ -142,4 +142,25 @@ button{
     &:focus{
         border: none !important;
     }
+}
+.btn-add{
+    float: left;
+    background: linear-gradient(to left, $green 50%, $greensd 50%)right;
+    background-size: 200%; 
+    transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }  
+    &:focus{
+        border: none !important;
+    }
+}
+
+.btn-delete{
+    font-weight: 100 !important;
+    padding: 0.5rem;
+}
+.btn-edit{
+    font-weight: 100 !important;
+    padding: 0.5rem;
 }

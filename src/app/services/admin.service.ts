@@ -10,7 +10,7 @@ import { Size } from '../models/size-model';
 import { Order } from '../models/order-model';
 import {Stock} from '../models/stock-model';
 import { ProductDetails} from '../models/product-details-model';
-import {Supplier } from '../models/supplier-model';
+import { Supplier } from '../models/supplier-model';
 import { StockItem } from '../models/stock-item.model';
 
 
@@ -25,6 +25,8 @@ export class AdminService {
   formSize: Size;
   formColor: Color;
   formProductDetail: any;
+  formDiscount: any;
+  formSupplier: Supplier;
   
   readonly APIUrl = environment.admin_apiUrl;
 
@@ -129,7 +131,36 @@ export class AdminService {
   getProductDetail(product_id: string){
     return this.http.get(this.APIUrl + "/sanpham/get/"+product_id,  {headers :this.headers});
   }
+  
+    //PRODUCT
+    // formDiscount: Discount;
+    getDiscountList(): Observable<any[]>{
+      return this.http.get<any[]>(this.APIUrl + "/khuyenmai/list", {headers :this.headers});
+    }
+  
+    addDiscount(discount){
+      return this.http.post(this.APIUrl + "/khuyenmai/create", discount, {headers :this.headers});
+    }
+  
+    deleteDiscount(discount_id: number){
+      return this.http.delete(this.APIUrl+"/khuyenmai/del/"+ discount_id, {headers :this.headers});
+    }
+  
+    updateDiscount(discount){
+      return this.http.put(this.APIUrl + "/khuyenmai/update/" + discount._id, discount,  {headers :this.headers});
+    }
+  
+    getDiscountDetail(discount_id: string){
+      return this.http.get(this.APIUrl + "/khuyenmai/get/"+discount_id,  {headers :this.headers});
+    }
 
+    activeDiscount(discount_id: number){
+      return this.http.put(this.APIUrl + "/khuyenmai/" + discount_id + "/active", null,  {headers :this.headers});
+    }
+
+    deactiveDiscount(discount_id: number){
+      return this.http.put(this.APIUrl + "/khuyenmai/" + discount_id+"/deactive", null,  {headers :this.headers});
+    }
 
   //PRODUCT COLOR
   addProductColor(productcolor: any){
@@ -274,13 +305,13 @@ export class AdminService {
 
 
    //SUPPLIER
-  formSupplier: Supplier;
+
   getSupplierList(): Observable<Supplier[]>{
     return this.http.get<Supplier[]>(this.APIUrl + "/nhacungcap/list", {headers :this.headers});
   }
 
-  addSupplier(stock: Supplier){
-    return this.http.post(this.APIUrl + "/nhacungcap/create", Supplier, {headers :this.headers});
+  addSupplier(sup: Supplier){
+    return this.http.post(this.APIUrl + "/nhacungcap/create", sup, {headers :this.headers});
   }
 
   deleteSupplier(Supplier_id: number){

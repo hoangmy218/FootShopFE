@@ -1,0 +1,83 @@
+<div id="getstarted">
+    <div class="title_page" >
+        <a routerLink="/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        <a routerLink="/profile"> Tài khoản</a>
+        <i class="fas fa-chevron-right"></i>
+        Chỉnh sửa
+    </div>
+</div>
+<section class="getstarted">
+    
+    <div class="container">
+        <div class="getstarted__item">
+            
+                <div class="getstarted__item-title">
+                    Cập nhật tài khoản
+                </div>
+                <form [formGroup]="GetStartedForm" id="getstarted__item-form" class="getstarted__item-form">
+                    <div class="form-group register__item-form-group">
+                        <span class="register__item-form-label">Họ và tên *</span>
+                        <input type="text" class="form-control"  required
+                                name = "ten"
+                            formControlName="ten" id="inputName" >   
+                        <mat-error *ngFor="let validation of account_validation_messages.ten">
+                            <mat-error class="error-message" *ngIf="GetStartedForm.get('ten').hasError(validation.type) 
+                                && (GetStartedForm.get('ten').dirty 
+                                || GetStartedForm.get('ten').touched)"
+                                >{{validation.message}}
+                            </mat-error>
+                        </mat-error>   
+                    </div>
+                    <div class="form-group getstarted__item-form-group">
+                        <!-- <span class="getstarted__item-form-label">Số điện thoại *</span>
+                        <input type="text" class="form-control" 
+                            formControlName="phone" id="inputPhone" >    -->
+                        <span class="register__item-form-label">Điện thoại</span>
+                        <input type="text" class="form-control"  required
+                            name = "dienthoai"
+                            formControlName="dienthoai" id="inputDienthoai" >
+                    </div>
+                    <div class="form-group getstarted__item-form-group">
+                        <!-- <span class="getstarted__item-form-label">Số điện thoại *</span>
+                        <input type="text" class="form-control" 
+                            formControlName="phone" id="inputPhone" >    -->
+                        <span class="register__item-form-label">Giới tính</span>
+                        <div class="radio">
+                            <label class="radio-container" >            
+                                <span>Nam</span>
+                                <input type="radio" name="gioitinh"
+                                    formControlName="gioitinh"
+                                    
+                                     [value]="false" 
+                                    >
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-container" >            
+                                <span>Nữ</span>
+                                <input type="radio"  name="gioitinh"
+                                    formControlName="gioitinh"
+                                    
+                                     [value]="true" 
+                                    >
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group getstarted__item-form-group">
+            
+                        <span class="register__item-form-label">Ngày sinh</span>
+                        <input type="date" class="form-control"  required
+                            name="ngaysinh"
+                            formControlName="ngaysinh" id="inputNS" >
+                    </div>
+                    
+                    <button type="submit" class="btn getstarted__item-btn"
+                        [disabled] = "!GetStartedForm.valid"
+                        (click)="onGetStarted()">CẬP NHẬT TÀI KHOẢN</button>
+            
+                     
+                </form> 
+        </div>     
+    </div>
+</section>

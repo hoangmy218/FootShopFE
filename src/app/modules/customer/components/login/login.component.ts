@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angula
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import {AuthService} from '../../../../services/auth.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetLoginForm();
+    $(window).scrollTop(0);
   }
 
   LoginForm: FormGroup;
@@ -75,7 +77,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', res['accessToken']['jwtToken'])
       // localStorage.setItem('role', res['user'].role)
       localStorage.setItem('name', res['accessToken']['payload']['username'])
-      console.log(res['token'])
+      // console.log(res['token'])
       let token = localStorage.getItem('token');  
 
       // var decoded = jwt_decode(token); 
@@ -88,7 +90,8 @@ export class LoginComponent implements OnInit {
       });
       this.service.getPayload().subscribe(res=>{
         this.payload = res["custom:is_admin"];
-        console.log(this.payload)
+        console.log('pl',this.payload)
+        localStorage.setItem('username', res['name']);
         if (this.payload == 'true'){
           localStorage.setItem('role', 'admin')
           window.location.replace('/admin/dashboard');

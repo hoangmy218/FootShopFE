@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.resetCheckDate();
     this.resetRegisterForm();
+    
   }
 
   RegisterForm : FormGroup;

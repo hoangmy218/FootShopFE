@@ -20,8 +20,8 @@ export class ProductChartComponent implements OnInit {
     responsive: true
   };
   chartData = [
-    { data: [], label: 'Sản phẩm nhập vào' },
-    { data: [], label: 'Sản phẩm bán ra' }
+    { data: [], label: 'Số phiếu nhập' },
+    { data: [], label: 'Số đơn hàng' }
   ];
   pieData = [{ data: [330, 600, 260, 700], label: 'Account A' }];
   chartLabels = ['January', 'February', 'Mars', 'April', 'sdj'];
@@ -70,9 +70,9 @@ export class ProductChartComponent implements OnInit {
     }
   ];
   public barChartColors: Color[] = [
-    { backgroundColor: 'red' },
-    { backgroundColor: 'green' },
-    { backgroundColor: 'blue'},
+    { backgroundColor: 'rgba(255, 0, 0, 0.8)' },
+    { backgroundColor: 'rgba(0,255,0,0.8)' },
+    { backgroundColor: 'rgba(0,0,255,0.8)'},
     { backgroundColor: 'yellow'}
   ];
 
@@ -165,40 +165,41 @@ export class ProductChartComponent implements OnInit {
 
   refreshStockGraph(){
     this.service.getStockChart().subscribe(res=>{
-      res['data'].forEach((element, key)=>{
+      for (var key =0; key < res['data'].length; key++){
+      // res['data'].forEach((element, key)=>{
         if (key == 0){
-          for(let i =0; i<element._id.monthBillDate; i++){
+          for(let i =0; i<res['data'][key]._id.monthBillDate-1; i++){
             this.chartData[0].data.push(0);
           }
-          this.chartData[0].data.push(element.sum);
+          this.chartData[0].data.push(res['data'][key].sum);
         }else{
      
-        this.chartData[0].data.push(element.sum);
+        this.chartData[0].data.push(res['data'][key].sum);
         console.log(this.chartData[0])
         }
        
-      });
+      // });
+      }
       
     })
   }
 
   refreshSaleGraph(){
     this.service.getOrderChart().subscribe(res=>{
-      res['data'].forEach((element, key)=>{
-        if (key == 0){
-          console.log(key, this.chartData[1])
-          for(let i =0; i<element._id.monthBillDate; i++){
-            this.chartData[1].data.push(0);
-          }
-          this.chartData[1].data.push(element.sum)
-        }else{
-          this.chartData[1].data.push(element.sum)
-          console.log(this.chartData[1])
+      for (var key =0; key < res['data'].length; key++){
+      // res['data'].forEach((element, key)=>{
+          if (key == 0){
+            console.log(key, this.chartData[1])
+            for(let i =0; i<res['data'][key]._id.monthBillDate-1; i++){
+              this.chartData[1].data.push(0);
+            }
+            this.chartData[1].data.push(res['data'][key].sum)
+          }else{
+            this.chartData[1].data.push(res['data'][key].sum)
+            console.log(this.chartData[1])
+          }  
+      // });
         }
-     
-        
-       
-      });
       
     })
   }

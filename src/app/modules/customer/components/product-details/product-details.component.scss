@@ -33,13 +33,106 @@
         }
     }
 }
+.btn{
+    margin-top: 1rem;
+    color:white;
+    width: 50px;
+    height: 40px;
+    font-family: $opensanfont;
+    font-weight: 200;
+    // chuyen mau tu trai sang phai
+    background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
+    border: snow 2px;
+    border-radius: 2px;
+    border: none !important;
+    // padding:1rem 2rem;
+    font-size: 1.5rem;
+    background-size: 200%;
+    padding: 0;
+    
+    transition: .5s ease-out;
+    &:hover {
+        background-position: left;
+    }
+    &:focus{
+        outline: none!important;
+    }
+    img{
+        height: 40px;
+        width: 50px!important;
+        max-width: 50px!important;
+        object-fit: cover;
+        filter: brightness(0) invert(1);
+    }
+}
+
+.ngxImageZoomThumbnail{
+    align-items: center!important;
+}
+
+//Image 360
+// .menu{
+//     width: 400px;
+//     height: 255px;
+//     border: 6px solid #ccc;
+//     margin: 30px auto 0;
+//     overflow: hidden;
+//     .list{
+//         margin: 0!important;
+//         padding: 0!important;
+//         ul{
+//             list-style: none!important;
+//             width: 400px;
+//             height: 255px;
+//             li{
+//                 list-style: none!important;
+//                 img{
+//                     display: block;
+//                     width: 400px;
+//                     height: 255px;
+//                 }
+//             }
+//         }
+        
+//     }
+
+// }
+ ul, li {
+    margin: 0;
+    padding: 0;
+    }
+    ul, li {
+    list-style: none;
+    }
+    .menu {
+    width: 400px;
+    height: 255px;
+    border: 6px solid #ccc;
+    margin: 30px auto 0;
+    overflow: hidden;
+    }
+    .menu ul {
+    width: 400px;
+    height: 255px;
+    }
+    .menu ul li img {
+    display: block;
+    width: 400px;
+    height: 255px;
+    }
+    
+
+
+
 
 .details{
     color:$greyx1;
-    padding:4rem 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     text-align: center;
     @include setMaxwidth($sm540){
-        padding:4rem 2rem;
+        padding-left:1rem;
+        padding-right: 1rem;
     }
     .container{
         @include setMaxwidth($lg){
@@ -57,12 +150,23 @@
         margin-bottom: 1rem;
         @include setMaxwidth($xl){
             margin-bottom:5rem;
+            padding: 0;
         }
         @include setMaxwidth($md){
+            padding: 0;
             @include grid($columns:repeat(1,1fr),$rowGap:1rem);
         }
+        @include setMaxwidth($md){
+            padding: 0;
+        }
         &-gallery{
-            
+            max-width: 600px;
+            @include setMaxwidth($md){
+                max-width: 400px;
+            }
+            @include setMaxwidth($sm){
+                max-width: 300px;
+            }
         }
         &-thumbnail{
             display: flex;
@@ -81,18 +185,21 @@
         &-title{
             @extend %title-list;
             line-height: 2.5rem;
-            
-            font-weight: 400;
+            .name{
+                font-weight: 900;
+                text-transform: uppercase;
+            }
             .sku{
-                font-family: $title-font;
-                font-size: 1.2rem;
-                font-weight: lighter;
+                font-family: $opensanfont;
+                text-transform: capitalize;
+                font-size: 1rem;
+                font-weight: 0!important;
                 color: $greyx1;
             }
         }
         &-price{
             margin-top: 1.5rem;
-            font-family: $primaryfont;
+            font-family: $opensanfont;
             font-size: 1.8rem;
             color:$discount;
             font-weight: bold;
@@ -103,6 +210,7 @@
         .old-price{
             color: $grey;
             font-size: 1.6rem;
+            padding-right: 1rem;
             font-weight: 50;
             text-decoration-line: line-through;
         }
@@ -111,7 +219,7 @@
             color: $greyx4;
             font-weight: bold;
             font-size: 1.3rem;
-            font-family: $title-font;
+            font-family: $opensanfont;
             a{
                 color: $bglink;
                 font-weight: 300;
@@ -227,6 +335,13 @@
             padding-right: 10rem;
             @include setMaxwidth($md){
                 padding-top:0;
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
+            @include setMaxwidth($sm){
+                padding-top:0;
+                padding-left: 0;
+                padding-right: 0;
             }
         }
         &-img{
@@ -245,6 +360,25 @@
         &-content{
             padding-left: 10rem;
             padding-right: 10rem;
+            p{
+                margin-top: 1rem;
+                font-family: $opensanfont;
+                text-transform: capitalize;
+                font-size: 1rem;
+                line-height: 1.5rem;
+                font-size: 1.3rem;
+                font-weight: 0!important;
+                color: $greyx1;
+                text-align: left;
+            }
+            @include setMaxwidth($md){
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
+            @include setMaxwidth($md){
+                padding-left: 0rem;
+                padding-right: 0rem;
+            }
         }
     }
     
@@ -290,7 +424,7 @@ textarea{
 .rating{
     color: #ff523b;
     .avg{
-        font-family: $title-font;
+        font-family: $opensanfont;
         margin-left: 0.8rem;
         font-size: 2rem;
         font-weight: bold;
@@ -318,8 +452,8 @@ textarea{
     color:white;
     width: 100%;
     height: 50%;
-    font-family: $boldfont;
-    font-weight: 200;
+    font-family: $opensanfont;
+    font-weight: 800;
     // chuyen mau tu trai sang phai
     background: linear-gradient(to left, $bluesky 50%, $orangesd 50%)right;
     border: snow 2px;
@@ -335,16 +469,26 @@ textarea{
     }
     &:disabled,
     button[disabled]{
-        background: $grey;
+        background: $gray-500;
     }
     
 }
 
 .product-gallery__featured {
-    width: 600px;
+    width: 600px!important;
+    height: 600px!important;
     border-radius: 8px;
     border: solid 1px #F0F3F4;
     background-color: #fff;
+    @include setMaxwidth($md){
+        align-items: center;
+        width: 500px!important;
+        height: 500px!important;
+    }
+    @include setMaxwidth($sm){
+        width: 300px!important;
+        height: 300px!important;
+    }
   }
   
 .product-gallery__carousel {
@@ -373,3 +517,5 @@ owl-carousel-o::ng-deep{
     color: white;
     background: $bgsimple;
 }
+
+

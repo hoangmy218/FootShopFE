@@ -14,6 +14,7 @@
                     <div class="form-group address__item-form-group">
                         <span class="address__item-form-label">Họ và tên *</span>
                         <input type="text" class="form-control"  required
+                            name="ten"
                             formControlName="ten" id="inputTen" >  
                             <mat-error *ngFor="let validation of account_validation_messages.ten">
                             <mat-error class="error-message" *ngIf="AddressForm.get('ten').hasError(validation.type) 
@@ -27,6 +28,7 @@
                     <div class="form-group address__item-form-group">
                         <span class="address__item-form-label">Số điện thoại *</span>
                         <input type="text" class="form-control"  required
+                            name="dienthoai"
                             formControlName="dienthoai" id="inputPhone" >
                         <mat-error *ngFor="let validation of account_validation_messages.dienthoai">
                             <mat-error class="error-message" *ngIf="AddressForm.get('dienthoai').hasError(validation.type) 
@@ -40,6 +42,7 @@
                     <div class="form-group address__item-form-group">
                         <span class="address__item-form-label">Địa chỉ *</span>
                         <textarea  class="form-control" required
+                        name="diachi"
                             formControlName="diachi" id="inputAddress" ></textarea>
                         <mat-error *ngFor="let validation of account_validation_messages.diachi">
                             <mat-error class="error-message" *ngIf="AddressForm.get('diachi').hasError(validation.type) 

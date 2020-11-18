@@ -1,0 +1,65 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+
+.grid-container {
+    margin: 20px;
+  }
+  
+  
+  .btn-add{
+      float: right;
+  }
+  mat-header-cell{
+      text-align: center!important;
+  }
+  .break { 
+    word-break: break-all;
+    white-space: pre-wrap!important;      /* CSS3 */   
+    white-space: -moz-pre-wrap!important; /* Firefox */    
+    white-space: -pre-wrap!important;     /* Opera <7 */   
+    white-space: -o-pre-wrap!important;   /* Opera 7 */    
+    word-wrap: break-word!important;      /* IE */
+ }
+  
+ 
+.status{
+    color: white;
+    background-color: $discountbg;
+    border-radius: 15px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.complete{
+    background-color: $success!important;
+}
+.confirm{
+    background-color: $info;
+}
+.cancel{
+    background-color: $error!important;
+}
+.ship{
+    background-color: $warning;
+    color: black!important;
+}
+.process{
+    background-color: $disable;
+    color: black!important;
+}
+.discription{
+    display: inline;
+    width: 2rem!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+    white-space: nowrap!important;
+}
+
+img {
+    width: 100px; /* width of container */
+    height: 50px; /* height of container */
+    object-fit: cover;
+    border: 5px solid white;
+    border-radius: 10%;
+}

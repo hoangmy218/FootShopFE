@@ -271,20 +271,20 @@ export class AuthService {
   }
 
   isUser(){
-    if(this.payload == 'false')
+    this.getPayload().subscribe(res=>{
+      this.payload = res["custom:is_admin"];
+      if (res["custom:is_admin"] == 'true'){
+        return false;
+      }
       return true;
-    else
-      return false;
-    
+    }, err=>console.log('isUser',err))
     // let token = localStorage.getItem('token');
     // if (token == null){
     //   return false;
     // }
-
-    // if (localStorage.getItem('role') == 'customer'){
-    //   // console.log('user')
+    
+    // if (localStorage.getItem('role')=='admin')
     //   return true;
-    // }
     // return false;
   }
 
@@ -306,10 +306,12 @@ export class AuthService {
     }
 
     setProfile(){
-      this.getProfile().subscribe(res=>{
-        localStorage.setItem('user_name', res['data']['ten']);
-        this.user = res['data'];
-      })
+      if (this.loggedIn()){
+        this.getProfile().subscribe(res=>{
+          localStorage.setItem('user_name', res['data']['ten']);
+          this.user = res['data'];
+        })
+      }
     }
 
 

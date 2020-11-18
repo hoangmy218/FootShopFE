@@ -200,7 +200,8 @@ export class EditProductDetailsComponent implements OnInit {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     myFormData.append('file', this.filedata);
-    console.log(this.filedata)
+    // console.log(this.filedata)
+    console.log('file', this.filedata)
     this.http.post(this.APIUrl + "/hinhanh/upload", myFormData, {headers: headers})
     .subscribe(data => {
       console.log(data);
@@ -244,8 +245,10 @@ export class EditProductDetailsComponent implements OnInit {
       headers.append('Accept', 'application/json');
       var stt = this.imageListTemp.length;
       formData.append('stt', stt.toString())
+      
       this.http.post(this.APIUrl + "/hinhanh/upload", formData, {headers: headers}).subscribe(
         res => {
+          console.log('img', productImage)
           if (res['success']== true) {
             this.imageListTemp.push(res['hinhanh']['_id']);
             // this.imageList.push(res['hinhanh']['_id']);

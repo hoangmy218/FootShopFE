@@ -33,32 +33,7 @@
                                *ngIf="mausac_id.invalid && mausac_id.touched">
                                Chọn danh mục
                            </div>
-                           <div class="image">
-                               <!-- <button class="mt-4 btn-add" mat-raised-button color="primary" 
-                                   (click)="onAddRow()" *ngIf="addForm.get('rows')" 
-                                   >Thêm hình ảnh</button>
-                                   <table>
-                                       <thead>      
-                                       </thead>
-                                       <tbody>
-                                           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
-                                               <td> 
-                                                   <label>Hình ảnh</label>
-                                                       <input type="file" name="photo"  class="choosefile"  
-                                                           [formControl]="row.get('photo')"
-                                                           accept="image/*" #photo (change)="processFile(photo)"> 
-                                                   
-                                                       <img src="{{imageList[index]['hinh']}}" alt="">                          
-                                               </td>    
-                                               <td>
-                                                   <button mat-raised-button color="warn"
-                                                       (click)="onRemoveRow(index)" class="btn-delete"
-                                                       >Xóa</button>
-                                               </td>
-                                           </tr>
-                                       </tbody>
-                                   </table> -->
-                               <!-- <pre>{{rows.value | json}}</pre> -->
+                           <div class="image">        
                                <div>Danh sách hình ảnh</div>
                                <div *ngIf="uploadError">
                                    <div [innerHTML]="uploadError" class="error"></div>

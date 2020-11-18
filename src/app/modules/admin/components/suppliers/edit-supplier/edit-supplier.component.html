@@ -1,1 +1,62 @@
-<p>edit-supplier works!</p>
+<div class="title">
+    <span>Cập nhật nhà cung cấp</span>
+    <button mat-button (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div >
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Mã</mat-label>
+            <input matInput readonly type="text" class="form-control"
+            name="_id" #sup_id="ngModel" [(ngModel)]="service.formSupplier._id">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Tên</mat-label>
+            <input matInput required minlength="2" type="text" class="form-control"
+            name="ten" #ten="ngModel" [(ngModel)]="service.formSupplier.ten">
+        </mat-form-field>
+
+        <div class="text-left text-danger"
+            *ngIf="ten.invalid && ten.touched">
+            Nhập tên nhà cung cấp.
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Điện thoại</mat-label>
+            <input matInput required type="text"  class="form-control" maxlength="10"
+            name="dienthoai" #dienthoai="ngModel" [(ngModel)]="service.formSupplier.dienthoai">
+        </mat-form-field>
+
+        <div class="text-left text-danger"
+            *ngIf="dienthoai.invalid && dienthoai.touched">
+            Nhập điện thoại nhà cung cấp.
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput required type="email" class="form-control"
+            name="email" #email="ngModel" [(ngModel)]="service.formSupplier.email">
+        </mat-form-field>
+
+        <div class="text-left text-danger"
+            *ngIf="email.invalid && email.touched">
+            Nhập email nhà cung cấp.
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Địa chỉ</mat-label>
+            <input matInput required type="text" class="form-control"
+            name="diachi" #diachi="ngModel" [(ngModel)]="service.formSupplier.diachi">
+        </mat-form-field>
+
+        <div class="text-left text-danger"
+            *ngIf="diachi.invalid && diachi.touched">
+            Nhập địa chỉ nhà cung cấp.
+        </div>
+
+        <button class="mt-4" mat-raised-button 
+        color="primary" type="submit"
+        [disabled]="form.invalid">Thêm</button>
+    </form>
+</div>

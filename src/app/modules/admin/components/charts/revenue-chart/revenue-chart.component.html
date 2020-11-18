@@ -1,7 +1,7 @@
 <div class="grid-container">
     <div class="dashboard-card">
      <h1 class="mat-h1">Thống kê doanh thu</h1>
-     <div class="card">
+     <!-- <div class="card">
          <mat-card class="customers">
              <div class="dashboard">
                  <div class="dashboard__item ">
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </mat-card>
-     </div>
+     </div> -->
      <div class="chart">
          <mat-card>
             <div class="baseChart">
@@ -61,46 +61,7 @@
              </div>
          </mat-card>
 
-         <mat-card>
-            <div class="mat-elevation-z8" style="overflow: auto;">
-                <div class="chart-title">Danh sách sản phẩm sắp hết hàng</div>
-                <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
-                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                  
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="ten">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>TÊN</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.mausanpham_id.sanpham_id.ten}}</mat-cell>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="mausac">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>MÀU SẮC</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.mausanpham_id.mausac_id.ten}}</mat-cell>
-                  </ng-container>
-                  <!-- Id Column -->
-                  <ng-container matColumnDef="kichco">
-                    <mat-header-cell  *matHeaderCellDef mat-sort-header>KÍCH CỠ</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.kichco_id.ten}}</mat-cell>
-                  </ng-container>
-          
-          
-                  <!-- Description Column
-                  <ng-container matColumnDef="brand_des">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.brand_des}}</mat-cell>
-                  </ng-container> -->
-          
-                 
-          
         
-                </mat-table>
-          
-                <mat-paginator 
-                    [pageSizeOptions]="[5, 10, 15]" >
-                </mat-paginator>
-              </div>
-         </mat-card>
          
      </div>
     </div>

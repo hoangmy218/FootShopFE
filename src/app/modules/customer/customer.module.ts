@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { CustomerRoutingModule } from './customer-routing.module';
 import { HeaderComponent } from './components/header/header.component';
@@ -57,6 +57,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { ProductBrandComponent } from './components/product-brand/product-brand.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { ProductImageComponent } from './components/product-details/product-image/product-image.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ShowProfileComponent } from './components/profile/show-profile/show-profile.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+
+
 @NgModule({
   declarations: [
     HeaderComponent, 
@@ -76,7 +83,20 @@ import { ProductSearchComponent } from './components/product-search/product-sear
     VerifyComponent, 
     GetstartedComponent, 
     CartComponent, 
-    ProductDetailsComponent, CheckoutComponent, PlaceorderComponent, AddAddressComponent, EditAddressComponent, CompleteComponent, ShowAddressComponent, OrderComponent, StripeComponent, OrderdetailsComponent, ProductCategoryComponent, ProductBrandComponent, ProductSearchComponent
+    ProductDetailsComponent, 
+    CheckoutComponent, 
+    PlaceorderComponent, 
+    AddAddressComponent, 
+    EditAddressComponent, 
+    CompleteComponent, 
+    ShowAddressComponent, 
+    OrderComponent, 
+    StripeComponent, 
+    OrderdetailsComponent, 
+    ProductCategoryComponent, 
+    ProductBrandComponent, 
+    ProductSearchComponent, 
+    ProductImageComponent, ShowProfileComponent, EditProfileComponent
   ],
   imports: [
     CommonModule,
@@ -105,13 +125,16 @@ import { ProductSearchComponent } from './components/product-search/product-sear
     MatTabsModule,
     StarRatingModule,
     MatChipsModule,
-    // NgxPaginationModule,
+    MatDialogModule,
+    NgxPaginationModule,
     NgxStripeModule.forRoot('pk_test_51HHmGZJ6o6GkwUDliVfWqhwDWsVaIkBIeld8MRRPdKzeq6wTJ2eSh9tq3bHOiHH2HpVgVpmzuv0UQeby22PH9jGD00L6Kc0LHm'),
     // NgxDatatableModule,
     
+    
   ],
   providers: [
-    StripeService
+    StripeService,
+    DatePipe
   ]
 })
 export class CustomerModule { }
