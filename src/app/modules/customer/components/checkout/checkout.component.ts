@@ -4,7 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address-model';
 import { CustomerService } from 'src/app/services/customer.service';
-
+import * as moment from 'moment';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -36,8 +37,11 @@ export class CheckoutComponent implements OnInit {
   selectedObject: any;
   defaultChecked : any;
   public imageList: { [id: string]:any;} = {};
+  today : Date = new Date();
+
 
   ngOnInit(): void {
+    $(window).scrollTop(0);
     this.refreshDeliveryList();
     this.refreshAddressList();
     this.refreshCartList();
@@ -48,6 +52,12 @@ export class CheckoutComponent implements OnInit {
     let checkout:any={};
     
     // this._router.navigate(['/placeorder'])
+  }
+  isExpirationExpired(discount) {
+    // your date logic here, recommendnpm install moment --save;
+    return ( moment(discount['ngaybd']).isBefore(moment(this.today)) 
+            && moment(this.today).isBefore(moment(discount['ngaykt']))
+            && discount['trangthai']==true) ;
   }
 
   submitForm(form: NgForm){
@@ -89,7 +99,7 @@ export class CheckoutComponent implements OnInit {
     this.service.getDeliveryDetails(id).subscribe(res=>{
       console.log(res['data'])
       this.shipcost = res['data'].phi;
-      this.total = this.subTotal - this.discount - this.shipcost;
+      this.total = this.subTotal - this.discount + this.shipcost;
     }, error=>{
       console.log(error)
     })
@@ -142,13 +152,25 @@ export class CheckoutComponent implements OnInit {
         console.log('item', item)
         this.priceList.forEach(element => {
           if (element['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']){
-            this.subTotal += (element['dongia']* item['soluongdat']);
-            console.log('subtotal', this.subTotal)
+            //SUB TOTAL & DISCOUNT
+            if ((item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] != null)  
+            && (this.isExpirationExpired(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']))){
+              // this.subTotal += (element['dongia']* item['soluongdat']*(100-item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']['giamgia'])/100);
+              this.discount += (element['dongia']* item['soluongdat']*(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']['giamgia'])/100);
+              
+              this.subTotal += (element['dongia']* item['soluongdat']);
+              console.log('subtotal', this.subTotal)
+            }else{
+              this.discount += 0;
+              this.subTotal += (element['dongia']* item['soluongdat']);
+              console.log('subtotal', this.subTotal)
+            }
+            //END 
           }
         });
         
       });
-      this.total = this.subTotal - this.discount - this.shipcost;
+      this.total = this.subTotal - this.discount + this.shipcost;
     })
     
   }

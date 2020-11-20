@@ -11,7 +11,7 @@
         <div class="shopping__item filter">
             <app-filter></app-filter>
         </div>
-        <div class="shopping__item">
+        <div class="shopping__item product">
             <!-- PRODUCT -->
             <div id="products">
                 <section class="products">
@@ -22,7 +22,11 @@
                             </h3>
                             
                         </div>
-                        <div *ngIf = "product?.length == 0" class="message-error">Không tìm thấy sản phẩm phù hợp!</div>
+                        <div *ngIf = "product?.length == 0" class="message" >
+                            <div class="message-item"> &nbsp;</div>
+                            <div class=" message-item message-error">Không tìm thấy sản phẩm phù hợp!</div> 
+                            <div class="message-item">&nbsp;</div>
+                        </div>
                         <div class="products__menu" *ngIf = "product?.length > 0" >
                             <!-- <div *ngIf = "product?.length == 0" class="message-error">Không tìm thấy sản phẩm phù hợp!</div> -->
                             <div class="item" *ngFor = "let item of product; let i = index">
@@ -34,12 +38,13 @@
                                             <img class="img-fluid" *ngIf="!item.mausanpham[0]['hinh']"
                                             src="../../../../../assets/img/img_not_found.png" alt="Hình ảnh">
                                         <div class="badge">
-                                            <!-- <div class="discount-badge">
-                                                <span class="amount">-25%</span>
-                                            </div> -->
-                                            <div class="favorite">
-                                                <a class=" active"><i class="fas fa-heart"></i></a>
+                                            <div class="discount-badge" 
+                                                *ngIf="(item.sanpham['khuyenmai_id'] != null)  && (isExpirationExpired(item.sanpham['khuyenmai_id'])) ">
+                                                <span class="amount" >-{{item.sanpham['khuyenmai_id']['giamgia']}}%</span>
                                             </div>
+                                            <!-- <div class="favorite">
+                                                <a class=" active"><i class="fas fa-heart"></i></a>
+                                            </div> -->
                                         </div>
                                         
                                     </a>
@@ -50,8 +55,19 @@
                                         >{{item.sanpham['ten']}}</a>
                                 </h5>
 
-                                <p class="item__price">
-                                    {{item.dongia | currency: 'VND'}}</p>
+                                <p class="item__price" 
+                                    *ngIf="(item.sanpham['khuyenmai_id'] == null  
+                                    ||  ((item.sanpham['khuyenmai_id'] != null) 
+                                        && (!isExpirationExpired(item.sanpham['khuyenmai_id'])))) ">
+                                    {{item.dongia | currency: 'VND'}}
+                                </p>
+                                <p class="item__price" 
+                                    *ngIf="(item.sanpham['khuyenmai_id'] != null)  && (isExpirationExpired(item.sanpham['khuyenmai_id'])) ">
+                                    <span class="old-price">{{item.dongia | currency: 'VND'}} </span> 
+                                    {{item.dongia*(100-item.sanpham['khuyenmai_id']['giamgia'])/100 | currency: 'VND'}}
+                                </p>
+                                
+
                                 <div class="item__colors">
                                         <img class="item_colors-img" 
                                         *ngFor = "let img of item.mausanpham; let i = index"

@@ -4,7 +4,7 @@
             <div class="input-group">
                 <form [formGroup]="SearchForm" id="login__item-form" class="login__item-form">
                 <input type="text" class="form-control" 
-                formControlName="search" id="search" [voiceText]
+                formControlName="search" id="search" 
                 placeholder="Tìm kiếm" name="search">
                 <button class="btn btn-default input-group-btn" 
                 [disabled]="!SearchForm.valid" (click)="onSearch()"
@@ -22,7 +22,7 @@
                   <ng-template #voicesection>
                     <ng-container *ngIf="!voiceActiveSectionError; else failure">
                       <ng-container *ngIf="voiceText; else start">
-                          <span>{{voiceText}}</span>
+                          <!-- <span>{{voiceText}}</span> -->
                       </ng-container>
                       <ng-template #start>
                         <ng-container

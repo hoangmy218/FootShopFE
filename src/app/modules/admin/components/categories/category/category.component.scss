@@ -1,8 +1,23 @@
-
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
 .grid-container {
     margin: 20px;
   }
-  
+  mat-table{
+      width: 100%;
+      @include setMaxwidth($md){
+        display: block;
+        width: 300px;
+    }
+  }
+  .mat-elevation-z8{
+    @include setMaxwidth($md){
+        display: block;
+        width: 300px;
+    }
+}
   
   .btn-add{
       float: right;

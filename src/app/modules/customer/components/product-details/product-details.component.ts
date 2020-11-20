@@ -68,6 +68,7 @@ export class ProductDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    $(window).scrollTop(0);
     this.resetCartForm();
     
     const ProductID = this.actRoute.snapshot.params['pro_id'];
@@ -182,7 +183,7 @@ export class ProductDetailsComponent implements OnInit {
 
   resetCartForm(){
     this.CartForm = this.fb.group({
-      quantity: new FormControl('', Validators.compose([
+      quantity: new FormControl(1, Validators.compose([
         Validators.required,
         Validators.min(this.x),
         (control: AbstractControl) => Validators.max(this.qty)(control)

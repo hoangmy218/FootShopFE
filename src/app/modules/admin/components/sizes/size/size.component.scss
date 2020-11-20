@@ -1,10 +1,33 @@
-
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
 .grid-container {
     margin: 20px;
   }
-  
+  mat-table{
+      width: 100%;
+      @include setMaxwidth($md){
+        display: block;
+        width: 300px;
+    }
+  }
+  .mat-elevation-z8{
+    @include setMaxwidth($md){
+        display: block;
+        width: 300px;
+    }
+}
   
   .btn-add{
       float: right;
   }
+  mat-cell { 
+    word-break: break-all;
+    white-space: pre-wrap!important;      /* CSS3 */   
+    white-space: -moz-pre-wrap!important; /* Firefox */    
+    white-space: -pre-wrap!important;     /* Opera <7 */   
+    white-space: -o-pre-wrap!important;   /* Opera 7 */    
+    word-wrap: break-word!important;      /* IE */
+ }
   

@@ -34,7 +34,12 @@
         <ng-container matColumnDef="ngaydat">
             <mat-header-cell *matHeaderCellDef mat-sort-header>NGÀY ĐẶT</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.ngaydat | date:'d/M/yyyy, h:mm a' }}</mat-cell>
-            </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="vanchuyen_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>VẬN CHUYỂN</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.vanchuyen_id.ten  }}</mat-cell>
+        </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="trangthai">
@@ -57,7 +62,7 @@
                     <!-- Name Column -->
         <ng-container matColumnDef="tongtien">
             <mat-header-cell *matHeaderCellDef mat-sort-header>TỔNG TIỀN</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.tongtien | currency:'VND'}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element.tongtien + element.vanchuyen_id.phi | currency:'VND'}}</mat-cell>
             </ng-container>
  
   
@@ -71,6 +76,10 @@
                 </button> -->
                 <button mat-icon-button color="info" routerLink="/admin/order/{{row._id}}">
                     <i class="fas fa-info-circle"></i>
+                </button>
+                <button mat-icon-button color="danger" class="btn-cancel"
+                 (click)="OnCancel(row._id)" *ngIf="row.trangthai == 1">
+                  <i class="fas fa-window-close"></i>
                 </button>
               </mat-cell>
           </ng-container>

@@ -399,5 +399,11 @@
       }
     }
   }
+
+  button{
+    &:focus{
+      outline: none;
+    }
+  }
   
   

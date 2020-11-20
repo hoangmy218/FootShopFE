@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit {
   }
 
   listData : MatTableDataSource<any>;
-  displayedColumns : string[] = ['_id', 'nguoidung_id','diachi_id', 'ngaydat', 'trangthai','tongtien', 'Options'];
+  displayedColumns : string[] = ['_id', 'nguoidung_id','diachi_id', 'ngaydat','vanchuyen_id', 'trangthai','tongtien', 'Options'];
   public stageList: { [id: number]:any;} = {
     [1]: 'Chờ xác nhận',
     [2]: 'Đã xác nhận',
@@ -109,5 +109,22 @@ export class OrderComponent implements OnInit {
     }
   }
   }
+
+  OnCancel(id: number){
+    console.log(id)
+    
+      if (confirm('Bạn có chắc chắn muốn hủy đơn hàng?'))
+      {
+        this.service.cancelOrder(id).subscribe(res=>{
+          this.refreshOrderList();
+          this.snackBar.open(res['message'].toString(), '',{
+            duration: 3000,
+            verticalPosition:'bottom'
+          });
+
+        });
+      }
+  }
+    
 }
 

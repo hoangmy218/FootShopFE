@@ -81,23 +81,26 @@
                                             {{item['ctsp_id']['kichco_id']['ten']}}</button>
                                     </td>
                                     <td class="table__price">
-                                        <!-- <span class="old-price">$249 </span> &nbsp;  -->
+                                        
+                                        <span class="old-price" *ngIf="item['khuyenmai']!= 0">{{item['dongia'] | currency: 'VND'}}</span>&nbsp;
+                                        <span *ngIf="item['khuyenmai']!= 0">{{item['dongia']-(item['khuyenmai']/item['soluongdat']) | currency: 'VND'}}</span>
+                                        <span *ngIf="item['khuyenmai']== 0">{{item['dongia'] | currency: 'VND' }}</span>
                                         <!-- {{priceList}}    -->
-                                        <div *ngFor="let price of priceList">
-                                            <!-- <span>{{price}} </span>    -->
+                                        <!-- <div *ngFor="let price of priceList">
                                             <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']"
                                             >{{item['dongia'] | currency: 'VND'}}</div>
-                                        </div>
+                                        </div> -->
                                     </td>
                                     <td class="table__quantity">
                                         <span class="amount">{{item['soluongdat']}}</span>                    
                                     </td>
                                     <td class="table__price">
                                         
-                                        <span class="amount">
-                                            
+                                        <span class="amount" *ngIf="item['khuyenmai']!=0">  
+                                            {{(item['dongia']*item['soluongdat']) - item['khuyenmai'] | currency: 'VND'}}
+                                        </span>
+                                        <span class="amount" *ngIf="item['khuyenmai']==0">  
                                             {{item['dongia']* item['soluongdat'] | currency: 'VND'}}
-                                            
                                         </span>
                                     </td>
                                     <!-- <td class="table__btn product-remove">
@@ -120,7 +123,7 @@
                                         Tổng tiền
                                     </div>
                                     <div class="card_value">
-                                        {{order['tongtien'] | currency: 'VND'}}
+                                        {{total + discount | currency: 'VND'}}
                                     </div>
                                 </div>
                                 <div class="card__item">
@@ -144,7 +147,7 @@
                                         Thành tiền
                                     </div>
                                     <div class="card_value ">
-                                        {{order['tongtien'] + order['vanchuyen_id']['phi'] - discount  | currency: 'VND'}}
+                                        {{total + order['vanchuyen_id']['phi']    | currency: 'VND'}}
                                     </div>
                                 </div>
                             </div>

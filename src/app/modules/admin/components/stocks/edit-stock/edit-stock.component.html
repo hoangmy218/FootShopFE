@@ -16,22 +16,28 @@
                         </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <div class="totalproduct">
-                        <span>Tổng sản phẩm: </span> <span>{{totalproduct}} đôi</span>
-
-                    </div>
-                    <div class="total">
-                        <span>Tổng tiền: </span> <span>{{total | currency: 'VND'}}</span>
-                        
-                    </div>
+                    <mat-card>
+                        <div class="detail">
+                            <div class="detail-item">                           
+                                <span>Tổng sản phẩm: </span><br>   
+                                <span>Tổng tiền: </span> 
+                            </div>
+                            <div class="detail-item">
+                                <span>{{totalproduct}} đôi</span><br>
+                                <span>{{total | currency: 'VND'}}</span>
+                            </div>
+                        </div>
+                    </mat-card>
+                    <div class="product-list">
+                        Danh sách sản phẩm
+                     <button class="mt-4 btn-add" mat-raised-button color="primary" 
+                         (click)="onAddRow()" *ngIf="addForm.get('rows')" 
+                         >Thêm sản phẩm</button>
+                     </div>
+                    
                 </div>
                 
-                <div>
-                    Danh sách sản phẩm
-                 <button class="mt-4 btn-add" mat-raised-button color="primary" 
-                     (click)="onAddRow()" *ngIf="addForm.get('rows')" 
-                     >Thêm sản phẩm</button>
-                 </div>
+                
                 
                 <table>
                     <thead>

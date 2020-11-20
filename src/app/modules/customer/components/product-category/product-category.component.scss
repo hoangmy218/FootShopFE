@@ -32,6 +32,10 @@
        
     }
 }
+.product{
+    width: 100% !important;
+    // align-items: center;
+}
 .title_page{
     @extend %title-page;
     i{
@@ -94,13 +98,27 @@
             }
         }
     }
+    .message{
+        @include grid($columns:repeat(3,1fr));
+        @include setMaxwidth($xl){
+            @include grid($columns:repeat(1,1fr));
+        }
+        column-gap: 0rem;
+        &-item{
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+    }
     .message-error{
-        width: 400px;
-        @include grid($columns:repeat(1,1fr));
+        
+        
+        width: 700px;
+        
         font-family: $opensanfont;
         background-color: rgba(255, 0, 0, 0.2);
         // opacity: 30%;
-        text-align: left;
+        text-align: center;
         padding: 2rem 2rem;
         border-radius: 5px;
         color: $greyx3;

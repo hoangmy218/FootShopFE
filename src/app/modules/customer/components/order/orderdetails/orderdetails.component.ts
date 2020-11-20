@@ -53,8 +53,11 @@ export class OrderdetailsComponent implements OnInit {
     this.service.getOrderDetails(this.orderID).subscribe(res=>{
       console.log('res',res)
       this.order = res['data'];
+      this.total = res['data']['tongtien'];
       this.productList = res['details'];
       res['details'].forEach(element => {
+        this.discount += element['khuyenmai'];
+        this.subTotal += element['dongia'];
         console.log('hinh', element['ctsp_id']['mausanpham_id']['hinh'][0])
         this.service.getImage(element['ctsp_id']['mausanpham_id']['hinh'][0]).subscribe(result=>{
           console.log(result['data'].hinh)

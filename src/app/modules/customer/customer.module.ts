@@ -62,6 +62,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ShowProfileComponent } from './components/profile/show-profile/show-profile.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -96,7 +97,7 @@ import { EditProfileComponent } from './components/profile/edit-profile/edit-pro
     ProductCategoryComponent, 
     ProductBrandComponent, 
     ProductSearchComponent, 
-    ProductImageComponent, ShowProfileComponent, EditProfileComponent
+    ProductImageComponent, ShowProfileComponent, EditProfileComponent, ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

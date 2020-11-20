@@ -20,8 +20,8 @@ export class ProductChartComponent implements OnInit {
     responsive: true
   };
   chartData = [
-    { data: [], label: 'Số phiếu nhập' },
-    { data: [], label: 'Số đơn hàng' }
+    { data: [], label: 'Số sản phẩm nhập vào' },
+    { data: [], label: 'Số sản phẩm bán ra' } //trang thai: Da duyet 2 - 4 hoan tat
   ];
   pieData = [{ data: [330, 600, 260, 700], label: 'Account A' }];
   chartLabels = ['January', 'February', 'Mars', 'April', 'sdj'];

@@ -66,8 +66,21 @@
                                         <!-- {{priceList}}    -->
                                         <div *ngFor="let price of priceList">
                                             <!-- <span>{{price}} </span>    -->
-                                            <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']"
-                                            >{{price['dongia'] | currency: 'VND'}}</div>
+                                            <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']" 
+                                            > 
+                                                <span  
+                                                    *ngIf="item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] == null
+                                                    ||  ((item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] != null) 
+                                                    && (!isExpirationExpired(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']))) "
+                                                    >{{price['dongia'] | currency: 'VND'}} &nbsp;
+                                                </span>  
+                                                <div class="new-price" 
+                                                    *ngIf="(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] != null)  
+                                                    && (isExpirationExpired(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'])) ">
+                                                    <span class="old-price">{{price['dongia'] | currency: 'VND'}} </span> 
+                                                    {{price['dongia']*(100-item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']['giamgia'])/100 | currency: 'VND'}}
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
                                     <td class="table__quantity">
@@ -85,7 +98,22 @@
                                             <div *ngFor="let price of priceList">
                                                 <!-- <span>{{price}} </span>    -->
                                                 <div *ngIf = "price['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']"
-                                                    >{{price['dongia']* item['soluongdat'] | currency: 'VND'}}</div>
+                                                    >
+                                                    <span  
+                                                    *ngIf="item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] == null
+                                                    ||  ((item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] != null) 
+                                                    && (!isExpirationExpired(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']))) "
+                                                    >{{price['dongia']* item['soluongdat'] | currency: 'VND'}} &nbsp;
+                                                    </span>
+
+                                                    <div class="new-price" 
+                                                        *ngIf="(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] != null)  
+                                                        && (isExpirationExpired(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'])) ">
+                                                        
+                                                        {{price['dongia']* item['soluongdat']*(100-item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']['giamgia'])/100 | currency: 'VND'}}
+                                                    </div>
+                                               
+                                                </div>
                                             </div>
                                         </span>
                                     </td>

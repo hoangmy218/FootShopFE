@@ -59,6 +59,7 @@ export class OrderDetailsComponent implements OnInit {
       this.order = res['data'];
       this.productList = res['details'];
       res['details'].forEach(element => {
+        this.discount += element['khuyenmai'];
         console.log('hinh', element['ctsp_id']['mausanpham_id']['hinh'][0])
         this.service.getImage(element['ctsp_id']['mausanpham_id']['hinh'][0]).subscribe(result=>{
           console.log(result['data'].hinh)

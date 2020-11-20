@@ -1,8 +1,8 @@
 <div class="grid-container">
     <div class="dashboard-card">
      <h1 class="mat-h1">Phiếu nhập</h1>
-     
-     <mat-form-field>
+     <div class="filter-add">
+      <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)"
         placeholder="Lọc">
       </mat-form-field>
@@ -10,6 +10,8 @@
         color="primary">
         Thêm phiếu nhập
       </button>
+     </div>
+     
 
       <div class="mat-elevation-z8" style="overflow: auto;">
         <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>

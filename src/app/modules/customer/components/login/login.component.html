@@ -40,9 +40,9 @@
                                 >{{validation.message}}</mat-error>
                             </mat-error>
                         </div>
-                        <div class="forgot login__item-link">
-                            <a href="#">Quên mật khẩu?</a>
-                        </div>
+                        <!-- <div class="forgot login__item-link">
+                            <a routerLink="/forgot">Quên mật khẩu?</a>
+                        </div> -->
                         <button type="submit" class="btn login__item-btn"
                             [disabled] = "!LoginForm.valid" name="submit"
                             (click)="onLogin()">ĐĂNG NHẬP</button>

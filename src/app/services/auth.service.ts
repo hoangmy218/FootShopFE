@@ -109,15 +109,17 @@ export class AuthService {
       Pool:userPool
     }
     return Observable.create(observer=>{
-      const cognitouser=new CognitoUser(user);
-      cognitouser.resendConfirmationCode(function(err,result){
+      const cognitoUser=new CognitoUser(user);
+      cognitoUser.resendConfirmationCode(function(err,result){
         if(err){
           observer.error(err);
           return;
         }
         observer.next(result);
         observer.complete();
+        this.cognitoUser = result.user;
       })
+      // this.cognitoUser = cognitoUser;
     })
   };
   //------------------------------------Login-------------------------------------//
@@ -146,6 +148,7 @@ export class AuthService {
           observer.error(err);
         }
       })
+     
     })
   }
   //-----------------------------Forgot Password-----------------------------//
@@ -155,8 +158,8 @@ export class AuthService {
       Pool:userPool
     };
     return Observable.create(observer=>{
-      const cognitouser=new CognitoUser(user);
-      cognitouser.forgotPassword({
+      const cognitoUser=new CognitoUser(user);
+      cognitoUser.forgotPassword({
         onSuccess:function(data){
           observer.next(data);
           observer.complete();
@@ -165,6 +168,7 @@ export class AuthService {
           observer.error(err);
         }
       })
+      this.cognitoUser = cognitoUser;
     })
   }
   //------------------------------------CONFIRM PASSWORD-------------------------//

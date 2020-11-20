@@ -9,6 +9,7 @@ import { ShowAddressComponent } from './components/address/show-address/show-add
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CompleteComponent } from './components/complete/complete.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { GetstartedComponent } from './components/getstarted/getstarted.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
     children: [
       {path: 'shopping', component: ShoppingComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'forgot', component: ForgotPasswordComponent},
       {path: 'getstarted', component: GetstartedComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'verify', component: VerifyComponent},

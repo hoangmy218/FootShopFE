@@ -1,3 +1,8 @@
+@import '../../../scss/helpers/mixins';
+@import '../../../scss/helpers/variables';
+@import '../../../scss/helpers/colors';
+@import '../../../scss/helpers/shared';
+
 .grid-container {
     margin: 20px;
 }
@@ -122,5 +127,64 @@ table{
     background-color: white;
     tr{
         padding-right: 1rem;
+    }
+}
+
+mat-card{
+    width: 50%;
+}
+.product-list{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+}
+
+.detail{
+    display: inline;
+    @include grid($columns:repeat(2,1fr));
+    @include setMaxwidth($lg){
+        padding:0 2rem;
+        max-width: none;
+    }
+    @include setMaxwidth($md){
+        padding:0;
+    }
+    @include setMaxwidth($md){
+        @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+    }
+    &-item{
+        &-color{
+            display: flex;
+            line-height: 2rem;
+            align-items: center;
+            span{
+                padding-left: 0.5rem;
+            }
+            
+        }
+        &-images{
+            display: flex;
+            @include grid($columns:repeat(2,1fr), $rowGap: 1rem, $columnGap: 1rem);
+            @include setMaxwidth($md){
+                @include grid($columns:repeat(1,1fr),$rowGap:3rem);
+            }
+           
+            img{
+                // @include flexitem($basis:50%);
+                // padding-right: 1rem;
+                // width: 100px;
+                // height: 100px;
+                width: 100%;
+            }
+
+
+        }
+        &-size{
+            display: block;
+        }
+        &-quantity{
+            float: right;
+            padding-right: 5rem;
+        }
     }
 }

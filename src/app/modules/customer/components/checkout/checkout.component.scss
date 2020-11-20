@@ -403,6 +403,7 @@ font-weight: 1000;
         .card_name{
             font-size: 1.5rem;
         }
+        
     }
     &__btn{
         .btn-placeorder{
@@ -429,6 +430,13 @@ font-weight: 1000;
         
     }
 
+}
+.old-price{
+    color: $grey;
+    padding-top: 0rem;
+    font-size: 1rem;
+    font-weight: 50;
+    text-decoration-line: line-through;
 }
 
 .product{

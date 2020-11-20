@@ -20,7 +20,7 @@ export class FilterComponent implements OnInit {
 	voiceActiveSectionError: boolean = false;
 	voiceActiveSectionSuccess: boolean = false;
 	voiceActiveSectionListening: boolean = false;
-	voiceText: any;
+	voiceText: any = "Tìm kiếm";
 
   constructor(
     private _service: CustomerService,
@@ -137,7 +137,9 @@ export class FilterComponent implements OnInit {
   initializeVoiceRecognitionCallback(): void {
 		annyang.addCallback('error', (err) => {
       if(err.error === 'network'){
+        
         this.voiceText = "Internet is require";
+        this.SearchForm.controls['search'].setValue(this.voiceText)
         annyang.abort();
         this.ngZone.run(() => this.voiceActiveSectionSuccess = true);
       } else if (this.voiceText === undefined) {
@@ -166,6 +168,7 @@ export class FilterComponent implements OnInit {
 
       this.voiceText = queryText;
       console.log(userSaid[0])
+      this.SearchForm.controls['search'].setValue(this.voiceText)
 
 			this.ngZone.run(() => this.voiceActiveSectionListening = false);
       this.ngZone.run(() => this.voiceActiveSectionSuccess = true);
@@ -177,6 +180,7 @@ export class FilterComponent implements OnInit {
 		this.voiceActiveSectionError = false;
 		this.voiceActiveSectionSuccess = false;
     this.voiceText = undefined;
+    this.SearchForm.controls['search'].setValue('')
 
 		if (annyang) {
 			let commands = {
@@ -197,8 +201,9 @@ export class FilterComponent implements OnInit {
 		this.voiceActiveSectionError = false;
 		this.voiceActiveSectionSuccess = false;
     this.voiceActiveSectionListening = false;
-    this._router.navigate(['/search/'+this.voiceText]);
+    // this._router.navigate(['/search/'+this.voiceText]);
     this.voiceText = undefined;
+    this.SearchForm.controls['search'].setValue('')
 		if(annyang){
       annyang.abort();
     }

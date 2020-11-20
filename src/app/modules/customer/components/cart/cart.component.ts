@@ -3,7 +3,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cart-item-model';
 import { CustomerService } from 'src/app/services/customer.service';
-
+import * as moment from 'moment';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -26,11 +27,20 @@ export class CartComponent implements OnInit {
   total : number = 0;
   discount: number = 0;
   public imageList: { [id: string]:any;} = {};
+  today : Date = new Date();
 
   
 
   ngOnInit(): void {
+    $(window).scrollTop(0);
     this.refreshCartList();
+  }
+
+  isExpirationExpired(discount) {
+    // your date logic here, recommendnpm install moment --save;
+    return ( moment(discount['ngaybd']).isBefore(moment(this.today)) 
+            && moment(this.today).isBefore(moment(discount['ngaykt']))
+            && discount['trangthai']==true) ;
   }
 
   onChange(item_id: string, pro_id: string, value: number){
@@ -88,8 +98,20 @@ export class CartComponent implements OnInit {
         console.log('item', item)
         this.priceList.forEach(element => {
           if (element['sanpham_id'] == item['ctsp_id']['mausanpham_id']['sanpham_id']['_id']){
-            this.subTotal += (element['dongia']* item['soluongdat']);
-            console.log('subtotal', this.subTotal)
+            //SUB TOTAL & DISCOUNT
+            if ((item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id'] != null)  
+            && (this.isExpirationExpired(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']))){
+              // this.subTotal += (element['dongia']* item['soluongdat']*(100-item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']['giamgia'])/100);
+              this.discount += (element['dongia']* item['soluongdat']*(item['ctsp_id']['mausanpham_id']['sanpham_id']['khuyenmai_id']['giamgia'])/100);
+              
+              this.subTotal += (element['dongia']* item['soluongdat']);
+              console.log('subtotal', this.subTotal)
+            }else{
+              this.subTotal += (element['dongia']* item['soluongdat']);
+              console.log('subtotal', this.subTotal)
+            }
+            //END 
+            
           }
         });
         
