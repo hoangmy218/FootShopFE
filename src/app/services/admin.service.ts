@@ -348,6 +348,11 @@ export class AdminService {
   getRevenueChart():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + "/overview/revenue-graph", {headers :this.headers});
   }
+
+  
+  getProductPriceChart(id: string):Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "/overview/price-graph/"+id, {headers :this.headers});
+  }
   
   getOrderChart():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + "/overview/order-graph", {headers :this.headers});

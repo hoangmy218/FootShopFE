@@ -16,10 +16,10 @@
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           <!-- Id Column -->
-          <ng-container matColumnDef="_id">
+          <!-- <ng-container matColumnDef="_id">
             <mat-header-cell  *matHeaderCellDef mat-sort-header>MÃ</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element._id}}</mat-cell>
-          </ng-container>
+          </ng-container> -->
   
           <!-- Name Column -->
           <ng-container matColumnDef="ten">
@@ -61,5 +61,5 @@
       </div>
     </div>
   </div>
-  
+  <app-loading [isLoading]="isHandle"></app-loading>  
   

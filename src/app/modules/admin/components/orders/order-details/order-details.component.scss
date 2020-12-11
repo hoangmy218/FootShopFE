@@ -5,6 +5,17 @@
 .grid-container {
     margin: 20px;
   }
+
+  .title_page{
+    @extend %title-page;
+    i{
+        @extend %title-page-i;
+    }
+    a{
+       @extend %title-page-a;
+    }
+
+}
   
   
   .btn-add{

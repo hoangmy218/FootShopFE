@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ChartsModule, Color } from 'ng2-charts';
 import { AdminService } from 'src/app/services/admin.service';
 import {draw, generate} from 'patternomaly';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product-chart',
@@ -24,7 +25,7 @@ export class ProductChartComponent implements OnInit {
     { data: [], label: 'Số sản phẩm bán ra' } //trang thai: Da duyet 2 - 4 hoan tat
   ];
   pieData = [{ data: [330, 600, 260, 700], label: 'Account A' }];
-  chartLabels = ['January', 'February', 'Mars', 'April', 'sdj'];
+
   chart_Labels = ['Tháng 01', 'Tháng 02', 'Tháng 03', 'Tháng 04','Tháng 05', 'Tháng 06', 'Tháng 07','Tháng 08' ,'Tháng 09','Tháng 10','Tháng 11','Tháng 12'];
   chartPieMonths = [];
   chartPieData = [{
@@ -32,6 +33,12 @@ export class ProductChartComponent implements OnInit {
     label: "Revenue",
   },
   ];
+  chartLabels = [];
+  chart_Data = [{
+    data: [], label: 'Biểu đồ biến động giá'
+  }];
+  public productList: { [id: string]: any; } = {};  
+  // chart_Labels = [];
   myColors = [
     {
       backgroundColor: 'rgba(103, 58, 183, .1)',
@@ -77,62 +84,77 @@ export class ProductChartComponent implements OnInit {
   ];
 
 
-  constructor(private service: AdminService,
+  constructor(
+    public service: AdminService,
     private dialog:MatDialog,
     private snackBar: MatSnackBar
-  ) {
-      this.service.listen().subscribe((m:any)=>{
-        console.log(m);
-        this.refreshLowStockList();
-        this.refreshOutOfStockList();
-    })
-  }
+
+  ) {}
 
   totalCustomers: number =0;
   totalOrders : number =0;
   revenue: number =0;
+  sanpham_ma: string = '';
 
-  listData : MatTableDataSource<any>;
-  listDataOTS : MatTableDataSource<any>;
-  displayedColumns : string[] = ['ten', 'mausac','kichco'];
-  displayedColumnsOTS : string[] = ['ten', 'mausac','kichco'];
+
+
+
 
   // @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(): void {
+    this.resetForm();
+    this.refreshProductList();
     this.refreshOverview();
-    this.refreshLowStockList();
-    this.refreshOutOfStockList();
-    this.refreshRevenueGraph();
+
+    // this.refreshRevenueGraph(this.sanpham_ma);
     this.refreshStockGraph();
     this.refreshSaleGraph();
   }
-
-  refreshLowStockList() {
-    this.service.getLowStock().subscribe(res => {
-      this.listData = new MatTableDataSource(res['data']);
-      this.listData.sort = this.sort;
-      this.listData.paginator = this.paginator;
-    });
+  
+  resetForm( form ?: NgForm){
+    if (form!= null)
+    {
+      form.resetForm();
+    }
+    this.service.formProduct={
+      _id : '',
+      ten : '',
+      mota: '',
+      danhmuc_id: '',
+      thuonghieu_id: '',
+      dongia: 1000,
+    }
+  }
+  onChange(value){
+    console.log('value', value)
+    this.refreshRevenueGraph(value);
     
   }
-  refreshOutOfStockList() {
-    this.service.getOutOfStock().subscribe(res => {
-      this.listDataOTS = new MatTableDataSource(res['data']);
-      this.listDataOTS.sort = this.sort;
-      this.listDataOTS.paginator = this.paginator;
+
+  refreshProductList(){
+    this.service.getProductList().subscribe(data =>{
+      console.log('List product', data);
+      this.sanpham_ma = "5f729d9c3f60061244969a9a";
+      this.service.formProduct._id = this.sanpham_ma;
+      this.refreshRevenueGraph("5f729d9c3f60061244969a9a");
+
+      
+      data['data'].forEach(element => {
+        
+        // console.log(element["product_name"]);
+        this.productList[element._id] = element.ten;
+        // this.listItems.push(element)
+      });
+      console.log('productList',this.productList);
     });
-    
-  }
-  applyFilter(filtervalue: string){
-    this.listData.filter = filtervalue.trim().toLocaleLowerCase();
-  }
-  applyFilterOTS(filtervalue: string){
-    this.listDataOTS.filter = filtervalue.trim().toLocaleLowerCase();
   }
 
+
+ 
+ 
   refreshOverview(){
     this.service.getTotalCustomers().subscribe(res=>{
       // console.log(res['total'])
@@ -146,22 +168,22 @@ export class ProductChartComponent implements OnInit {
     })
   }
 
-  refreshRevenueGraph(){
-    this.service.getRevenueChart().subscribe(res=>{
-      console.log(res)
-      res.forEach(element=>{
-        console.log(element)
-        this.chartPieMonths.push("Tháng " +element._id.monthBillDate)
+  // refreshRevenueGraph(){
+  //   this.service.getRevenueChart().subscribe(res=>{
+  //     console.log(res)
+  //     res.forEach(element=>{
+  //       console.log(element)
+  //       this.chartPieMonths.push("Tháng " +element._id.monthBillDate)
 
-        this.chartPieData[0].data.push(element.total)
-      })
-      // console.log(this.chartPieMonths)
-      // console.log(this.chartPieData)
-      // console.log(this.pieData)
-      // console.log(this.chartLabels)
-      // console.log(this.chartData)
-    })
-  }
+  //       this.chartPieData[0].data.push(element.total)
+  //     })
+  //     // console.log(this.chartPieMonths)
+  //     // console.log(this.chartPieData)
+  //     // console.log(this.pieData)
+  //     // console.log(this.chartLabels)
+  //     // console.log(this.chartData)
+  //   })
+  // }
 
   refreshStockGraph(){
     this.service.getStockChart().subscribe(res=>{
@@ -203,9 +225,30 @@ export class ProductChartComponent implements OnInit {
       
     })
   }
+
+  refreshRevenueGraph(id: string){
+    this.chartLabels = [];
+    this.chart_Data = [{
+      data: [], label: 'Biểu đồ biến động giá'
+    }];
+    this.service.getProductPriceChart(id).subscribe(res=>{
+      console.log(res)
+      res.forEach(element=>{
+        console.log(element)
+        
+        this.chartLabels.push("Tháng " +element._id.monthBillDate)
+        this.chart_Data[0]['data'].push(element.total)
+      })
+   
+    })
+  }
   
   onChartClick(event){
     
+  }
+
+  onSubmit(form :NgForm){
+    console.log(form.value);
   }
 
 }

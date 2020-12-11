@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./add-size.component.scss']
 })
 export class AddSizeComponent implements OnInit {
-
+  isHandle : boolean = false;
   constructor(
     public dialogbox: MatDialogRef<AddSizeComponent>,
     public service: AdminService,
@@ -22,9 +22,11 @@ export class AddSizeComponent implements OnInit {
   }
 
   onSubmit(form :NgForm){
+    this.isHandle = true;
     console.log(form.value);
     this.service.addSize(form.value).subscribe(res=>
       {
+        this.isHandle = false;
         this.resetForm(form);
         console.log(res)
         this.snackBar.open(res['message'].toString(), '', {

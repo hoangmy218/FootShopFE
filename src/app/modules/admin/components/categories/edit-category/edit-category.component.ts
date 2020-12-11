@@ -11,6 +11,7 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class EditCategoryComponent implements OnInit {
 
+  isHandle : boolean = false;
 
   constructor(
     public dialogbox: MatDialogRef<EditCategoryComponent>,
@@ -23,9 +24,11 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onSubmit(form :NgForm){
+    this.isHandle = true;
     console.log(form.value);
     this.service.updateCategory(form.value).subscribe(res=>
       {
+        this.isHandle = false;
         console.log(res)
         this.snackBar.open(res['message'].toString(), '', {
           duration: 3000,

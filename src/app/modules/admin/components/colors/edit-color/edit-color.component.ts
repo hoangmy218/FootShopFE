@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./edit-color.component.scss']
 })
 export class EditColorComponent implements OnInit {
-
+  isHandle: boolean = false;
   constructor(
     public dialogbox: MatDialogRef<EditColorComponent>,
     public service: AdminService,
@@ -53,6 +53,7 @@ export class EditColorComponent implements OnInit {
 
  
   onSubmit(form :NgForm){
+    this.isHandle = true;
     console.log(form.value);
     console.log(this.service.formColor);
     form.value['hinh'] = this.service.formColor.hinh;
@@ -60,6 +61,7 @@ export class EditColorComponent implements OnInit {
     this.service.updateColor(form.value).subscribe(res=>
       {
         console.log(res)
+        this.isHandle = false;
         this.snackBar.open(res['message'].toString(), '', {
           duration: 3000,
           verticalPosition:'bottom'

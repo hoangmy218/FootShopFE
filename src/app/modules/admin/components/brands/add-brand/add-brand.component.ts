@@ -10,6 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./add-brand.component.scss']
 })
 export class AddBrandComponent implements OnInit {
+  isHandle : boolean = false;
 
   constructor(
     public dialogbox: MatDialogRef<AddBrandComponent>,
@@ -22,9 +23,11 @@ export class AddBrandComponent implements OnInit {
   }
 
   onSubmit(form :NgForm){
+    this.isHandle = true;
     console.log(form.value);
     this.service.addBrand(form.value).subscribe(res=>
       {
+        this.isHandle = false
         this.resetForm(form);
         console.log(res)
         this.snackBar.open(res['message'].toString(), '', {
@@ -33,7 +36,8 @@ export class AddBrandComponent implements OnInit {
         })
         if (res['success']){
           this.dialogbox.close();
-          window.location.replace('/admin/brand');
+          this.service.filter('Register Click');
+          // window.location.replace('/admin/brand');
         }
       })
   }

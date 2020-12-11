@@ -16,6 +16,7 @@ import { Size } from '../../../../../models/size-model';
   styleUrls: ['./size.component.scss']
 })
 export class SizeComponent implements OnInit {
+  isHandle : boolean = true;
 
   constructor(private service: AdminService,
     private dialog:MatDialog,
@@ -28,7 +29,7 @@ export class SizeComponent implements OnInit {
   }
 
   listData : MatTableDataSource<any>;
-  displayedColumns : string[] = ['_id', 'ten', 'Options'];
+  displayedColumns : string[] = [ 'ten', 'Options'];
 
   // @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatSort) sort:MatSort;
@@ -43,6 +44,7 @@ export class SizeComponent implements OnInit {
       this.listData = new MatTableDataSource(res['data']);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
+      this.isHandle = false;
     });
     
   }
@@ -70,8 +72,10 @@ export class SizeComponent implements OnInit {
   onDelete(id: number){
     if (confirm('Bạn có chắc chắn muốn xóa?'))
     {
+      this.isHandle = true;
       this.service.deleteSize(id).subscribe(res=>{
         this.refreshSizeList();
+        this.isHandle = false;
         this.snackBar.open(res['message'].toString(), '',{
           duration: 3000,
           verticalPosition:'bottom'

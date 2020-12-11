@@ -11,7 +11,7 @@ import * as $ from 'jquery';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  isHandle : boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
+    this.isHandle = true;
     let login: any={};
     login.email = this.LoginForm.controls['email'].value;
     login.matkhau = this.LoginForm.controls['password'].value;
@@ -83,7 +84,7 @@ export class LoginComponent implements OnInit {
       // var decoded = jwt_decode(token); 
       // console.log(decoded); 
       // localStorage.setItem('user_name',decoded['user_name']);
-
+      this.isHandle = false;
       this.snackBar.open('Đăng nhập thành công!', '',{
         duration: 3000,
         verticalPosition: 'bottom',
@@ -132,7 +133,7 @@ export class LoginComponent implements OnInit {
       
     },
     error =>{
-      
+      this.isHandle = false;
       console.log('err',error);
       if (error['message']="Incorrect username or password."){
         this.snackBar.open('Email hoặc Mật khẩu không đúng', '',{

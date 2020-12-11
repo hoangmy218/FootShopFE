@@ -1,8 +1,12 @@
 
-
+<app-loading [isLoading]="isHandle"></app-loading>  
 <div class="grid-container">
   <div class="dashboard-card">
-   <h1 class="mat-h1">Chi tiết đơn hàng</h1>
+    <div class="title_page">
+        <a routerLink="/admin/order">Đơn hàng</a>
+        <i class="fas fa-chevron-right"></i>
+        Chi tiết đơn hàng
+    </div>
 
         <div class="container">
           <mat-card>

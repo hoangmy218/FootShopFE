@@ -4,31 +4,39 @@
 @import '../../../scss/helpers/shared';
 .grid-container {
     margin: 20px;
+    
   }
-
-.card{
-    @include grid($columns:repeat(3,1fr));
-    @include setMaxwidth($lg){
-        padding:0 2rem;
-        max-width: none;
-    }
-    @include setMaxwidth($md){
-        padding:0;
-    }
-    @include setMaxwidth($md){
-        @include grid($columns:repeat(1,1fr),$rowGap:6rem);
-    }
-    .customers{
-        background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;
-    }
-    .orders{
-        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%) !important;
-    }
-    .revenue{
-        background-image:   linear-gradient(to top, #ff0844 0%, #ffb199 100%) !important;
-    }
-    color: white;
+.productChart{
+    align-items: center;
+    padding: 0rem 8rem;
 }
+
+.graph-product{
+    margin-top: 1rem;
+}
+// .card{
+//     @include grid($columns:repeat(3,1fr));
+//     @include setMaxwidth($lg){
+//         padding:0 2rem;
+//         max-width: none;
+//     }
+//     @include setMaxwidth($md){
+//         padding:0;
+//     }
+//     @include setMaxwidth($md){
+//         @include grid($columns:repeat(1,1fr),$rowGap:6rem);
+//     }
+//     .customers{
+//         background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;
+//     }
+//     .orders{
+//         background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%) !important;
+//     }
+//     .revenue{
+//         background-image:   linear-gradient(to top, #ff0844 0%, #ffb199 100%) !important;
+//     }
+//     color: white;
+// }
 .dashboard{
     
     &__item{
@@ -82,3 +90,28 @@
         background-color: white;
     }
 }
+.table-title{
+    font-family: $primary-font !important;
+        // text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: $greyx3;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: white;
+}
+
+.form-field-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .form-field-label {
+      white-space: nowrap;
+    }
+    .form-field-label + mat-form-field {
+     margin-left: 10px;
+    }
+    mat-form-field {
+      width:50%;
+    }
+  }

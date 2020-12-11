@@ -26,6 +26,7 @@
                 accept="image/*" #photo (change)="processFile(photo)"> 
             <!-- <app-image-upload></app-image-upload> -->
         </div>
+        <img [(src)]="image_link" alt="">
         
 
         <button class="mt-4" mat-raised-button 
@@ -33,3 +34,4 @@
         [disabled]="form.invalid">Thêm</button>
     </form>
 </div>
+<app-loading [isLoading]="isHandle"></app-loading>

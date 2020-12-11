@@ -1,7 +1,90 @@
 <div class="grid-container">
     <div class="dashboard-card">
-     <h1 class="mat-h1">Thống kê sản phẩm</h1>
-     <!-- <div class="card">
+
+      <h1 class="mat-h1">Thống kê sản phẩm</h1>
+      <mat-tab-group color="warn" >
+        <mat-tab label="Sản phẩm nhập và bán"> 
+          <div class="details__item-content">
+            <div class="graph">
+              <mat-card>
+                <div class="baseChart">
+                    <div class="chart-title">Thống kê sản phẩm nhập và bán</div>
+                    <div class="productChart" style="width: 100%;">
+                        <canvas
+                            baseChart
+                            [chartType]="'bar'"
+                            [datasets]="chartData"
+                            [labels]="chart_Labels"
+                            [colors]="barChartColors"
+                            [options]="chartOptions"
+                            [legend]="true"
+                            (chartClick)="onChartClick($event)">
+                        </canvas>
+                      </div>
+                  </div>
+              </mat-card>
+              </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Biến động giá"> 
+          <div class="graph graph-product">
+            <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+              <div class="form-field-group">
+                <mat-form-field appearance="fill"  class="example-full-width">
+                  <mat-label>Sản phẩm</mat-label>
+                  <mat-select name="sanpham_id"
+                  #sanpham_id="ngModel" (ngModelChange)="onChange($event)"
+                  [(ngModel)]="service.formProduct._id" >
+                    <mat-option *ngFor="let dl of productList | keyvalue" [value]="dl.key">
+                      {{dl.value}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+          </form>
+            <div class="text-left text-danger"
+                *ngIf="sanpham_id.invalid && sanpham_id.touched">
+                Chọn sản phẩm
+            </div>
+            <mat-card>
+              <div class="baseChart">
+                  <div class="chart-title">Biểu đồ biến động giá của sản phẩm</div>
+                  <div class="productChart" style="width: 100%;">
+                      <canvas
+                          baseChart
+                          [chartType]="'line'"
+                          [datasets]="chart_Data"
+                          [labels]="chartLabels"
+                          [options]="chartOptions"
+                          
+                          [legend]="true"
+                          (chartClick)="onChartClick($event)">
+                      </canvas>
+                    </div>
+                </div>
+            </mat-card>
+          </div>
+        </mat-tab>
+        <mat-tab label="Sản phẩm sắp hết hàng">
+          <div class="details__item-content">
+            <div class="graph">
+              <div class="table-title">Danh sách sản phẩm sắp hết hàng</div>
+              <app-lowstock></app-lowstock>
+            </div>
+          </div>
+          
+        </mat-tab>
+        <mat-tab label="Sản phẩm hết hàng">
+          <div class="details__item-content">
+            <div class="graph">
+              <div class="table-title">Danh sách sản phẩm đã hết hàng</div>
+              <app-outofstock></app-outofstock>
+            </div>
+          </div>
+          
+        </mat-tab>
+      </mat-tab-group>
+      <!-- <div class="card">
          <mat-card class="customers">
              <div class="dashboard">
                  <div class="dashboard__item ">
@@ -42,26 +125,7 @@
             </div>
         </mat-card>
      </div> -->
-     <div class="graph">
-      <mat-card>
-        <div class="baseChart">
-            <div class="chart-title">Thống kê sản phẩm nhập và bán</div>
-            <div style="width: 100%;">
-                <canvas
-                    baseChart
-                    [chartType]="'bar'"
-                    [datasets]="chartData"
-                    [labels]="chart_Labels"
-                    [colors]="barChartColors"
-                    [options]="chartOptions"
-                    [legend]="true"
-                    (chartClick)="onChartClick($event)">
-                </canvas>
-              </div>
-         </div>
-     </mat-card>
-     </div>
-     <div class="chart">
+  
          
          <!-- <mat-card>
             <div class="baseChart">
@@ -82,77 +146,6 @@
              </div>
          </mat-card> -->
         
-         
-         <mat-card>
-            <div class="mat-elevation-z8" style="overflow: auto;">
-                <div class="chart-title">Danh sách sản phẩm sắp hết hàng</div>
-                <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
-                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                  
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="ten">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>TÊN</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.mausanpham_id.sanpham_id.ten}}</mat-cell>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="mausac">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>MÀU SẮC</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.mausanpham_id.mausac_id.ten}}</mat-cell>
-                  </ng-container>
-                  <!-- Id Column -->
-                  <ng-container matColumnDef="kichco">
-                    <mat-header-cell  *matHeaderCellDef mat-sort-header>KÍCH CỠ</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.kichco_id.ten}}</mat-cell>
-                  </ng-container>
-          
-          
-                  <!-- Description Column
-                  <ng-container matColumnDef="brand_des">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.brand_des}}</mat-cell>
-                  </ng-container> -->
-          
-                 
-          
-        
-                </mat-table>
-          
-                <mat-paginator 
-                    [pageSizeOptions]="[5, 10, 15]" >
-                </mat-paginator>
-              </div>
-         </mat-card>
-         
-         <mat-card>
-            <div class="mat-elevation-z8" style="overflow: auto;">
-                <div class="chart-title">Danh sách sản phẩm hết hàng</div>
-                <mat-table class="full-width-table"  [dataSource] = "listDataOTS"  matSort>
-                  <mat-header-row *matHeaderRowDef="displayedColumnsOTS"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumnsOTS;"></mat-row>
-                  
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="ten">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>TÊN</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.mausanpham_id.sanpham_id.ten}}</mat-cell>
-                  </ng-container>
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="mausac">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>MÀU SẮC</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.mausanpham_id.mausac_id.ten}}</mat-cell>
-                  </ng-container>
-                  <!-- Id Column -->
-                  <ng-container matColumnDef="kichco">
-                    <mat-header-cell  *matHeaderCellDef mat-sort-header>KÍCH CỠ</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.kichco_id.ten}}</mat-cell>
-                  </ng-container>
-                </mat-table>       
-                <mat-paginator 
-                    [pageSizeOptions]="[5, 10, 15]" >
-                </mat-paginator>
-              </div>
-         </mat-card>
-         
+ 
      </div>
-    </div>
 </div>

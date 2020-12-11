@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./add-category.component.scss']
 })
 export class AddCategoryComponent implements OnInit {
-
+  isHandle : boolean = false;
   constructor(
     public dialogbox: MatDialogRef<AddCategoryComponent>,
     public service: AdminService,
@@ -22,9 +22,11 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onSubmit(form :NgForm){
+    this.isHandle = true;
     console.log(form.value);
     this.service.addCategory(form.value).subscribe(res=>
       {
+        this.isHandle = false;
         this.resetForm(form);
         console.log(res)
         this.snackBar.open(res['message'].toString(), '', {
@@ -33,7 +35,7 @@ export class AddCategoryComponent implements OnInit {
         })
         if (res['success']){
           this.dialogbox.close();
-          window.location.replace('/admin/category');
+          this.service.filter('Register Click');
         }
       })
   }

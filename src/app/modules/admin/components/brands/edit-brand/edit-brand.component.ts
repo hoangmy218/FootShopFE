@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./edit-brand.component.scss']
 })
 export class EditBrandComponent implements OnInit {
-
+  isHandle :  boolean = false;
 
   constructor(
     public dialogbox: MatDialogRef<EditBrandComponent>,
@@ -23,10 +23,12 @@ export class EditBrandComponent implements OnInit {
   }
 
   onSubmit(form :NgForm){
+    this.isHandle  = true;
     console.log(form.value);
     this.service.updateBrand(form.value).subscribe(res=>
       {
         console.log(res)
+        this.isHandle = false;
         this.snackBar.open(res['message'].toString(), '', {
           duration: 3000,
           verticalPosition:'bottom'

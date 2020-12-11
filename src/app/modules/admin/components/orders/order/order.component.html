@@ -1,6 +1,8 @@
 <div class="grid-container">
     <div class="dashboard-card">
-     <h1 class="mat-h1">Đơn hàng</h1>
+      <div class="title_page">
+        Đơn hàng
+    </div>
      
      <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)"
@@ -14,7 +16,7 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           <!-- Id Column -->
           <ng-container matColumnDef="_id">
-            <mat-header-cell  *matHeaderCellDef mat-sort-header>MÃ</mat-header-cell>
+            <mat-header-cell  *matHeaderCellDef mat-sort-header>MÃ ĐƠN HÀNG</mat-header-cell>
             <mat-cell *matCellDef="let element" class="break">{{element._id}}</mat-cell>
           </ng-container>
   
@@ -26,7 +28,7 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="diachi_id">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>TÊN NGƯỜI ĐẶT</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ĐỊA CHỈ</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.diachi_id.diachi}}</mat-cell>
             </ng-container>
 
@@ -74,7 +76,8 @@
                 <!-- <button mat-icon-button color="warn" (click)="onDelete(row._id)">
                     <mat-icon>delete_outline</mat-icon>
                 </button> -->
-                <button mat-icon-button color="info" routerLink="/admin/order/{{row._id}}">
+                <button mat-icon-button color="info" 
+                  (click)="OnDetails(row._id)">
                     <i class="fas fa-info-circle"></i>
                 </button>
                 <button mat-icon-button color="danger" class="btn-cancel"
@@ -93,5 +96,6 @@
       </div>
     </div>
   </div>
+  <app-loading [isLoading]="isHandle"></app-loading>  
   
   

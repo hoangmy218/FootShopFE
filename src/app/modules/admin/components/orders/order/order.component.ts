@@ -6,15 +6,18 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from 'src/app/services/admin.service';
 import {ThemePalette} from '@angular/material/core';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  isHandle : boolean = true;
   constructor(private service: AdminService,
     private dialog:MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private _router: Router
   ) {
       this.service.listen().subscribe((m:any)=>{
         console.log(m);
@@ -44,6 +47,7 @@ export class OrderComponent implements OnInit {
       this.listData = new MatTableDataSource(res['data']);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
+      this.isHandle = false;
     });
     
   }
@@ -57,8 +61,10 @@ export class OrderComponent implements OnInit {
   onDelete(id: number){
     if (confirm('Bạn có chắc chắn muốn hủy?'))
     {
+      this.isHandle = true;
       this.service.cancelOrder(id).subscribe(res=>{
         this.refreshOrderList();
+        this.isHandle = false;
         this.snackBar.open(res['message'].toString(), '',{
           duration: 3000,
           verticalPosition:'bottom'
@@ -74,8 +80,10 @@ export class OrderComponent implements OnInit {
     if (trangthai == 1){
       if (confirm('Bạn có chắc chắn muốn duyệt đơn hàng?'))
       {
+        this.isHandle = true;
         this.service.confirmOrder(id).subscribe(res=>{
           this.refreshOrderList();
+          this.isHandle = false;
           this.snackBar.open(res['message'].toString(), '',{
             duration: 3000,
             verticalPosition:'bottom'
@@ -86,8 +94,10 @@ export class OrderComponent implements OnInit {
     }else if (trangthai == 2){
       if (confirm('Bạn có chắc chắn muốn giao đơn hàng?'))
       {
+        this.isHandle = true;
         this.service.shipOrder(id).subscribe(res=>{
           this.refreshOrderList();
+          this.isHandle = false;
           this.snackBar.open(res['message'].toString(), '',{
             duration: 3000,
             verticalPosition:'bottom'
@@ -98,8 +108,10 @@ export class OrderComponent implements OnInit {
     }else if (trangthai == 3){
     if (confirm('Bạn có chắc chắn muốn hoàn tất đơn hàng?'))
     {
+      this.isHandle = true;
       this.service.completeOrder(id).subscribe(res=>{
         this.refreshOrderList();
+        this.isHandle = false;
         this.snackBar.open(res['message'].toString(), '',{
           duration: 3000,
           verticalPosition:'bottom'
@@ -115,8 +127,10 @@ export class OrderComponent implements OnInit {
     
       if (confirm('Bạn có chắc chắn muốn hủy đơn hàng?'))
       {
+        this.isHandle = true;
         this.service.cancelOrder(id).subscribe(res=>{
           this.refreshOrderList();
+          this.isHandle = false;
           this.snackBar.open(res['message'].toString(), '',{
             duration: 3000,
             verticalPosition:'bottom'
@@ -124,6 +138,11 @@ export class OrderComponent implements OnInit {
 
         });
       }
+  }
+
+  OnDetails(id: number){
+    this.isHandle = true;
+    this._router.navigate(['/admin/order/'+id]);
   }
     
 }

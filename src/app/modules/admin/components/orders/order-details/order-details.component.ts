@@ -12,7 +12,7 @@ import { Address } from '../../../../../models/address-model';
   styleUrls: ['./order-details.component.scss']
 })
 export class OrderDetailsComponent implements OnInit {
-
+  isHandle : boolean = true;
   constructor(
     private actRoute: ActivatedRoute,
     private service: AdminService,
@@ -42,6 +42,7 @@ export class OrderDetailsComponent implements OnInit {
  
 
   ngOnInit(): void {
+    this.isHandle = true;
 
 
     this.OrderID = this.actRoute.snapshot.params['order_id'];
@@ -64,8 +65,11 @@ export class OrderDetailsComponent implements OnInit {
         this.service.getImage(element['ctsp_id']['mausanpham_id']['hinh'][0]).subscribe(result=>{
           console.log(result['data'].hinh)
           this.imageList[element['ctsp_id']._id] = result['data'].hinh;
+          this.isHandle = false;
+         
         })
       });
+      
     })
   }
 

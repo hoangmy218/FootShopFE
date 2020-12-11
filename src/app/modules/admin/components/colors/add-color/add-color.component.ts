@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./add-color.component.scss']
 })
 export class AddColorComponent implements OnInit {
+  isHandle :  boolean = false;
 
   selectedFile : File = null;
   constructor(
@@ -20,6 +21,7 @@ export class AddColorComponent implements OnInit {
     public dialogbox: MatDialogRef<AddColorComponent>,
     private snackBar: MatSnackBar
   ) { }
+  image_link : string = "../../../../../assets/img/gallery.png";
 
   ngOnInit(): void {
     this.resetForm();
@@ -43,18 +45,21 @@ export class AddColorComponent implements OnInit {
     this.http.post(this.APIUrl + "/hinhanh/upload", myFormData, {headers: headers})
     .subscribe(data => {
       console.log(data);
+      this.image_link =  data['hinhanh'].hinh.toString(); 
       this.service.formColor.hinh= data['hinhanh'].hinh.toString();            
     });
 
   }
  
   onSubmit(form :NgForm){
+    this.isHandle  = true;
     console.log(form.value);
     console.log(this.service.formColor);
     form.value['hinh'] = this.service.formColor.hinh;
     // this.service.formColor.ten = form.value['ten'];
     this.service.addColor(form.value).subscribe(res=>
       {
+        this.isHandle = false;
         this.resetForm(form);
         console.log(res)
         this.snackBar.open(res['message'].toString(), '', {
@@ -63,7 +68,8 @@ export class AddColorComponent implements OnInit {
         })
         if (res['success']){
           this.dialogbox.close();
-          window.location.replace('/admin/color');
+          this.service.filter('Register Click');
+          // window.location.replace('/admin/color');
         }
       })
   }

@@ -16,6 +16,7 @@ import { EditColorComponent } from '../edit-color/edit-color.component';
   styleUrls: ['./color.component.scss']
 })
 export class ColorComponent implements OnInit {
+  isHandle : boolean = true;
 
   constructor(private service: AdminService,
     private dialog:MatDialog,
@@ -28,7 +29,7 @@ export class ColorComponent implements OnInit {
   }
 
   listData : MatTableDataSource<any>;
-  displayedColumns : string[] = ['_id', 'ten', 'hinh', 'Options'];
+  displayedColumns : string[] = [ 'ten', 'hinh', 'Options'];
 
   // @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatSort) sort:MatSort;
@@ -43,6 +44,7 @@ export class ColorComponent implements OnInit {
       this.listData = new MatTableDataSource(res['data']);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
+      this.isHandle = false;
     });
     
   }
@@ -70,8 +72,10 @@ export class ColorComponent implements OnInit {
   onDelete(id: number){
     if (confirm('Bạn có chắc chắn muốn xóa?'))
     {
+      this.isHandle = true;
       this.service.deleteColor(id).subscribe(res=>{
         this.refreshColorList();
+        this.isHandle = false;
         this.snackBar.open(res['message'].toString(), '',{
           duration: 3000,
           verticalPosition:'bottom'

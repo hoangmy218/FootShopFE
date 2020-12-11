@@ -63,6 +63,9 @@ import { EditDiscountComponent } from './components/discounts/edit-discount/edit
 import { DetailsDiscountComponent } from './components/discounts/details-discount/details-discount.component';
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LowstockComponent } from './components/charts/lowstock/lowstock.component';
+import { OutofstockComponent } from './components/charts/outofstock/outofstock.component';
 
 
 @NgModule({
@@ -103,7 +106,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     DiscountComponent,
     AddDiscountComponent,
     EditDiscountComponent,
-    DetailsDiscountComponent
+    DetailsDiscountComponent,
+    LoadingComponent,
+    LowstockComponent,
+    OutofstockComponent
 
   ],
   imports: [

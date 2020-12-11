@@ -17,6 +17,7 @@ import { EditBrandComponent } from '../../brands/edit-brand/edit-brand.component
   styleUrls: ['./brand.component.scss']
 })
 export class BrandComponent implements OnInit {
+  isHandle : boolean  = true;
 
   constructor(private service: AdminService,
     private dialog:MatDialog,
@@ -29,7 +30,7 @@ export class BrandComponent implements OnInit {
   }
 
   listData : MatTableDataSource<any>;
-  displayedColumns : string[] = ['_id', 'ten', 'Options'];
+  displayedColumns : string[] = ['ten', 'Options'];
 
   // @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatSort) sort:MatSort;
@@ -44,6 +45,7 @@ export class BrandComponent implements OnInit {
       this.listData = new MatTableDataSource(res['data']);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
+      this.isHandle = false;
     });
     
   }
@@ -71,8 +73,10 @@ export class BrandComponent implements OnInit {
   onDelete(id: number){
     if (confirm('Bạn có chắc chắn muốn xóa?'))
     {
+      this.isHandle = true;
       this.service.deleteBrand(id).subscribe(res=>{
         this.refreshBrandList();
+        this.isHandle = false;
         this.snackBar.open(res['message'].toString(), '',{
           duration: 3000,
           verticalPosition:'bottom'

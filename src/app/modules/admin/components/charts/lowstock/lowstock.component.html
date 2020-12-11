@@ -1,0 +1,29 @@
+<mat-card>
+    <div class="mat-elevation-z8" style="overflow: auto;">
+ 
+        <mat-table class="full-width-table"  [dataSource] = "listData"  matSort>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          
+          <!-- Name Column -->
+          <ng-container matColumnDef="mausanpham_id.sanpham_id.ten">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>TÊN</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.mausanpham_id.sanpham_id.ten}}</mat-cell>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="mausac">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>MÀU SẮC</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.mausanpham_id.mausac_id.ten}}</mat-cell>
+          </ng-container>
+          <!-- Id Column -->
+          <ng-container matColumnDef="kichco">
+            <mat-header-cell  *matHeaderCellDef mat-sort-header>KÍCH CỠ</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.kichco_id.ten}}</mat-cell>
+          </ng-container>
+        </mat-table>
+  
+        <mat-paginator 
+            [pageSizeOptions]="[5, 10, 15]" >
+        </mat-paginator>
+      </div>
+ </mat-card>

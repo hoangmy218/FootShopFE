@@ -67,3 +67,27 @@
     }
     
 }
+%title-page{
+    background-color: $greytitlebg;
+    color: white;
+    // line-height: 1.4;
+    padding-left: 1rem;
+    width: 100%;
+    font-family: $addressfont2;
+    font-size: 1.2rem;
+    // letter-spacing: 2px;
+    // text-transform: uppercase;
+    font-weight: 600;
+    padding: 1rem 1rem;
+}
+%title-page-i{
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+%title-page-a{
+    color: $grey0;
+    &:hover{
+        color: white;
+    }
+}
