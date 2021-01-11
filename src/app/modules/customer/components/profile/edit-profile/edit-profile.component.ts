@@ -99,7 +99,7 @@ export class EditProfileComponent implements OnInit {
           duration: 3000,
           verticalPosition: 'bottom'
         })
-        // this.__router.navigate(['/profile'])
+        this.__router.navigate(['/profile'])
       
      
       }

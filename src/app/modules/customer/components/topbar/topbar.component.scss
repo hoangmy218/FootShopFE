@@ -30,7 +30,7 @@ nav{
     top: 0;
     left: 0;
     width: 100%;
-    @include setMaxwidth($xl) {
+    @include setMaxwidth($lg) {
         padding: 0;
     }
     &__nav {
@@ -45,19 +45,19 @@ nav{
                 /* black to white */
                 invert(100%)
             }
-            @include setMaxwidth($xl) {
+            @include setMaxwidth($lg) {
                 padding: 1rem 2rem;
             }
         }
         &-menu {
-            @include setMaxwidth($xl) {
+            @include setMaxwidth($lg) {
                 @include flexitem($basis: 100%);
                 position: relative;
             }
         }
         .menu {
             @include flex();
-            @include setMaxwidth($xl) {
+            @include setMaxwidth($lg) {
                 // max-height: 0;
                 // transition: .5s ease-in-out;
                 // background: $bgfantastic;
@@ -76,8 +76,8 @@ nav{
             &-item {
                 margin-left: 3rem;
                 text-transform: uppercase;
-                @include setMaxwidth($xl) {
-                    display: block!important;
+                @include setMaxwidth($lg) {
+                    //display: block!important;
                     width: 100%;
                     margin: 0;
                     padding: 0;
@@ -89,18 +89,22 @@ nav{
                     font-weight: 800;
                     letter-spacing: 2px;
                     // padding-left: rem;
-                    @include setMaxwidth($xl) {
+                    @include setMaxwidth($lg) {
                         font-size: 1rem !important;
                         
                         display: block;
                         &:hover {
+                            @include setMinwidth($lg){
                             background: $orange;
                             color: white;
+                            }
                         }
                     }
                     &:not(.makeapoint):hover {
+                        @include setMinwidth($lg){
                         color: $orange;
                         transition: all 0.3s;
+                        }
                     }
                 }
             }
@@ -112,7 +116,7 @@ nav{
                 font-weight: 600;
                 transition: .4s ease-in-out;
                
-                @include setMaxwidth($xl) {
+                @include setMaxwidth($lg) {
                     padding-left: 2.5rem;
                     line-height: 3rem;
                     color: white;
@@ -131,7 +135,7 @@ nav{
                 &:hover {
                     background: $bluesky;
                 }
-                @include setMaxwidth($xl) {
+                @include setMaxwidth($lg) {
                     background: none;
                     padding: 0;
                     &:hover {
@@ -141,7 +145,7 @@ nav{
                 }
             }
             .cart {
-                @include setMaxwidth($xl) {
+                @include setMaxwidth($lg) {
                     display: none;
                 }
                 i{
@@ -162,14 +166,14 @@ nav{
             .technology,
             .access,
             .order {
-                @include setMaxwidth($xl) {
+                @include setMaxwidth($lg) {
                     border-bottom: 1px solid $greyx1;
                 }
             }
         }
         .has-menu {
             position: relative;
-            @include setMaxwidth($xl){
+            @include setMaxwidth($lg){
                 @include flex($justify:space-between,$wrap: wrap);
             }
             
@@ -187,7 +191,7 @@ nav{
             margin-right: 3rem;
             color:white;
             display: none;
-            @include setMaxwidth($xl){
+            @include setMaxwidth($lg){
                 display: inline;
             }    
         }
@@ -200,7 +204,7 @@ nav{
             // text-transform: ;
             background:  $greyx4;
             cursor: pointer;
-            @include setMaxwidth($xl){
+            @include setMaxwidth($lg){
                 position: relative;
                 @include flexitem($basis:100%);
                 background:inherit;
@@ -216,22 +220,27 @@ nav{
             &-item {
                 line-height: 4rem;
                 // border-bottom: 1px solid white;
-                @include setMaxwidth($xl){
+                @include setMaxwidth($lg){
                     // border-top:1px solid white;
                     border-bottom: none;
                 }
             }
         }
         .sub-link {
-            color: white;
+            color: $grey0 !important;
             font-size: 1rem;
             display: block;
             padding: 0 2rem;
             line-height: 3rem!important;
-            @include setMaxwidth($xl){
+            
+            @include setMaxwidth($lg){
                 padding:0 4rem;
+                // border-top: 1px dashed $greyx1;
+                background-color: $bgdark;
+                
                 &::before{
-                    content: ' -';
+                    content: ' - ';
+                    padding-left: 1rem;
                 }
             }
             &:hover {
@@ -245,7 +254,7 @@ nav{
     .icon-res {
         display: none;
         margin: 0 2rem;
-        @include setMaxwidth($xl) {
+        @include setMaxwidth($lg) {
             display: inline;
         }
         @include setMaxwidth($xl) {
@@ -262,8 +271,10 @@ nav{
         
        
         display: none;
-        @include setMaxwidth($md) {
-            display: inline;
+
+        //fix lg
+        @include setMaxwidth($lg) {
+            display: inline!important;
         }
     }
 }
@@ -285,5 +296,15 @@ nav{
 }
 
 .show-menu {
-    max-height: 600px!important;
+    @include setMaxwidth($lg){
+        max-height: 300px!important;
+        overflow-y: auto!important;
+    }
+    
+}
+.show-submenu{
+    @include setMaxwidth($lg){
+        max-height: 1500px !important;  
+    }
+   
 }

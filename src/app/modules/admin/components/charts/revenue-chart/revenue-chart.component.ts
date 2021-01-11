@@ -26,9 +26,13 @@ export class RevenueChartComponent implements OnInit {
   chart_Data = [{
     data: [], label: 'Doanh thu 2020'
   }];
+  chart_Data2021 = [{
+    data: [], label: 'Doanh thu 2021'
+  }];
   pieData = [{ data: [330, 600, 260, 700], label: 'Account A' }];
   chartLabels = ['January', 'February', 'Mars', 'April', 'sdj'];
   chart_Labels = [];
+  chart_Labels2021 = [];
   data = [];
   chartPieMonths = [];
   chartPieData = [{
@@ -138,9 +142,31 @@ export class RevenueChartComponent implements OnInit {
       console.log(res)
       res.forEach(element=>{
         console.log(element)
+        if ( element._id.yearBillDate==2020){
         
         this.chart_Labels.push("Tháng " +element._id.monthBillDate)
         this.chart_Data[0]['data'].push(element.total)
+        }
+      })
+      console.log(this.chartPieMonths)
+      console.log(this.chartPieData)
+      console.log(this.pieData)
+      console.log(this.chartLabels)
+      console.log(this.chartData)
+    })
+  }
+  refreshRevenueGraph2021(){
+    this.service.getRevenueChart().subscribe(res=>{
+      console.log(res)
+      res.forEach(element=>{
+        console.log(element)
+        if (element._id.monthBillDate==1){
+        
+        this.chart_Labels2021.push("Tháng " +element._id.monthBillDate )
+        this.chart_Data2021[0]['data'].push(element.total)
+        }else{
+          this.chart_Data2021[0]['data'].push(element.total)
+        }
       })
       console.log(this.chartPieMonths)
       console.log(this.chartPieData)

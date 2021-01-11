@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Brand } from 'src/app/models/brand-model';
 import { Category } from 'src/app/models/category-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CustomerService } from 'src/app/services/customer.service';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
@@ -27,7 +27,6 @@ export class TopbarComponent implements OnInit {
     this.refreshUser();
     this.refreshBrandList();
     this.refeshCategoryList();
-    
   }
 
   refreshBrandList(){
@@ -79,6 +78,12 @@ export class TopbarComponent implements OnInit {
     this.service.logout();
     localStorage.clear();
     this._router.navigate(['/']);
+  }
+  toggleMenu(){
+    $('#menu').toggleClass('show-menu');
+  }
+  showSubmenu(sub){
+      $('.'+sub).toggleClass('show-submenu');
   }
 
 

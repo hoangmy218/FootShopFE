@@ -19,11 +19,13 @@ export class SlidersComponent implements OnInit {
     responsive: {
       0: {
        items: 1,
-       nav: true
+       nav: true,
+       loop: false
      },
       450: {
        items: 1,
-       nav: true
+       nav: true,
+       loop: false
      },
       940: {
        items: 1,
